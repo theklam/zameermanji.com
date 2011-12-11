@@ -1,0 +1,23 @@
+@import "compass/typography/vertical_rhythm";
+@import "compass/typography/lists/horizontal-list";
+
+// For vertical rhythm
+@include establish-baseline;
+
+#top {
+  header {
+    float: left;
+    text-transform: uppercase;
+    width: 35%;
+  }
+  nav {
+    @include horizontal-list;
+    float: right;
+  }
+}
+
+.wrap {
+  margin: 0 auto;
+  width: 50%;
+  min-width: 600px;
+}

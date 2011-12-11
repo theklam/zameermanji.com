@@ -1,0 +1,25 @@
+!!! 5
+%html
+  %head
+    %title = "#{@item[:title]}"
+    %link{:href => "/assets/stylesheets/reset.css", :rel => "stylesheet"}
+    %link{:href => "/assets/stylesheets/base.css", :rel => "stylesheet"}
+
+  %body
+    .wrap
+      #top
+        %header
+          Zameer Manji
+        %nav
+          %ul
+            %li
+              Blog
+            %li
+              About
+            %li
+              Resume
+            %li
+              Projects
+      %br
+      #content
+        = yield
