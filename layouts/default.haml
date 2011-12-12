@@ -1,9 +1,11 @@
 !!! 5
 %html
   %head
-    %title = "#{@item[:title]}"
+    %meta{:charset => "utf-8"}
+    %title= "#{@item[:title]}"
     %link{:href => "/assets/stylesheets/reset.css", :rel => "stylesheet"}
     %link{:href => "/assets/stylesheets/base.css", :rel => "stylesheet"}
+    %link{:href => "http://fonts.googleapis.com/css?family=Droid+Serif", :rel => 'stylesheet'}
 
   %body
     .wrap
@@ -20,6 +22,21 @@
               Resume
             %li
               Projects
-      %br
+
       #content
         = yield
+
+
+      %footer
+        %p
+          I'm also on a few other sites on the internet:
+        %ul
+          %li
+            %a.twitter-img{:href => "http://www.twitter.com/zmanji"}
+              Twitter
+          %li
+            %a.github-img{:href => "http://www.github.com/zmanji"}
+              GitHub
+          %li
+            %a.stackoverflow-img{:href => "http://stackoverflow.com/users/2874/zameer-manji"}
+              StackOverflow

@@ -1,23 +1,62 @@
 @import "compass/typography/vertical_rhythm";
 @import "compass/typography/lists/horizontal-list";
+@import "compass/typography/text/replacement";
 
 // For vertical rhythm
 @include establish-baseline;
+
+$font-color: #333;
+$background-color: #ECECEC;
+// $background-color: #EEE;
+
+body {
+  font-family: 'Droid Serif', serif;
+  color: $font-color;
+  background-color: $background-color;
+  text-rendering: optimizeLegibility;
+}
 
 #top {
   header {
     float: left;
     text-transform: uppercase;
     width: 35%;
+    @include adjust-font-size-to(20px);
   }
   nav {
     @include horizontal-list;
     float: right;
+    text-transform: lowercase;
   }
+
+  padding-bottom: 25px;
+  margin-top: 25px;
+  border-bottom: 1px solid darken($font-color, 50);
 }
 
 .wrap {
   margin: 0 auto;
   width: 50%;
-  min-width: 600px;
+  min-width: 300px;
+  max-width: 750px;
+}
+
+#greeting {
+  @include adjust-font-size-to(24px);
+  text-align: center;
+}
+
+footer {
+  @include horizontal-list;
+  border-top: 1px solid darken($font-color, 50)
+}
+
+.twitter-img {
+  @include replace-text-with-dimensions("twitter.png");
+  display: block;
+}
+
+.github-img {
+  @include replace-text-with-dimensions("github.png");
+  display: block;
 }
