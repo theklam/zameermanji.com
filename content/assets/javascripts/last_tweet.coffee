@@ -7,5 +7,5 @@ $(document).ready ->
     exclude_replies: true
   }
   $.getJSON(url, params, (data, textStatus, jqXHR) ->
-    console.log data
+    console.log data[0].text
   )
