@@ -48,36 +48,43 @@ body {
 
 footer {
   border-top: 1px solid darken($font-color, 50);
+  padding-top: 5px;
+
+  text-align: center;
+  #twitter-col {
+    float: left;
+    width: 30%;
+    border-right: 1px solid lighten($font-color, 50);
+    padding-right: 2%;
+  }
+
+  #github-col{
+    float: left;
+    width: 30%;
+    padding-left: 2%;
+    padding-right: 2%;
+  }
+
+  #stackoverflow-col {
+    float: left;
+    width: 30%;
+    border-left: 1px solid lighten($font-color,50);
+    padding-left: 2%;
+  }
 }
 
 .twitter-img {
   @include replace-text-with-dimensions("twitter.png");
-  display: block;
+  display: inline-block;
 }
 
 .github-img {
   @include replace-text-with-dimensions("github.png");
-  display: block;
+  display: inline-block;
 }
 
 .stackoverflow-img {
   @include replace-text-with-dimensions("stackoverflow.png");
-  display: block;
+  display: inline-block;
 }
 
-#twitter-col {
-  float: left;
-  width: 30%;
-  border-right: 1px solid black;
-}
-
-#github-col{
-  display: inline;
-  width: 30%;
-}
-
-#stackoverflow-col {
-  float: right;
-  width: 30%;
-  border-left: 1px solid black;
-}
