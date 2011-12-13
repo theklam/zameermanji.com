@@ -22,7 +22,15 @@ compile '/assets/stylesheets/*/' do
 end
 
 compile '/assets/javascripts/*/' do
-  filter :coffee
+  ext = item[:extension].nil? ? nil : item[:extension].split('.').last
+  if ext == 'coffee'
+    filter :coffee
+    filter :uglify_js
+  elsif ext == "js"
+    filter :uglify_js
+  else
+    raise "Unknown thing #{item.attributes}"
+  end
 end
 
 compile '*' do
