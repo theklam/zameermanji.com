@@ -12,15 +12,13 @@ $(document).ready ->
     )
 
 
-    # Build time tag
+    # Build html
+    p = $('<p>').text("- ")
     tag = $("<time>")
     tag.attr("datetime", data[0].created_at)
     tag.addClass("timeago")
     tag.timeago()
-    text = "- #{tag.text()}"
-    tag.text(text)
+    p.append(tag)
 
-
-
-    $('#tweet-text').after(tag)
+    $('#tweet-text').after(p)
   )
