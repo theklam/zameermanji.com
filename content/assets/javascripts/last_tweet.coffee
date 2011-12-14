@@ -8,7 +8,9 @@ $(document).ready ->
   }
   $.getJSON(url, params, (data, textStatus, jqXHR) ->
     $('#tweet-text').fadeOut(400, ->
-      $(this).text(data[0].text).fadeIn()
+      text = data[0].text
+      text = twttr.txt.autoLink(text)
+      $(this).html(text).fadeIn()
     )
 
 
