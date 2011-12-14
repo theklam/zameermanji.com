@@ -1,6 +1,7 @@
 @import "compass/typography/vertical_rhythm";
 @import "compass/typography/lists/horizontal-list";
 @import "compass/typography/text/replacement";
+@import "compass/utilities/general/clearfix";
 
 // For vertical rhythm
 @include establish-baseline;
@@ -51,6 +52,11 @@ footer {
   padding-top: 5px;
 
   text-align: center;
+
+  .three-col {
+    @include clearfix;
+  }
+
   #twitter-col {
     float: left;
     width: 30%;
