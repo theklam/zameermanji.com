@@ -18,7 +18,11 @@ $(document).ready ->
     tag.attr("datetime", data[0].created_at)
     tag.addClass("timeago")
     tag.timeago()
-    p.append(tag)
+
+    link = $('<a>')
+    link.attr("href", "https://twitter.com/zmanji/status/#{data[0].id}")
+    link.append(tag)
+    p.append(link)
 
     $('#tweet-text').after(p)
   )
