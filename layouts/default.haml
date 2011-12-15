@@ -9,6 +9,7 @@
     %link{:href => "http://fonts.googleapis.com/css?family=Droid+Serif", :rel => 'stylesheet'}
 
     %script{:src => "http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"}
+    %script{:src => "http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.2.2/underscore-min.js"}
     %script{:src => "/assets/javascripts/vendor/jquery.timeago.js"}
     %script{:src => "https://raw.github.com/twitter/twitter-text-js/master/pkg/twitter-text-1.4.9.js"}
     %script{:src => "/assets/javascripts/last_tweet.js"}
@@ -46,13 +47,13 @@
           #github-col
             %a.github-img{:href => "http://www.github.com/zmanji"}
               GitHub
-            %p
-              this is a comit
+            %p#github-text
+              Loading Repositories ...
           #stackoverflow-col
             %a.stackoverflow-img{:href => "http://stackoverflow.com/users/2874/zameer-manji"}
               StackOverflow
-            %p
-              lol
+            %p#stackoverflow-text
+              Loading Stats ...
         %br
-        %p
-          Don't Steal My Shit
+        %p.small
+          © 2011 Zameer Manji

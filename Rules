@@ -25,7 +25,7 @@ compile '/assets/javascripts/*/' do
   ext = item[:extension].nil? ? nil : item[:extension].split('.').last
   if ext == 'coffee'
     filter :coffee
-    filter :uglify_js
+    # filter :uglify_js
   elsif ext == "js"
     filter :uglify_js
   else

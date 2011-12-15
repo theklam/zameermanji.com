@@ -94,3 +94,6 @@ footer {
   display: inline-block;
 }
 
+.small {
+  @include adjust-font-size-to(12px);
+}
