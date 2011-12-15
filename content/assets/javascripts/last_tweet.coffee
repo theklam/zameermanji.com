@@ -4,7 +4,7 @@ $(document).ready ->
   set_height =  ->
     if NUM_CALLED == 3
       heights = $('.three-col').children().map ->
-        return $(this).outerHeight()
+        return $(this).outerHeight() + 20
 
       heights = $.makeArray(heights)
 
