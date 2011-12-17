@@ -11,6 +11,8 @@
 
     %link{:href => "http://fonts.googleapis.com/css?family=Droid+Serif", :rel => 'stylesheet'}
 
+    <link href="data:image/x-icon;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQEAYAAABPYyMiAAAABmJLR0T///////8JWPfcAAAACXBIWXMAAABIAAAASABGyWs+AAAAF0lEQVRIx2NgGAWjYBSMglEwCkbBSAcACBAAAeaR9cIAAAAASUVORK5CYII=" rel="icon" type="image/x-icon" />
+
     %script{:src => "http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"}
     %script{:src => "http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.2.2/underscore-min.js"}
     %script{:src => "/assets/javascripts/vendor/jquery.timeago.js"}
@@ -18,17 +20,18 @@
     %script{:src => "/assets/javascripts/last_tweet.js"}
 
 
+
   %body
     .wrap
       #top
         %header
-          = link_to_unless_current 'Zameer Manji', '/'
+          = link_to 'Zameer Manji', '/'
         %nav
           %ul
             %li
               Blog
             %li
-              = link_to_unless_current('About', '/about/')
+              = link_to('About', '/about/')
             %li
               Resume
             %li

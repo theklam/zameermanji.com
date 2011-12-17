@@ -38,15 +38,13 @@ body {
 .wrap {
   margin: 0 auto;
   width: 650px;
-  min-width: 300px;
-  max-width: 750px;
 }
 
 #greeting {
-  @include adjust-font-size-to(24px);
+  @include adjust-font-size-to(22px);
   text-align: center;
   padding-top: 1em;
-  padding-bottom: 1em;
+  // padding-bottom: 1em;
 }
 
 $col-height: 200px;
@@ -107,12 +105,21 @@ footer {
 
 #content {
   p {
-    margin-bottom: 1.5em;
+    margin-bottom: 1.1em;
   }
 
   h1 {
     @include adjust-font-size-to(40px);
     margin-bottom: 20px;
     margin-top: 20px;
+  }
+
+  h2 {
+    @include adjust-font-size-to(30px);
+    margin-bottom: 13px;
+  }
+
+  ul {
+    margin-bottom: 1.1em;
   }
 }
