@@ -1,20 +1,5 @@
 $(document).ready ->
 
-  NUM_CALLED = 0
-  set_height =  ->
-    if NUM_CALLED == 3
-      heights = $('.three-col').children().map ->
-        return $(this).outerHeight() + 20
-
-      heights = $.makeArray(heights)
-
-      max = Math.max.apply(null, heights)
-
-      _.each($('.three-col').children(), (e) ->
-        $(e).height(max)
-      )
-
-
   # Get my latest tweet
   url = "http://api.twitter.com/1/statuses/user_timeline.json?callback=?"
   params = {
@@ -42,10 +27,6 @@ $(document).ready ->
       p.append(link)
 
       $('#tweet-text').after(p)
-
-      NUM_CALLED++
-      set_height()
-
     )
 
   )
@@ -87,10 +68,6 @@ $(document).ready ->
       )
 
       $(this).fadeIn()
-
-      NUM_CALLED++
-      set_height()
-
     )
   )
 
@@ -106,8 +83,6 @@ $(document).ready ->
 
       $(this).empty().append(p).fadeIn()
 
-      NUM_CALLED++
-      set_height()
     )
 
 
