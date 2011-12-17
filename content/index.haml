@@ -10,3 +10,25 @@ title: Zameer Manji
     I blog here, showcase my projects and show off my résumé.
 
     Feel free to drop me an [email](mailto:hi@zameermanji.com).
+
+- content_for :footer do
+  %p
+    Elsewhere on the Internet:
+  .three-col
+    #twitter-col
+      %a.twitter-img{:href => "http://www.twitter.com/zmanji"}
+        Twitter
+      %p#tweet-text
+        Loading Tweet ...
+    #github-col
+      %a.github-img{:href => "http://www.github.com/zmanji"}
+        GitHub
+      %p#github-text
+        Loading Repositories ...
+    #stackoverflow-col
+      %a.stackoverflow-img{:href => "http://stackoverflow.com/users/2874/zameer-manji"}
+        StackOverflow
+      %p#stackoverflow-text
+        Loading Stats ...
+
+  %br

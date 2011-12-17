@@ -8,6 +8,7 @@ http_stylesheets_path = "/assets/stylesheets"
 
 # SCSS all the way
 sass_options = {
-  :syntax => :scss
+  :syntax => :scss,
+  :style => :compressed
 }
 

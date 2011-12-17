@@ -2,7 +2,10 @@
 %html
   %head
     %meta{:charset => "utf-8"}
-    %title= "#{@item[:title]}"
+    - if @item[:title]
+      %title= "#{@item[:title]} - Zameer Manji"
+    - else
+      %title= "Zameer Manji"
     %link{:href => "/assets/stylesheets/reset.css", :rel => "stylesheet"}
     %link{:href => "/assets/stylesheets/base.css", :rel => "stylesheet"}
 
@@ -19,41 +22,24 @@
     .wrap
       #top
         %header
-          Zameer Manji
+          = link_to_unless_current 'Zameer Manji', '/'
         %nav
           %ul
             %li
               Blog
             %li
-              About
+              = link_to_unless_current('About', '/about/')
             %li
               Resume
             %li
               Projects
 
       #content
-        = yield
+        %article
+          = yield
 
 
       %footer
-        %p
-          Elsewhere on the Internet:
-        .three-col
-          #twitter-col
-            %a.twitter-img{:href => "http://www.twitter.com/zmanji"}
-              Twitter
-            %p#tweet-text
-              Loading Tweet ...
-          #github-col
-            %a.github-img{:href => "http://www.github.com/zmanji"}
-              GitHub
-            %p#github-text
-              Loading Repositories ...
-          #stackoverflow-col
-            %a.stackoverflow-img{:href => "http://stackoverflow.com/users/2874/zameer-manji"}
-              StackOverflow
-            %p#stackoverflow-text
-              Loading Stats ...
-        %br
+        = content_for(@item, :footer)
         %p.small
           © 2011 Zameer Manji

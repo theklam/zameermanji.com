@@ -37,7 +37,7 @@ body {
 
 .wrap {
   margin: 0 auto;
-  width: 50%;
+  width: 650px;
   min-width: 300px;
   max-width: 750px;
 }
@@ -45,6 +45,8 @@ body {
 #greeting {
   @include adjust-font-size-to(24px);
   text-align: center;
+  padding-top: 1em;
+  padding-bottom: 1em;
 }
 
 $col-height: 200px;
@@ -101,4 +103,16 @@ footer {
 
 .small {
   @include adjust-font-size-to(12px);
+}
+
+#content {
+  p {
+    margin-bottom: 1.5em;
+  }
+
+  h1 {
+    @include adjust-font-size-to(40px);
+    margin-bottom: 20px;
+    margin-top: 20px;
+  }
 }
