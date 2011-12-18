@@ -121,5 +121,13 @@ footer {
 
   ul {
     margin-bottom: 1.1em;
+    li {
+      list-style: disc;
+    }
   }
+}
+
+.company-term, .course-term {
+  text-align: right;
+  float: right;
 }
