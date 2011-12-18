@@ -7,7 +7,8 @@
 @include establish-baseline;
 
 $font-color: #333;
-$background-color: #ECECEC;
+$background-color: darken(white, 10);
+// $background-color: #ECECEC;
 // $background-color: #EEE;
 
 body {
