@@ -1,5 +1,7 @@
 ---
 title: About
+wrapper_id: 'about'
+
 ---
 # About #
 I'm Zameer Manji. I'm from [Toronto, Canada][1] and I am a third year [Software Engineering][2]

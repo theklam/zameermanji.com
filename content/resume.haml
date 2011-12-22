@@ -1,0 +1,194 @@
+!!! 5
+%html{:lang => "en"}
+  %head
+    %title Zameer Manji
+    %style
+      :sass
+        @media screen
+        .container
+          padding-top: 25px
+          padding-bottom: 25px
+
+        //useful trick
+        .page_break
+          page-break-before: always
+
+
+        h1,h2,h3
+          font-weight: bold
+          font-family: sans-serif
+        h1,h2
+          margin-bottom: 0.5em
+        h1
+          font-size: 24pt
+        h2
+          font-size: 15pt
+        h3, h4
+          margin-left: 1em
+
+        .header
+          text-align: center
+
+        ul
+          margin-bottom: 0.5em
+        li
+          margin-left: 4em
+          list-style: disc
+          li
+            margin-left: 2em
+        table
+          margin-left: auto
+          margin-right: auto
+          margin-bottom: 1em
+          border-collapse: collapse
+          border-bottom: 1px groove black
+          width: 100%
+          td
+            padding-left: 4px
+            padding-right: 4px
+            width: 30%
+
+        td, th
+          &.left
+            text-align: left
+          &.right
+            text-align: right
+          &.center
+            text-align: center
+
+        th
+          font-weight: bold
+
+        tfoot
+          height: 4pt
+
+        a
+          color: black
+          text-decoration: none
+          border-bottom: 1px #666 dotted
+
+        .summary p
+          text-align: justify
+          margin-bottom: 1em
+          text-indent: 2em
+
+        .container
+          width: 800px
+          margin: 0 auto
+
+  %body
+    .container
+
+      .summary
+        :markdown
+          My Manifesto
+          ------------
+          I like making good software. I like designing, creating specifications, testing and solving the core problem. I like documenting my software, automating inefficiencies
+          and reviewing code. I want my code to be used my millions of people. I want to create solutions to big problems. I want to work with hardware at the lowest
+          levels. I want to work with large distributed systems. I don't want to create web sites for the rest of my life. I want to work on things that are hard. I  don't care about
+          social media, etc. I want to use vim at work. I care about disrupting the music industry, personal finance, telecommunications and education. If you can satisfy some of the things I want, please schedule
+          and interview.
+
+      :markdown
+        ## Work Experience
+
+        ### Software Developer at [The Working Group], September 2011 - December 2011
+
+        * Created and worked on many Ruby on Rails projects.
+        * Implemented many features without assistance.
+        * Worked with Backbone.js and CoffeeScript to enhance functionality of web applications.
+
+        [The Working Group]: http://www.twg.ca
+
+        ### Agile Engineer at [Xtreme Labs], January - April 2011
+
+        * Implemented and designed a mobile advertising network portal using Ruby on Rails
+        * Wrote Ruby bindings to the OpenX ad delivery service
+        * Designed and wrote all of the front-end Javascript
+        * Integrated the product with Braintree Payment Solutions
+        * Created specialized SQL queries to compute metrics from large datasets
+        * Utilized a large variety of Ruby gems and external tools
+
+        [Xtreme Labs]: http://www.xtremelabs.com
+
+        ### Programmer/Analyst at [Trapeze Group], May - August 2010
+
+        * Created new web interface and search functionality for a product
+        * Designed and implemented new email templating functionality requested by client
+        * Completed over 50 feature requests
+        * Wrote a large number of tests for all modules worked with, increasing test coverage significantly
+
+        [Trapeze Group]: http://www.trapezegroup.com/
+
+        Summary of Qualifications
+        -------------------------
+
+        ### Languages
+
+        * Ruby (on Rails): 8 months of experience
+
+          * Used Ruby to create a large Ruby on Rails application on the job
+
+        * Python: Used on personal projects for 4 years
+
+          * Used Python to create multiple small applications to assist in management of a large music collection
+
+        * C99 and C++: 1 year of experience
+
+          * Used C++ on the job to create complex web services
+
+        * Java: Used with academic projects for 4 years
+
+          * Used Java to create a commandline scientific calculator and a compiler for subset of C to MIPS
+
+        * Javascript: 1 year of experience
+
+          * Created all of the frontend Javascript many Ruby on Rails applications and used CoffeeScript when possible.
+
+        * MIPS and 68k Assembly: 4 Months of experience with multiple academic projects
+        * Experienced with MySQL, HTML, CSS, Bash Shell
+
+        ### Tools
+
+        * Editing: Vim, RubyMine, Visual Studio 2008/2010
+        * Source Control: git, svn, hg
+        * Operating Systems: Windows, {Ubuntu, Debian, Arch, Fedora, Gentoo} Linux, FreeBSD, OpenBSD
+        * Methodologies: Pair Programming, Test Driven Development
+      .page_break
+      :markdown
+
+        Volunteer Work
+        ---------------
+
+        ### Class Treasurer
+        #### Software Engineering Class of 2014, December 2009 - Present
+        * Elected by the class to obtain and manage money for class projects
+
+        Interests
+        ---------
+        * Politics
+        * Law
+        * Social Policy
+        * Reading
+        * Music
+
+        Awards
+        ------
+        * Term Dean's Honour List, University of Waterloo, May 2010
+        * University of Waterloo Retirees' Scholarship, University of Waterloo, August 2009
+        * University of Waterloo Merit Scholarship, University of Waterloo, August 2009
+        * Ontario Scholar Certificate, University of Toronto Schools, June 2009
+
+        Education
+        ---------
+        ### Candidate for Bachelor of Software Engineering
+        * Honours Software Engineering, University of Waterloo, Ontario, September 2009 - Present
+        * Academic Projects:
+          * Designed and implemented a calculator in Coldfire assembly - ECE 222
+          * Created a compiler for a subset of C to MIPS assembly in Java - CS 241
+
+        ### Onterio Secondary School Diploma
+        * University of Toronto Schools, Toronto, Ontario, September 2003 - July 2009
+        * Academic Projects:
+          * Designed and developed a commandline scientific calculator - Grade 12 CS
+          * Created a graphical Tetris game using Java - Grade 12 CS

@@ -34,11 +34,11 @@
               = link_to('About', '/about/')
             %li
               = link_to('Resume', '/resume/')
-            %li
-              = link_to('Projects', '/projects/')
+            -# %li
+            -#   = link_to('Projects', '/projects/')
 
       #content
-        %article
+        %article{:id => @item[:wrapper_id]}
           = yield
 
 

@@ -48,7 +48,7 @@ body {
   // padding-bottom: 1em;
 }
 
-$col-height: 200px;
+$col-height: 220px;
 footer {
   border-top: 1px solid darken($font-color, 50);
   padding-top: 5px;
@@ -120,6 +120,9 @@ footer {
     margin-bottom: 13px;
   }
 
+}
+
+#about {
   ul {
     margin-bottom: 1.1em;
     li {
@@ -131,4 +134,10 @@ footer {
 .company-term, .course-term {
   text-align: right;
   float: right;
+}
+
+.post-list {
+  li {
+    list-style: none;
+  }
 }

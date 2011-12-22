@@ -1,0 +1,4 @@
+%ul.post-list
+  - sorted_articles.each do |a|
+    %li
+      = link_to a[:title], a.path
