@@ -46,7 +46,9 @@ compile '*' do
       raise "WHAT IS THIS EXT? While processing #{item.attributes}"
     end
 
-    layout "default"
+    if item[:layout] != 'none'
+      layout "default"
+    end
   end
 end
 

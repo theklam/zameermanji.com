@@ -1,9 +1,60 @@
+---
+layout: none
+---
+
 !!! 5
 %html{:lang => "en"}
   %head
     %title Zameer Manji
     %style
       :sass
+        // ------------ Begin Reset -------------
+        body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, p, blockquote, th, td
+          margin: 0
+          padding: 0
+
+        table
+          border-collapse: collapse
+          border-spacing: 0
+
+        fieldset, img
+          border: 0
+
+        address, caption, cite, code, dfn, th, var
+          font-style: normal
+          font-weight: normal
+
+        caption, th
+          text-align: left
+
+        h1, h2, h3, h4, h5, h6
+          font-size: 100%
+          font-weight: normal
+
+        q:before, q:after
+          content: ''
+
+        abbr, acronym
+          border: 0
+
+        *
+          outline: none
+
+        legend
+          margin: 0
+          padding: 0
+
+        html, body
+          height: 100%
+
+        a img
+          display: block
+        // -------------  End Reset -------------
+
+        @media print
+        a
+          border-bottom: none
+
         @media screen
         .container
           padding-top: 25px
@@ -12,6 +63,12 @@
         //useful trick
         .page_break
           page-break-before: always
+
+        body
+          font-family: serif
+          font-size: 12pt
+          color: #333
+          //don't fuck with the colour: http://www.kadavy.net/blog/posts/d4h-color-theory/
 
 
         h1,h2,h3
@@ -33,7 +90,6 @@
           margin-bottom: 0.5em
         li
           margin-left: 4em
-          list-style: disc
           li
             margin-left: 2em
         table
@@ -78,6 +134,31 @@
 
   %body
     .container
+      .header
+
+        %h1  Zameer Manji
+
+        %table.info_table
+          %thead
+            %tr
+              %th.left &nbsp;
+              %th.center &nbsp;
+              %th.right &nbsp;
+          %tfoot
+            -# Spacer
+            %tr
+              %td{:colspan => 3}
+                &nbsp;
+          %tbody
+            %tr
+              %td.left
+                %a{:href => 'https://github.com/zmanji/'}
+                  github.com/zmanji/
+              %td.center
+                %a{:href => 'http://www.zameermanji.com'}
+                  www.zameermanji.com
+              %td.right zmanji@gmail.com
+
 
       .summary
         :markdown
