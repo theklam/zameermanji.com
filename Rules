@@ -41,7 +41,11 @@ compile '*' do
     if ext == 'haml'
       filter :haml
     elsif ext == 'markdown'
-      filter :redcarpet
+      filter :pandoc
+      filter :pygments
+    elsif ext == 'pandoc'
+      filter :pandoc
+      filter :pygments
     else
       raise "WHAT IS THIS EXT? While processing #{item.attributes}"
     end
