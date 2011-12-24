@@ -20,8 +20,8 @@ class PygmentsFilter < Nanoc3::Filter
     code_blocks.each do |c|
       content = c.content
       content = ::Pygments.highlight(content, :lexer => :ruby)
-      c.content = ""
-      c.add_child(content)
+      content = ::Nokogiri::HTML::DocumentFragment.parse(content)
+      c.parent.replace(content)
     end
 
 
