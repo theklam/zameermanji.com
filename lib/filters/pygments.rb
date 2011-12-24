@@ -19,7 +19,7 @@ class PygmentsFilter < Nanoc3::Filter
 
     code_blocks.each do |c|
       content = c.content
-      content = ::Pygments.highlight(content, :lexer => :ruby, :options => {:lineseparator => '<br/>'})
+      content = ::Pygments.highlight(content, :lexer => :ruby, :options => {:lineseparator => '<br/>', :encoding => 'utf-8'})
       content = ::Nokogiri::HTML::DocumentFragment.parse(content)
       pre = content.css('pre').first
       pre.name = 'code'
