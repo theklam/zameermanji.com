@@ -16,6 +16,7 @@ body {
   color: $font-color;
   background-color: $background-color;
   text-rendering: optimizeLegibility;
+  @include adjust-font-size-to(16px);
 }
 
 #top {
