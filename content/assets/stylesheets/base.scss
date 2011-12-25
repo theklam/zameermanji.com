@@ -2,6 +2,7 @@
 @import "compass/typography/lists/horizontal-list";
 @import "compass/typography/text/replacement";
 @import "compass/utilities/general/clearfix";
+@import "compass/css3/border-radius";
 
 // For vertical rhythm
 @include establish-baseline;
@@ -108,6 +109,7 @@ footer {
 #content {
   p {
     margin-bottom: 1.1em;
+    @include adjust-font-size-to(16px);
   }
 
   h1 {
@@ -155,4 +157,22 @@ pre, code, kbd {
 // Pygments code boxes
 .highlight {
   padding: 10px;
+  margin: 20px 0;
+  @include border-radius(10px);
+}
+
+.posted {
+  color: lighten($font-color,10);
+  font-style: italic;
+  text-align: left;
+  margin-top: -20px;
+  margin-bottom: 20px;
+  @include adjust-font-size-to(13px);
+}
+
+blockquote {
+  padding-left: 1.5em;
+  font-style: italic;
+  border-left: 2px solid gray;
+  @include adjust-font-size-to(18px);
 }

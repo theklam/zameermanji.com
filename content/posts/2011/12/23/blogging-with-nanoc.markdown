@@ -5,8 +5,6 @@ title: Blogging With Nanoc
 
 ---
 
-# Blogging with Nanoc #
-
 [Nanoc][nanoc] according to its own website:
 
 > nanoc is a Ruby web publishing system for building small to medium-sized websites.
@@ -34,11 +32,8 @@ compile '*' do
     elsif ext == 'markdown'
       filter :pandoc
       filter :pygments
-    elsif ext == 'pandoc'
-      filter :pandoc
-      filter :pygments
     else
-      raise "WHAT IS THIS EXT? While processing #{item.attributes}"
+      raise "Unknown ext #{ext} While processing #{item.attributes}"
     end
 
     if item[:layout] != 'none'
@@ -48,7 +43,12 @@ compile '*' do
 end
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-
+Here I take all of the text files I have in my site and if they match a certain
+extension they are piped through one more more nanoc filters. Nanoc fitlters
+simply take in text and out put text. Above for `haml` files the haml filter
+takes in haml markup and outputs html. For markdown files I am transforming it
+to html by my pandoc filter and then using my pygments filter to add syntax
+highlighting to code snippets in the post.
 
 
 

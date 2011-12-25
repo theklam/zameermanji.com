@@ -40,6 +40,10 @@
 
       #content
         %article{:id => @item[:wrapper_id]}
+          - if @item[:title]
+            %h1= @item[:title]
+          - if @item[:created_at]
+            .posted= "Posted On: #{@item[:created_at].strftime("%B %d %Y")}"
           = yield
 
 
