@@ -17,32 +17,13 @@ and flexible from the start, unlike other tools where it seemed that extensions
 and additional configuration were tacked on later.
 
 Nanoc is simple and flexible. At the very core of any Nanoc powered site
-is the `Rules` file, which is a ruby file that uses Nanoc's [DSL][dsl] to define compilation
-and routing rules. At the time of writing here is the `Rules` file for this site:
+is the `Rules` file, which is a ruby file that uses Nanoc's [DSL][dsl] to define `compile`
+and `route` rules. The `compile` rules are used to define the steps needed to transform
+an input file to an output file. In this site that is typically pandoc flavored
+markdown to html. Here are the relevant lines from my `Rules` file.
 
 
 ~~~~~~~~~~~~~~~~~~~~~~~ {.ruby}
-#!/usr/bin/env ruby
-
-require 'compass'
-Compass.add_project_configuration 'compass_config.rb'
-
-compile '/assets/stylesheets/*/' do
-  filter :sass, Compass.sass_engine_options
-end
-
-compile '/assets/javascripts/*/' do
-  ext = item[:extension].nil? ? nil : item[:extension].split('.').last
-  if ext == 'coffee'
-    filter :coffee
-    # filter :uglify_js
-  elsif ext == "js"
-    filter :uglify_js
-  else
-    raise "Unknown thing #{item.attributes}"
-  end
-end
-
 compile '*' do
   if item.binary?
     # don’t filter binary items
@@ -52,8 +33,10 @@ compile '*' do
       filter :haml
     elsif ext == 'markdown'
       filter :pandoc
+      filter :pygments
     elsif ext == 'pandoc'
       filter :pandoc
+      filter :pygments
     else
       raise "WHAT IS THIS EXT? While processing #{item.attributes}"
     end
@@ -63,26 +46,6 @@ compile '*' do
     end
   end
 end
-
-route '/assets/stylesheets/*/' do
-  item.identifier.chop + '.css'
-end
-
-route '/assets/javascripts/*/' do
-  item.identifier.chop + '.js'
-end
-
-route '*' do
-  if item.binary?
-    # Write item with identifier /foo/ to /foo.ext
-    item.identifier.chop + '.' + item[:extension]
-  else
-    # Write item with identifier /foo/ to /foo/index.html
-    item.identifier + 'index.html'
-  end
-end
-
-layout '*', :haml
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 

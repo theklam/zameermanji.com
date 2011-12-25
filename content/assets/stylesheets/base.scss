@@ -7,7 +7,7 @@
 @include establish-baseline;
 
 $font-color: #333;
-$background-color: darken(white, 10);
+$background-color: darken(white, 5);
 // $background-color: #ECECEC;
 // $background-color: #EEE;
 
@@ -114,6 +114,7 @@ footer {
     @include adjust-font-size-to(40px);
     margin-bottom: 20px;
     margin-top: 20px;
+    font-weight: bold;
   }
 
   h2 {
@@ -149,4 +150,9 @@ em {
 
 pre, code, kbd {
   font-family: 'Inconsolata', monospace;
+}
+
+// Pygments code boxes
+.highlight {
+  padding: 10px;
 }
