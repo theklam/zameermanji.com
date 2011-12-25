@@ -1,4 +1,4 @@
-# This is a pandoc filter for nanoc>
+# This is a pandoc filter for nanoc
 
 require 'pandoc-ruby'
 
@@ -7,6 +7,6 @@ class PandocFilter < Nanoc3::Filter
   type :text
 
   def run(content, params = {})
-    ::PandocRuby.convert(content)
+    ::PandocRuby.convert(content, 'smart')
   end
 end

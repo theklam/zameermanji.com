@@ -1,5 +1,6 @@
 require 'pygments.rb'
-require 'nokogiri'
+require 'hpricot'
+require 'cgi'
 
 class PygmentsFilter < Nanoc3::Filter
   identifier :pygments
@@ -11,25 +12,20 @@ class PygmentsFilter < Nanoc3::Filter
     # highlighting. This is a code block with a class name of a programming
     # language.
 
-    # log = ::Nanoc3::CLI::Logger.instance
-    # log.color = true
+    log = ::Nanoc3::CLI::Logger.instance
+    log.color = true
 
-    post = ::Nokogiri::HTML::DocumentFragment.parse(content)
-    code_blocks = post.css('pre.ruby code')
-
-    code_blocks.each do |c|
-      content = c.content
-      content = ::Pygments.highlight(content, :lexer => :ruby, :options => {:lineseparator => '<br/>', :encoding => 'utf-8'})
-      content = ::Nokogiri::HTML::DocumentFragment.parse(content)
-      pre = content.css('pre').first
-      pre.name = 'code'
-      c.parent.replace(content)
+    post = Hpricot(content)
+    code_blocks = post.search('pre.ruby code')
+    code_blocks.each do |code_block|
+      code = code_block.inner_html
+      code = CGI.unescapeHTML(code)
+      code = ::Pygments.highlight(code, :lexer => 'ruby', :options => {:lineseparator => '<br>', :encoding => 'utf-8'})
+      log.log(:high, code)
+      code_block.parent.swap code
     end
 
+    post.to_html
 
-    # log.log(:high, post.to_s) if code_blocks.size > 0
-
-
-    post.to_s
   end
 end
