@@ -4,22 +4,23 @@ created_at: 2011-12-23
 title: Blogging With Nanoc
 
 ---
+I've finally made the move to a static blog engine and I am using [Nanoc][nanoc].
+I chose nanoc because it met 90% of my requirements and adding the last 10% was
+trivial.
 
-[Nanoc][nanoc] according to its own website:
+My requirements for this site was to create all posts in [Pandoc][pandoc] flavored
+markdown, use HAML for layouts and other pages, and use [Pygments][pygments]
+for syntax highlighting in posts. Nanoc enabled me to do all of that very easily even though
+it did not support Pandoc out of the box.
 
-> nanoc is a Ruby web publishing system for building small to medium-sized websites.
-
-That is exactly what I needed when I was going to create zameermanji.com. I chose Nanoc
-over alternatives like [Jekyll][jekyll] because Nanoc was designed to be extensible
-and flexible from the start, unlike other tools where it seemed that extensions
-and additional configuration were tacked on later.
-
-Nanoc is simple and flexible. At the very core of any Nanoc powered site
+At the very core of any Nanoc powered site
 is the `Rules` file, which is a ruby file that uses Nanoc's [DSL][dsl] to define `compile`
-and `route` rules. The `compile` rules are used to define the steps needed to transform
-an input file to an output file. In this site that is typically pandoc flavored
-markdown to html. Here are the relevant lines from my `Rules` file.
-
+and `route` rules for items. An "item" is any file on your website, it can be a markdown file,
+an image, RSS feed or CofeeScript file. The `compile` rules are used to define the transformations
+on the content of a file to get the output. These transformations are defined in filters.
+The `route` rules are used to determine the filenames of the compiled content
+and where it should be placed in the final directory structure. Here is an example
+compile rule which is used to compile the posts on this website.
 
 ~~~~~~~~~~~~~~~~~~~~~~~ {.ruby}
 compile '*' do
@@ -43,40 +44,36 @@ compile '*' do
 end
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-Here I take all of the text files I have in my site and if they match a certain
-extension they are piped through one more more nanoc filters. Nanoc fitlters
-simply take in text and out put text. Above for `haml` files the haml filter
-takes in haml markup and outputs html. For markdown files I am transforming it
-to html by my pandoc filter and then using my pygments filter to add syntax
-highlighting to code snippets in the post.
+Based on the file extension of the item, I pipe it through appropriate set of filters
+to get the desired HTML. I also then place the item in my default layout to produce the final page.
+Above, I use two filters that I wrote, the `pandoc` filter and the `pygments` filter to
+generate the appropriate html. Nanoc comes with many [filters][filters-list] but it is also
+very easy to [write your own][own-filter]. As an example look at my Pandoc filter.
+
+~~~~~~~~~~~~~~~~~~~~~~~ {.ruby}
+require 'pandoc-ruby'
+
+class PandocFilter < Nanoc3::Filter
+  identifier :pandoc
+  type :text
+
+  def run(content, params = {})
+    ::PandocRuby.convert(content, 'smart')
+  end
+end
+~~~~~~~~~~~~~~~~~~~~~~~
+
+All I had to do was specify the name of the filter, what the expected input
+and output was, and a method that would take in the input text and return the output
+text. The filter makes use of the excellent [pandoc-ruby][pandoc-ruby] gem to invoke
+the Pandoc binary.
 
 
 
-[jekyll]: https://github.com/mojombo/jekyll
 [nanoc]: http://nanoc.stoneship.org/
 [dsl]: http://nanoc.stoneship.org/docs/api/3.2/Nanoc3/CompilerDSL.html
-
-
-
-
-<!-- Nanoc is stupidly simple and flexible. Compared to [Jekyll][jekyll] and [Octopress][octopres], -->
-<!-- it was designed for extensibility right out of the box. It is also really easy to configure. -->
-
-<!-- ## My Configuration ## -->
-
-<!-- ## Extending Nanoc ## -->
-
-
-
-<!-- When I first set forward to create zameermanji.com -->
-
-<!-- When I was creating zameermanji.com I thought it would be nice to make it a static site -->
-<!-- and have a blog to go with it. -->
-
-
-<!-- My first choice was to go with [Jekyll][jekyll] -->
-<!-- which is *the* static site generator for programmers. I noticed however hat Jekyll -->
-<!-- is very blog centric and didn't jive with my mental model on how a static site generator -->
-<!-- should function. I then discovered [Nanoc][nanoc] which really fits with my mental model. -->
-
-
+[pandoc]: http://johnmacfarlane.net/pandoc/
+[pygments]: http://pygments.org/
+[pandoc-ruby]: https://github.com/alphabetum/pandoc-ruby
+[filters-list]: http://nanoc.stoneship.org/docs/4-basic-concepts/#filters
+[own-filter]: http://nanoc.stoneship.org/docs/5-advanced-concepts/#writing-filters

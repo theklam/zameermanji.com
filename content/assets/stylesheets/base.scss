@@ -17,7 +17,7 @@ body {
   color: $font-color;
   background-color: $background-color;
   text-rendering: optimizeLegibility;
-  @include adjust-font-size-to(16px);
+  @include adjust-font-size-to(18px);
 }
 
 #top {
@@ -109,7 +109,7 @@ footer {
 #content {
   p {
     margin-bottom: 1.1em;
-    @include adjust-font-size-to(16px);
+    @include adjust-font-size-to(18px);
   }
 
   h1 {
