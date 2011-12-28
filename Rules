@@ -4,6 +4,9 @@
 require 'compass'
 Compass.add_project_configuration 'compass_config.rb'
 
+# Generate Slugs
+require 'to_slug'
+
 # A few helpful tips about the Rules file:
 #
 # * The string given to #compile and #route are matching patterns for
@@ -70,6 +73,16 @@ end
 
 route '/assets/javascripts/*/' do
   item.identifier.chop + '.js'
+end
+
+route '/posts/*/' do
+  date = item[:created_at]
+  raise "No Posted Date!" if date.nil?
+
+  slug = item[:title].to_slug
+
+  "/posts/#{date.year}/#{date.month}/#{date.day}/#{slug}/index.html"
+
 end
 
 route '*' do

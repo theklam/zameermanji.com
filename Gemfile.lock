@@ -33,6 +33,7 @@ GEM
       blankslate (>= 2.1.2.3)
       ffi (~> 1.0.7)
     sass (3.1.11)
+    to_slug (1.0.8)
 
 PLATFORMS
   ruby
@@ -47,3 +48,4 @@ DEPENDENCIES
   pandoc-ruby
   pygments.rb
   sass
+  to_slug (= 1.0.8)

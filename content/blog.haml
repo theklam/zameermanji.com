@@ -2,3 +2,6 @@
   - sorted_articles.each do |a|
     %li
       = link_to a[:title], a.path
+      .date
+        = a[:created_at].strftime("%B %d %Y")
+

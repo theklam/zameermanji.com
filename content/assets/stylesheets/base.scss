@@ -8,17 +8,24 @@
 @include establish-baseline;
 
 $font-color: #333;
-$background-color: darken(white, 5);
-// $background-color: #ECECEC;
-// $background-color: #EEE;
 
 body {
   font-family: 'Droid Serif', serif;
   color: $font-color;
-  background-color: $background-color;
+  background-color: white;
   text-rendering: optimizeLegibility;
   @include adjust-font-size-to(18px);
 }
+
+a {
+  color: $font-color;
+  text-decoration: underline;
+}
+
+a:visited, a:hover {
+  color: lighten($font-color, 25);
+}
+
 
 #top {
   header {
@@ -142,7 +149,14 @@ footer {
 
 .post-list {
   li {
+    clear: both;
     list-style: none;
+    padding: 5px;
+    .date {
+      float: right;
+      font-style: italic;
+      text-align: right;
+    }
   }
 }
 

@@ -5,7 +5,7 @@ title: Blogging With Nanoc
 
 ---
 I've finally made the move to a static blog engine and I am using [Nanoc][nanoc].
-I chose nanoc because it met 90% of my requirements and adding the last 10% was
+I chose Nanoc because it met 90% of my requirements and adding the last 10% was
 trivial.
 
 My requirements for this site was to create all posts in [Pandoc][pandoc] flavored
