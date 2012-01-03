@@ -10,23 +10,28 @@ trivial.
 
 My requirements for this site was to create all posts in [Pandoc][pandoc] flavored
 markdown, use HAML for layouts and other pages, and use [Pygments][pygments]
-for syntax highlighting in posts. Nanoc enabled me to do all of that very easily even though
-it did not support Pandoc out of the box.
+for syntax highlighting in posts. I also did not want to be forced to use a certain
+URL or file convention and wanted to develop my own for the site. Nanoc ships
+with a very simple [DSL][dsl] that makes achieving those requirements trivial.
 
 
 ## Creating Rules ##
+Nanoc, at its very core is a very simple compiler that follows to rules defined
+in a `Rules` file. The `Rules` file is a ruby file that uses Nanocs DSL to define
+`compile` and `route` rules. These rules define transformations on input content
+and the filenames of the output files respectively. Each rule operates on an item.
+An item in Nanoc is any type of input file, for example it can be a markdown file, an image
+or CoffeeScript file.
 
-At the very core of any Nanoc powered site
-is the `Rules` file, which is a ruby file that uses Nanoc's [DSL][dsl] to define `compile`
-and `route` rules for items. An "item" is any file on your website, it can be a markdown file,
-an image, RSS feed or CofeeScript file. The `compile` rules are used to define the transformations
-on an item to get the desired output. Usually the transformations create HTML.
-These transformations are defined in filters.
-The `route` rules are used to define the output filename and location.
+### Compile Rules ###
+The `compile` defines transformations by invoking filters which do the actual
+transformations on the input file. Nanoc ships with [many filters][filters-list] out of the box
+including a HAML filter, LESS filter and an ERB filter. It is also very easy
+to write your [own filters][own-filters] that operate on other kinds of input.
 
-The rules for compiling and routing posts on this website are below.
+Lets look at the `compile` rule that creates the posts on this blog:
 
-~~~~~~~~~~~~~~~~~~~~~~~ {.ruby}
+~~~~~~~~~~~~~~~~~~~~~~~~ {.ruby}
 compile '/posts/*/' do
   ext = item[:extension].nil? ? nil : item[:extension].split('.').last
   if ext == 'markdown' || ext == 'pandoc'
@@ -38,34 +43,27 @@ compile '/posts/*/' do
 
   layout 'default'
 end
+~~~~~~~~~~~~~~~~~~~~~~~~
 
+This rule operates on all the files that are in the `/posts/` directory of my
+input files. Then, for each item I pass it through two filters. A
+`pandoc` filter and a `pygments` filter. The first transforms the post in to HTML,
+and the second adds syntax highlighting to the code bocks in the post. At the end
+I just apply the `default` layout to the item. This produces the final HTML of the
+page.
 
-route '/posts/*/' do
-  date = item[:created_at]
-  raise "No Posted Date!" if date.nil?
+In this rule I could have applied as many filters as I wanted or needed. I could
+have also applied them conditionally as well based on some metadata that I added
+to the item. The beauty of nanoc is that filters are very simple to use and chain
+and I also have the full power of Ruby at my fingertips so I can make whatever
+transformations that are required.
 
-  slug = item[:title].to_slug
+In the above rule I used two filters that did not ship with Nanoc. I had to create
+them because Nanoc does not ship with a Pandoc filter and I had to then create my
+own syntax highlighting filter because I could not get the builtin one to work.
+Lets look at the `pandoc` filter first:
 
-  "/posts/#{date.year}/#{date.month}/#{date.day}/#{slug}/index.html"
-
-end
-~~~~~~~~~~~~~~~~~~~~~~~
-
-My `compile` rule operates every file I have in my posts
-directory, I pipe the files through a pandoc filter and a pygments filter. I then
-place it in the default layout. This produces the final page.
-
-The `route` rule takes every post, computes a slug from the title and creates
-the pretty URL for the post.
-
-
-Based on the file extension of the item, I pipe it through appropriate set of filters
-to get the desired HTML. I also then place the item in my default layout to produce the final page.
-Above, I use two filters that I wrote, the `pandoc` filter and the `pygments` filter to
-generate the appropriate html. Nanoc comes with many [filters][filters-list] but it is also
-very easy to [write your own][own-filter]. As an example look at my Pandoc filter.
-
-~~~~~~~~~~~~~~~~~~~~~~~ {.ruby}
+~~~~~~~~~~~~~~~~~~~~~~~~ {.ruby}
 require 'pandoc-ruby'
 
 class PandocFilter < Nanoc3::Filter
@@ -76,14 +74,52 @@ class PandocFilter < Nanoc3::Filter
     ::PandocRuby.convert(content, 'smart')
   end
 end
-~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~
 
-All I had to do was specify the name of the filter, what the expected input
-and output was, and a method that would take in the input text and return the output
-text. The filter makes use of the excellent [pandoc-ruby][pandoc-ruby] gem to invoke
-the Pandoc binary.
+Nanoc filters are *stupidly* easy to write. All you need to do is create a class
+that inherits from `Nanoc3::Filter`, give it a unique identifier and define a
+`run` method which takes in a strong of content for you to transform. You just
+need to return the result of the transformation. To write my `pandoc` filter
+I used the wonderful [pandoc-ruby][pandoc-ruby] gem which wraps around the `pandoc`
+executable.
+
+Of course not all filters are going to be this simple or easier to write. Adding
+syntax highlighting was significantly harder. My `pygments` filter at the time
+of writing is below:
+
+~~~~~~~~~~~~~~~~~~~~~~~~ {.ruby}
+require 'pygments.rb'
+require 'hpricot'
+require 'cgi'
+
+class PygmentsFilter < Nanoc3::Filter
+  identifier :pygments
+  type :text
+
+  def run(content, params = {})
+    post = Hpricot(content)
+    code_blocks = post.search('pre.ruby code')
+    code_blocks.each do |code_block|
+      code = code_block.inner_html
+      code = CGI.unescapeHTML(code)
+      code = ::Pygments.highlight(code, :lexer => 'ruby', :options => {:lineseparator => '<br>', :encoding => 'utf-8'})
+      code_block.parent.swap code
+    end
+
+    post.to_html
+
+  end
+end
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+This filter assumes that the input is produced by my `pandoc` filter. It uses the
+wonderful `Hpricot` library to parse the input. The above code only highlights
+Ruby, but it is trivial to extend to all the other programing languages that Pygments
+supports when I need it.
 
 
+
+*Like this post? Follow me on [Twitter][twitter].*
 
 [nanoc]: http://nanoc.stoneship.org/
 [dsl]: http://nanoc.stoneship.org/docs/api/3.2/Nanoc3/CompilerDSL.html
@@ -92,3 +128,4 @@ the Pandoc binary.
 [pandoc-ruby]: https://github.com/alphabetum/pandoc-ruby
 [filters-list]: http://nanoc.stoneship.org/docs/4-basic-concepts/#filters
 [own-filter]: http://nanoc.stoneship.org/docs/5-advanced-concepts/#writing-filters
+[twitter]: http://www.twitter.com/zmanji

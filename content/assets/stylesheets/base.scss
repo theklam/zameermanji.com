@@ -131,6 +131,11 @@ footer {
     margin-bottom: 13px;
   }
 
+  h3 {
+    @include adjust-font-size-to(24px);
+    margin-bottom: 6px;
+  }
+
 }
 
 #about {
