@@ -13,36 +13,51 @@ markdown, use HAML for layouts and other pages, and use [Pygments][pygments]
 for syntax highlighting in posts. Nanoc enabled me to do all of that very easily even though
 it did not support Pandoc out of the box.
 
+
+## Creating Rules ##
+
 At the very core of any Nanoc powered site
 is the `Rules` file, which is a ruby file that uses Nanoc's [DSL][dsl] to define `compile`
 and `route` rules for items. An "item" is any file on your website, it can be a markdown file,
 an image, RSS feed or CofeeScript file. The `compile` rules are used to define the transformations
-on the content of a file to get the output. These transformations are defined in filters.
-The `route` rules are used to determine the filenames of the compiled content
-and where it should be placed in the final directory structure. Here is an example
-compile rule which is used to compile the posts on this website.
+on an item to get the desired output. Usually the transformations create HTML.
+These transformations are defined in filters.
+The `route` rules are used to define the output filename and location.
+
+The rules for compiling and routing posts on this website are below.
 
 ~~~~~~~~~~~~~~~~~~~~~~~ {.ruby}
-compile '*' do
-  if item.binary?
-    # don’t filter binary items
+compile '/posts/*/' do
+  ext = item[:extension].nil? ? nil : item[:extension].split('.').last
+  if ext == 'markdown' || ext == 'pandoc'
+    filter :pandoc
+    filter :pygments
   else
-    ext = item[:extension].nil? ? nil : item[:extension].split('.').last
-    if ext == 'haml'
-      filter :haml
-    elsif ext == 'markdown'
-      filter :pandoc
-      filter :pygments
-    else
-      raise "Unknown ext #{ext} While processing #{item.attributes}"
-    end
-
-    if item[:layout] != 'none'
-      layout "default"
-    end
+    raise "Unknown ext: #{ext} with item: #{item.attributes}"
   end
+
+  layout 'default'
+end
+
+
+route '/posts/*/' do
+  date = item[:created_at]
+  raise "No Posted Date!" if date.nil?
+
+  slug = item[:title].to_slug
+
+  "/posts/#{date.year}/#{date.month}/#{date.day}/#{slug}/index.html"
+
 end
 ~~~~~~~~~~~~~~~~~~~~~~~
+
+My `compile` rule operates every file I have in my posts
+directory, I pipe the files through a pandoc filter and a pygments filter. I then
+place it in the default layout. This produces the final page.
+
+The `route` rule takes every post, computes a slug from the title and creates
+the pretty URL for the post.
+
 
 Based on the file extension of the item, I pipe it through appropriate set of filters
 to get the desired HTML. I also then place the item in my default layout to produce the final page.
