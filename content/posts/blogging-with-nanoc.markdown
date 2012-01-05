@@ -24,7 +24,7 @@ An item in Nanoc is any type of input file, for example it can be a markdown fil
 or CoffeeScript file.
 
 ### Compile Rules ###
-The `compile` defines transformations by invoking filters which do the actual
+The `compile` rule defines transformations by invoking filters which do the actual
 transformations on the input file. Nanoc ships with [many filters][filters-list] out of the box
 including a HAML filter, LESS filter and an ERB filter. It is also very easy
 to write your [own filters][own-filters] that operate on other kinds of input.
@@ -113,11 +113,33 @@ end
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 This filter assumes that the input is produced by my `pandoc` filter. It uses the
-wonderful `Hpricot` library to parse the input. The above code only highlights
+wonderful `Hpricot` library to parse the input. It then takes the content of the
+code blocks created by Pandoc and sends it to Pygments. The resulting output replaces
+the block created by Pandoc. The above code only highlights
 Ruby, but it is trivial to extend to all the other programing languages that Pygments
-supports when I need it.
+supports.
 
 
+### Routing Rules ###
+After compiling items the next rule
+The `route` rules define where an item should be placed in the output directory
+and what filename it should have. Since the `Rules` file is pure Ruby you can
+create any URL scheme you want. Here is the `route` rule for the posts on this site.
+
+~~~~~~~~~~~~~~~~~~~~~~~~ {.ruby}
+route '/posts/*/' do
+  date = item[:created_at]
+  raise "No Posted Date!" if date.nil?
+
+  slug = item[:title].to_slug
+
+  "/posts/#{date.year}/#{date.month}/#{date.day}/#{slug}/index.html"
+
+end
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+This rule simply returns the desired path and filename of the item in the output
+directory.
 
 *Like this post? Follow me on [Twitter][twitter].*
 
@@ -129,3 +151,4 @@ supports when I need it.
 [filters-list]: http://nanoc.stoneship.org/docs/4-basic-concepts/#filters
 [own-filter]: http://nanoc.stoneship.org/docs/5-advanced-concepts/#writing-filters
 [twitter]: http://www.twitter.com/zmanji
+[to_slug]: http://rubygems.org/gems/to_slug
