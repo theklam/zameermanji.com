@@ -10,3 +10,4 @@ gem 'pandoc-ruby'
 gem 'pygments.rb'
 gem 'hpricot'
 gem 'to_slug', "1.0.8"
+gem "rdiscount"
