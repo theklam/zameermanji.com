@@ -23,7 +23,7 @@ and the filenames of the output files respectively. Each rule operates on an ite
 An item in Nanoc is any type of input file, for example it can be a markdown file, an image
 or CoffeeScript file.
 
-### Compile Rules ###
+## Compile Rules ##
 The `compile` rule defines transformations by invoking filters which do the actual
 transformations on the input file. Nanoc ships with [many filters][filters-list] out of the box
 including a HAML filter, LESS filter and an ERB filter. It is also very easy
@@ -57,6 +57,8 @@ have also applied them conditionally as well based on some metadata that I added
 to the item. The beauty of nanoc is that filters are very simple to use and chain
 and I also have the full power of Ruby at my fingertips so I can make whatever
 transformations that are required.
+
+## Filters ##
 
 In the above rule I used two filters that did not ship with Nanoc. I had to create
 them because Nanoc does not ship with a Pandoc filter and I had to then create my
@@ -120,11 +122,11 @@ Ruby, but it is trivial to extend to all the other programing languages that Pyg
 supports.
 
 
-### Routing Rules ###
-After compiling items the next rule
+## Routing Rules ##
+After compiling items the next rule applied is the `route` rules.
 The `route` rules define where an item should be placed in the output directory
-and what filename it should have. Since the `Rules` file is pure Ruby you can
-create any URL scheme you want. Here is the `route` rule for the posts on this site.
+and what filename it should have. Since the `Rules` file is pure Ruby you can leverage
+all of ruby to create the URL scheme required. Here is the `route` rule for the posts on this site.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~ {.ruby}
 route '/posts/*/' do
@@ -139,7 +141,8 @@ end
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 This rule simply returns the desired path and filename of the item in the output
-directory.
+directory. Here I use the [to_slug][to_slug] gem to help me generate a slug in the URL
+from the post title.
 
 *Like this post? Follow me on [Twitter][twitter].*
 
