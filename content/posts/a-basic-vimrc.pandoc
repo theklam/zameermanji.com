@@ -5,4 +5,16 @@ title: A Basic .vimrc
 
 ---
 
-Everyone wants to learn vim.
+After you read up a few articles on Vim and run `vimtutor` you might feel that you should
+use Vim all the time. Unfortunately Vim is not very useful with the default configuration.
+All users need to create a `.vimrc` to contain their own configuration. If you are just
+starting to use Vim, you just need some basic formatting and to enable some of the key
+features of Vim such as syntax highlighting.
+
+~~~~~~~~~~~~~ {.vim}
+set nocompatible
+set number
+set ruler
+set laststatus=2
+syntax on
+~~~~~~~~~~~~~

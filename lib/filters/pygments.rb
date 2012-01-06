@@ -21,6 +21,14 @@ class PygmentsFilter < Nanoc3::Filter
       code_block.parent.swap code
     end
 
+    code_blocks = post.search('pre.vim code')
+    code_blocks.each do |code_block|
+      code = code_block.inner_html
+      code = CGI.unescapeHTML(code)
+      code = ::Pygments.highlight(code, :lexer => 'vim', :options => {:lineseparator => '<br>', :encoding => 'utf-8'})
+      code_block.parent.swap code
+    end
+
     post.to_html
 
   end
