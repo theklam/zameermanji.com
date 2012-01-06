@@ -13,8 +13,11 @@ features of Vim such as syntax highlighting.
 
 ~~~~~~~~~~~~~ {.vim}
 set nocompatible
+nnoremap ; :
+set notitle
 set number
 set ruler
+set hidden
 set laststatus=2
 syntax on
 ~~~~~~~~~~~~~

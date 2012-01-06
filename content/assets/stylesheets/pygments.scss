@@ -23,6 +23,7 @@ $pre-color: $base1 !default;
 
 .highlight {
   background-color: $base02;
+  color: $base1;
   .c      { color: $base01 !important; font-style: italic !important; }                     /* Comment */
   .cm     { color: $base01 !important; font-style: italic !important; }                     /* Comment.Multiline */
   .cp     { color: $base01 !important; font-style: italic !important;  }                     /* Comment.Preproc */
