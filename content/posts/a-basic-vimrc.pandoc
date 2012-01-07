@@ -6,18 +6,54 @@ title: A Basic .vimrc
 ---
 
 After you read up a few articles on Vim and run `vimtutor` you might feel that you should
-use Vim all the time. Unfortunately Vim is not very useful with the default configuration.
-All users need to create a `.vimrc` to contain their own configuration. If you are just
-starting to use Vim, you just need some basic formatting and to enable some of the key
-features of Vim such as syntax highlighting.
+use Vim all the time. Should you make this choice, you will find that Vim out of the box
+is not suited for anything useful. By default Vim does not have syntax highlighting,
+line numbers or proper whitespace handling. Should you be required to do something productive
+with Vim or work with others, it will be very difficult for you to do so.
+This article presents what I believe should be your default `.vimrc` and unlike many
+articles on the internet, breaks it down line by line so you understand what each line does
+and how to modify it to suit your needs.
+
+Before you read the `.vimrc`, it is important to understand that Vim comes
+with very many commands and options. Options are set by running `set <option name>`. Commands
+are run by running `<command name> <arguments>`. You will need both commands run and options
+set in order to configure Vim properly.
+
+Should anything be confusing, Vim itself ships with a very extensive
+help system which can explain *anything* to you. To access this help, you need to type
+`:h '<name of option>'` or `:h :<name of command>`. For example to understand what the
+`number` option does, run `:h 'number'`. To see what the `syntax` command does type
+`:h :sytanx`.
+
+Without further text, here is the `.vimrc`:
 
 ~~~~~~~~~~~~~ {.vim}
 set nocompatible
-nnoremap ; :
-set notitle
+
+syntax on
+
 set number
 set ruler
 set hidden
 set laststatus=2
-syntax on
+
+set list listchars=tab:\ \ ,trail:·
 ~~~~~~~~~~~~~
+
+You can save this into your `$HOME` directory as `.vimrc`. Once you restart Vim you will
+notice very many things have changed. Lets look at the `.vimrc` line by line to see what each
+line does, why we need that line and what modifications you can do to suit that line to your
+needs.
+
+The first line in any `.vimrc` *always* should be `set nocompatible`. This must be the first
+line because this option changes how other options and commands work. This line according to
+Vim help does:
+
+> This option has the effect of making Vim either more Vi-compatible, or make Vim behave in a more useful way.
+
+The takeaway there is "behave in a more useful way". This option enables Vim to have better
+defaults and more functionality by breaking compatibility with Vi. If there is any line that
+you put in your starting `.vimrc` it should be there. Many Vim help guides online will assume
+that you have this option set.
+
+The next line: `syntax on`.
