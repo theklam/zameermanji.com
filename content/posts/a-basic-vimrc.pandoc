@@ -56,4 +56,6 @@ defaults and more functionality by breaking compatibility with Vi. If there is a
 you put in your starting `.vimrc` it should be there. Many Vim help guides online will assume
 that you have this option set.
 
-The next line: `syntax on`.
+The next line is `syntax on`. This line enables syntax highlighting in Vim. This means that
+every time Vim opens a file, it will use the built in heuristics to identify the file and if
+that file has syntax file shipping with Vim, it will be applied.
