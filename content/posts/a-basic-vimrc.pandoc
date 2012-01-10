@@ -6,13 +6,23 @@ title: A Basic .vimrc
 ---
 
 After you read up a few articles on Vim and run `vimtutor` you might feel that you should
-use Vim all the time. Should you make this choice, you will find that Vim out of the box
-is not suited for anything useful. By default Vim does not have syntax highlighting,
-line numbers or proper whitespace handling. Should you be required to do something productive
-with Vim or work with others, it will be very difficult for you to do so.
-This article presents what I believe should be your default `.vimrc` and unlike many
-articles on the internet, breaks it down line by line so you understand what each line does
-and how to modify it to suit your needs.
+use Vim all the time. You have a lot of power at your fingertips. You can use `w` and `b`
+to move on a line, you can use `ciw` you change the word you are on and so much more.
+
+Should you make this choice and commit to using Vim full time you will notice that Vim out
+of the box is very minimal. There is no syntax highlighting, no line numbers, etc. It is
+not suited for everyday use unless you configure it as well.
+
+To configure Vim one has to place a `.vimrc` file in their home directory. This file is
+composed of Vimscript, a programing language composed of Vim commands and a few constructs.
+Most people fill this file with Vim commands that they would like to be run when Vim
+starts. This mainly involves setting options and a executing a few commands.
+
+This article shows a very bare-bones and simple `.vimrc` that enables the functionality
+that most people need from other editors. This includes line numbers, syntax highlighting,
+setting a proper size for tabs and a few Vim niceties. This article also explains what
+each command does unlike many other articles on the internet. If you are interested
+you can learn about what each line actually *does* which might help you learn Vim.
 
 Before you read the `.vimrc`, it is important to understand that Vim comes
 with very many commands and options. Options are set by running `set <option name>`. Commands
@@ -30,32 +40,59 @@ Without further text, here is the `.vimrc`:
 ~~~~~~~~~~~~~ {.vim}
 set nocompatible
 
+filetype plugin indent on
+
 syntax on
 
 set number
 set ruler
-set hidden
 set laststatus=2
+set cursorline
+
+set encoding=utf-8
+
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
+set expandtab
+set shiftround
 
 set list listchars=tab:\ \ ,trail:·
+
+set wildmenu
 ~~~~~~~~~~~~~
 
 You can save this into your `$HOME` directory as `.vimrc`. Once you restart Vim you will
-notice very many things have changed. Lets look at the `.vimrc` line by line to see what each
+notice a few things have changed. Lets look at the `.vimrc` line by line to see what each
 line does, why we need that line and what modifications you can do to suit that line to your
 needs.
 
-The first line in any `.vimrc` *always* should be `set nocompatible`. This must be the first
-line because this option changes how other options and commands work. This line according to
-Vim help does:
+~~~~~ {.vim}
+set nocompatible
+~~~~~
+
+This is the first line of the file because it is a very special option. According to the
+official Vim help:
 
 > This option has the effect of making Vim either more Vi-compatible, or make Vim behave in a more useful way.
 
 The takeaway there is "behave in a more useful way". This option enables Vim to have better
-defaults and more functionality by breaking compatibility with Vi. If there is any line that
-you put in your starting `.vimrc` it should be there. Many Vim help guides online will assume
-that you have this option set.
+defaults and more functionality by breaking compatibility with Vi. For the list of features
+that this enables read the Vim manual entry by typing `:h nocompatible`.
 
-The next line is `syntax on`. This line enables syntax highlighting in Vim. This means that
-every time Vim opens a file, it will use the built in heuristics to identify the file and if
-that file has syntax file shipping with Vim, it will be applied.
+~~~ {.vim}
+filetype plugin indent on
+~~~
+
+This line enables loading of filetype plugins and indent files. Vim has a very powerful
+plugin system and every release of Vim ships with a default set of filetype plugins (ftplugins)
+maintained by the community. Each ftplugin sets some important configuration options to make
+editing that type of file more optimal. For example, a ftpplugin can define an omni-completion
+function for autocomplete or the correct indentation rules if the language is whitespace
+sensitive. Vim also ships with a series of indent plugins. These plugins define the indentation rules
+for each filetype so Vim knows to indent the next line you create or not. This is an essential
+feature in modern editors and it is available in Vim.
+
+~~~ {.vim}
+syntax on
+~~~
