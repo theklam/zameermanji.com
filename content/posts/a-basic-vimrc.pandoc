@@ -96,3 +96,27 @@ feature in modern editors and it is available in Vim.
 ~~~ {.vim}
 syntax on
 ~~~
+
+This line enables syntax highlighting. For each filetype in Vim there is a syntax file which
+defines how tokens should be syntax highlighted.
+
+~~~~ {.vim}
+set number
+~~~~
+
+This enables line numbers.
+
+~~~ {.vim}
+set ruler
+~~~
+
+This option shows the line and column number of the cursor as well as how far down you are in
+the file on the stautsline. This helps in navigating files.
+
+~~~ {.vim}
+set laststatus=2
+~~~
+
+This option forces Vim to show the status line all the time. The default option only shows
+the status line if you have more than one split open. The status line by default shows
+some useful information and it is annoying to have it show only occasionally.
