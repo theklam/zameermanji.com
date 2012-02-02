@@ -4,24 +4,13 @@ created_at: 2011-12-23
 title: Blogging With Nanoc
 
 ---
-I've finally made the move to a static blog engine and I am using [Nanoc][nanoc].
-I chose Nanoc because it met 90% of my requirements and adding the last 10% was
-trivial.
+This site and blog is powered by [Nanoc][nanoc] which is a
+very powerful static site generator. Unlike other static site generator's
+Nanoc is very powerful out of the box and is very flexible. In this article
+I'll show how I set up Nanoc to power my blog.
 
-My requirements for this site was to create all posts in [Pandoc][pandoc] flavored
-markdown, use HAML for layouts and other pages, and use [Pygments][pygments]
-for syntax highlighting in posts. I also did not want to be forced to use a certain
-URL or file convention and wanted to develop my own for the site. Nanoc ships
-with a very simple [DSL][dsl] that makes achieving those requirements trivial.
-
-
-## Creating Rules ##
-Nanoc, at its very core is a very simple compiler that follows to rules defined
-in a `Rules` file. The `Rules` file is a ruby file that uses Nanocs DSL to define
-`compile` and `route` rules. These rules define transformations on input content
-and the filenames of the output files respectively. Each rule operates on an item.
-An item in Nanoc is any type of input file, for example it can be a markdown file, an image
-or CoffeeScript file.
+Posts on my blog are written in Pandoc flavored markdown, the styling in Sass using Compass,
+and the JavaScript is written in CoffeeScript.
 
 ## Compile Rules ##
 The `compile` rule defines transformations by invoking filters which do the actual
