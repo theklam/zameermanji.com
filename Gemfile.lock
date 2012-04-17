@@ -13,7 +13,7 @@ GEM
       chunky_png (~> 1.2)
       fssm (>= 0.2.7)
       sass (~> 3.1)
-    cri (2.0.2)
+    cri (2.2.1)
     execjs (1.2.12)
       multi_json (~> 1.0)
     ffi (1.0.11)
@@ -21,10 +21,8 @@ GEM
     haml (3.1.4)
     hpricot (0.8.5)
     multi_json (1.0.4)
-    nanoc (3.2.3)
-      nanoc3 (>= 3.2.3)
-    nanoc3 (3.2.3)
-      cri (~> 2.0)
+    nanoc (3.3.3)
+      cri (~> 2.2)
     pandoc-ruby (0.4.1)
     pygments.rb (0.2.4)
       rubypython (~> 0.5.3)
@@ -45,7 +43,7 @@ DEPENDENCIES
   compass
   haml
   hpricot
-  nanoc (~> 3.2.3)
+  nanoc (~> 3.3.3)
   pandoc-ruby
   pygments.rb
   rdiscount

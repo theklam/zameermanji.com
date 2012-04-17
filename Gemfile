@@ -1,6 +1,6 @@
 source :rubygems
 
-gem "nanoc", "~> 3.2.3"
+gem "nanoc", "~> 3.3.3"
 gem "haml"
 gem "sass"
 gem "adsf"

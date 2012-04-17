@@ -2,6 +2,9 @@ require 'pygments.rb'
 require 'hpricot'
 require 'cgi'
 
+# Note nanoc comes with a pygments.rb filter but I don't
+# use it because it doesn't work with pandoc output.
+
 class PygmentsFilter < Nanoc3::Filter
   identifier :pygments
   type :text
