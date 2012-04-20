@@ -2,7 +2,7 @@
 
 require 'pandoc-ruby'
 
-class PandocFilter < Nanoc3::Filter
+class PandocFilter < Nanoc::Filter
   identifier :pandoc
   type :text
 
