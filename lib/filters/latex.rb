@@ -7,9 +7,16 @@ class LatexFilter < Nanoc::Filter
   identifier :latex
   type :text => :binary
 
+
   # Idea, use `latexmk` to do all of the hard work assuming a full
   # MacTeX/TeXLive install.
   def run(content, params={})
+
+  rc = <<-eos
+$latex = 'latex -interaction=nonstopmode';
+$pdflatex = 'pdflatex -interaction=nonstopmode';
+  eos
+
     input = ""
     output = ""
     Dir.mktmpdir{|dir|
@@ -19,12 +26,20 @@ class LatexFilter < Nanoc::Filter
         io.write(content)
       }
 
-      command = "latexmk -pdf #{input} -aux-directory=#{dir} -output-directory=#{dir}"
+      rcfile = "#{dir}/latexmkrc"
+
+      open(rcfile, "w") {|io|
+        io.write(rc)
+      }
+
+      command = "latexmk -recorder -pdf #{input} -aux-directory=#{dir} -output-directory=#{dir}"
 
       latexmk_output = ''
       latexmk_err = ''
       status = 0
-      Open3::popen3(command) do |stdin, stdout, stderr, wait_thr|
+
+      options = {:chdir => dir}
+      Open3::popen3(command, options) do |stdin, stdout, stderr, wait_thr|
         latexmk_output = stdout.read
         latexmk_err = stderr.read
         status = wait_thr.value

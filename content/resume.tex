@@ -1,17 +1,20 @@
+% NOTE: This is very inspired from http://www.toofishes.net/blog/latex-resume-follow-up/
+
 \documentclass[10pt,letterpaper]{article}
-\usepackage[margin=1in]{geometry}
+\usepackage[margin=0.75in]{geometry}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[stretch=10]{microtype}
 \usepackage{hyperref}
 \usepackage{tgpagella}
+\usepackage{enumitem}
 % \usepackage{DejaVuSerif}
 \pagestyle{empty}
 
 \begin{document}
 
 \begin{center}
-{\Large \textbf{Zameer Manji}}
+{\huge \textbf{Zameer Manji}}
 
 % NOTE: Alternatively could have used \hfill
 
@@ -28,10 +31,32 @@
 Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Quisque ut ante
 pulvinar mauris interdum euismod. Aliquam dui tellus, blandit at, tincidunt ac,
 feugiat id, nibh.
+\\
 
-Phasellus id metus. Aliquam erat volutpat. Donec fringilla. Donec euismod, velit
-quis adipiscing hendrerit, enim eros tempor mi, a hendrerit ipsum eros eget leo.
+\hrule
+\vspace{-0.4em}
+\subsection*{Work Experience}
+  \begin{itemize}
+    \parskip=0.1em
+    \item[]
 
-\textcopyright
+    {\textbf{COMPANY} \hfill \textbf{LOCATION}}
+    \\
+    {\emph{POSITION} \hfill \emph{START - END}}
+
+    \begin{itemize}
+    \item[\textbullet] TEST 1
+    \item[\textbullet] TEST 2
+    \end{itemize}
+  \end{itemize}
+
+
+\hrule
+\vspace{-0.4em}
+\subsection*{Interests}
+
+\hrule
+\vspace{-0.4em}
+\subsection*{Education}
 
 \end{document}
