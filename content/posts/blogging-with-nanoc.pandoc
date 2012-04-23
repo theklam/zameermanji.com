@@ -1,23 +1,65 @@
 ---
 kind: article
-created_at: 2011-12-23
+created_at: 2012-04-23
 title: Blogging With Nanoc
 
 ---
-This site and blog is powered by [Nanoc][nanoc] which is a very powerful static
-site generator. Unlike other static site generator's Nanoc is very powerful out
-of the box and is very flexible. In this article I'll show how I set up Nanoc to
-power my blog.
 
-Posts on my blog are written in Pandoc flavored markdown, the styling in Sass
-using Compass, and the JavaScript is written in CoffeeScript.
+I chose to move my site to a static site generator because I was not satisfied
+with the simplicity and customizability of other blogging platforms. I evaluated
+a bunch of static site generators and finally settled on [nanoc][nanoc] Ruby
+powered static site generator written by [Denis Defreyne][stoneship].
+
+## Why Nanoc? ##
+Why did I select nanoc over more popular static site generators such as
+[jekyll][jekyll]?
+
+### Jekyll ###
+Jekyll at first seems to be the perfect candidate: there are lots of users and
+markdown is supported out of the box. However Jekyll has lots of problems once
+you start using it. First it can't support HAML in layouts. Adding support for HAML
+either involves [invoking the shell](http://mikeferrier.com/2011/04/29/blogging-with-jekyll-haml-sass-and-jammit/)
+every time you compile which sort of defeats the point of a ruby based site compiler
+or [using a gem](http://www.duckpuppy.com/blog/2011/10/31/using-haml-with-jekyll)
+that [monkey patches](https://github.com/rfelix/jekyll_ext/blob/master/lib/aop.rb)
+the shit out of Jekyll. The amount of work involved to get HAML layouts is not
+the sign of an easy to extend solution.
+
+Secondly, it seems that Jekyll development has slowed and I don't see future
+improvements coming from the project. As of writing there are 251 open issues on
+the project on GitHub explaining all sorts of problems and 52 open pull
+requests. It makes sense that the project is in this state considering the
+primary author is one of GitHub's co-founders and probably has a lot of other
+things to do.
+
+### Hyde ###
+Hyde looked like a very good candidate as well. (Complete This Section....)
+
+
+## The Power of Nanoc ##
+Part of the appeal of nanoc is that it is simply a compiler. Out of the box it
+doesn't assume anything and has extensive documentation about extending it. For
+this site I choose to be different, where I would have posts written in Pandoc
+flavored markdown, static pages in HAML, layouts in HAML, stylesheets in Sass
+using the Compass framework, my resume in LaTeX (converted to a PDF) and the
+dynamic elements written in CoffeeScript.
+
+All of my desired functionality was either supported out of the box by nanoc
+or absurdly easy to add.
+
+### Configuring Nanoc ###
+Nanoc's behavior is defined by compilation rules and routing rules which are defined
+in a `Rules` file using nanoc's DSL. These rules operate on items which are files
+in the `content/` directory. Depending on where the item is located and the file
+type, I can create rules that pass it through one or more filters in the compile step,
+which transforms the item to another format. Using the same information I can also determine
+the final filename and location in the routing step.
 
 ## Compile Rules ##
-The `compile` rule defines transformations by invoking filters which do the
-actual transformations on the input file. Nanoc ships with [many
-filters][filters-list] out of the box including a HAML filter, LESS filter and
-an ERB filter. It is also very easy to write your [own filters][own-filters]
-that operate on other kinds of input.
+For this blog I had to define multiple compile steps in order to get HAML -> HTML,
+Pandoc -> HTML, SASS -> CSS, CoffeeScript -> JavaScript and LaTeX -> PDF transformations.
+These transformations operate on the [filters][filters-list] that nanoc ships with
+or filters that I [wrote][own-filters].
 
 Lets look at the `compile` rule that creates the posts on this blog:
 
@@ -146,3 +188,8 @@ the URL from the post title.
 [own-filter]: http://nanoc.stoneship.org/docs/5-advanced-concepts/#writing-filters
 [twitter]: http://www.twitter.com/zmanji
 [to_slug]: http://rubygems.org/gems/to_slug
+[jekyll]: https://github.com/mojombo/jekyll
+[octopress]: http://octopress.org/docs/
+[mhyee-post]: http://mhyee.com/blog/nanoc.html
+[mhyee]: http://mhyee.com
+[stoneship]: http://stoneship.org/
