@@ -12,13 +12,26 @@
 
     %link{:href => "http://fonts.googleapis.com/css?family=Droid+Sans|Inconsolata", :rel => 'stylesheet'}
 
-    <link rel='icon' href='/favicon.ico' sizes="16x16" type="image/vnd.microsoft.icon">
+    %link{:rel => 'icon', :href => '/favicon.ico', :sizes => "16x16", :type => "image/vnd.microsoft.icon"}
+
+    :javascript
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-20388638-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
 
     %script{:src => "http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"}
     %script{:src => "http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.2.2/underscore-min.js"}
     %script{:src => "/assets/javascripts/vendor/jquery.timeago.js"}
     %script{:src => "https://raw.github.com/twitter/twitter-text-js/master/pkg/twitter-text-1.4.9.js"}
     %script{:src => "/assets/javascripts/last_tweet.js"}
+
+
 
 
 
