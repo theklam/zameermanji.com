@@ -1,0 +1,5 @@
+---
+layout: none
+---
+
+<%= xml_sitemap :items => @items.reject{ |i| i.binary? } %>
