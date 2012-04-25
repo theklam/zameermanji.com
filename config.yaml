@@ -60,3 +60,6 @@ watcher:
   # When to send notifications (using Growl or notify-send).
   notify_on_compilation_success: false
   notify_on_compilation_failure: true
+
+# Required for XML Sitemap
+base_url: http://www.zameermanji.com

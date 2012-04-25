@@ -12,3 +12,4 @@ gem 'hpricot'
 gem 'to_slug', "1.0.8"
 gem "rdiscount"
 gem "mime-types"
+gem "builder"

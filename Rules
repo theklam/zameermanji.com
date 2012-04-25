@@ -48,6 +48,7 @@ compile '/posts/*/' do
   layout 'default'
 end
 
+
 compile '*' do
   if item.binary?
     # don’t filter binary items
@@ -59,6 +60,8 @@ compile '*' do
       filter :pandoc
     elsif ext == 'tex'
       filter :latex
+    elsif ext == 'erb'
+      filter :erb
     else
       raise "WHAT IS THIS EXT? While processing #{item.attributes}"
     end
@@ -85,6 +88,10 @@ route '/posts/*/' do
 
   "/posts/#{date.year}/#{date.month}/#{date.day}/#{slug}/index.html"
 
+end
+
+route 'sitemap.xml' do
+  "/sitemap.xml"
 end
 
 route '*' do

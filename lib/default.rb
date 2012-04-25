@@ -1,6 +1,7 @@
 # All files in the 'lib' directory will be loaded
 # before nanoc starts compiling.
 
-include Nanoc3::Helpers::LinkTo
-include Nanoc3::Helpers::Capturing
-include Nanoc3::Helpers::Blogging
+include Nanoc::Helpers::LinkTo
+include Nanoc::Helpers::Capturing
+include Nanoc::Helpers::Blogging
+include Nanoc::Helpers::XMLSitemap
