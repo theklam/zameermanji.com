@@ -48,25 +48,26 @@ All of my desired functionality was either supported out of the box by nanoc
 or absurdly easy to add.
 
 ### Configuring Nanoc ###
-Nanoc's behavior is defined by compilation rules and routing rules which are defined
-in a `Rules` file using nanoc's DSL. These rules operate on items which are files
-in the `content/` directory. Depending on where the item is located and the file
-type, I can create rules that pass it through one or more filters in the compile step,
-which transforms the item to another format. Using the same information I can also determine
-the final filename and location in the routing step.
+Nanoc's behavior is defined by compilation rules and routing rules which are
+defined in a `Rules` file using nanoc's DSL. These rules operate on items which
+are files in the `content/` directory. Depending on where the item is located
+and the file type, I can create rules that pass it through one or more filters
+in the compile step, which transforms the item to another format. Using the same
+information I can also determine the final filename and location in the routing
+step.
 
-## Compile Rules ##
-For this blog I had to define multiple compile steps in order to get HAML -> HTML,
-Pandoc -> HTML, SASS -> CSS, CoffeeScript -> JavaScript and LaTeX -> PDF transformations.
-These transformations operate on the [filters][filters-list] that nanoc ships with
-or filters that I [wrote][own-filters].
+### Compile Rules ###
+For this blog I had to define multiple compile steps in order to get HAML ->
+HTML, Pandoc -> HTML, SASS -> CSS, CoffeeScript -> JavaScript and LaTeX -> PDF
+transformations. These transformations operate on the [filters][filters-list]
+that nanoc ships with or filters that I [wrote][own-filters].
 
 Lets look at the `compile` rule that creates the posts on this blog:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~ {.ruby}
 compile '/posts/*/' do
   ext = item[:extension].nil? ? nil : item[:extension].split('.').last
-  if ext == 'markdown' || ext == 'pandoc'
+  if ext == 'pandoc'
     filter :pandoc
     filter :pygments
   else
@@ -90,7 +91,7 @@ to the item. The beauty of nanoc is that filters are very simple to use and
 chain and I also have the full power of Ruby at my fingertips so I can make
 whatever transformations that are required.
 
-## Filters ##
+### Filters ###
 
 In the above rule I used two filters that did not ship with Nanoc. I had to
 create them because Nanoc does not ship with a Pandoc filter and I had to then
