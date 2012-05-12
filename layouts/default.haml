@@ -55,7 +55,7 @@
             - if @item[:title]
               %h1= @item[:title]
             - if @item[:created_at]
-              .posted= "Posted On: #{@item[:created_at].strftime("%B %d %Y")}"
+              .posted= "Created On: #{@item[:created_at].strftime("%B %d %Y")}"
           = yield
 
       %footer

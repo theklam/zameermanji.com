@@ -1,48 +1,32 @@
 ---
 kind: article
 created_at: 2012-04-23
-title: Blogging With Nanoc
+title: Nanoc for Fun and Profit
 
 ---
 
-I chose to move my site to a static site generator because I was not satisfied
-with the simplicity and customizability of other blogging platforms. I evaluated
-a bunch of static site generators and finally settled on [nanoc][nanoc] Ruby
-powered static site generator written by [Denis Defreyne][stoneship].
+When I began to redesign this website I decided that it should be powered by
+a static site generator. The benefits of a static site generator are endless.
+They enable me to write my posts in markdown, I can use vim and the shell for
+common tasks, they are easy to modify, cheaper to host, etc.
 
-## Why Nanoc? ##
-Why did I select nanoc over more popular static site generators such as
-[jekyll][jekyll]?
+After I evaluated all of the options I settled on [nanoc], a Ruby powered
+static site generator.
 
-### Jekyll ###
-Jekyll at first seems to be the perfect candidate: there are lots of users and
-markdown is supported out of the box. However Jekyll has lots of problems once
-you start using it. First it can't support HAML in layouts. Adding support for HAML
-either involves [invoking the shell](http://mikeferrier.com/2011/04/29/blogging-with-jekyll-haml-sass-and-jammit/)
-every time you compile which sort of defeats the point of a ruby based site compiler
-or [using a gem](http://www.duckpuppy.com/blog/2011/10/31/using-haml-with-jekyll)
-that [monkey patches](https://github.com/rfelix/jekyll_ext/blob/master/lib/aop.rb)
-the shit out of Jekyll. The amount of work involved to get HAML layouts is not
-the sign of an easy to extend solution.
-
-Secondly, it seems that Jekyll development has slowed and I don't see future
-improvements coming from the project. As of writing there are 251 open issues on
-the project on GitHub explaining all sorts of problems and 52 open pull
-requests. It makes sense that the project is in this state considering the
-primary author is one of GitHub's co-founders and probably has a lot of other
-things to do.
-
-### Hyde ###
-Hyde looked like a very good candidate as well. (Complete This Section....)
-
+## Why not Jekyll? ##
+Why did I select nanoc and not [jekyll] or [octopress]? First, jekyll is not as
+extensible as I hoped it would be. For example adding the ability to have HAML
+layouts involves using the `jekyll_ext` gem which [monkey patches][jekyll_ext]
+jekyll. I wasn't comfortable with monkey patching jekyll and went looking for a
+more robust solution.
 
 ## The Power of Nanoc ##
-Part of the appeal of nanoc is that it is simply a compiler. Out of the box it
-doesn't assume anything and has extensive documentation about extending it. For
-this site I choose to be different, where I would have posts written in Pandoc
-flavored markdown, static pages in HAML, layouts in HAML, stylesheets in Sass
-using the Compass framework, my resume in LaTeX (converted to a PDF) and the
-dynamic elements written in CoffeeScript.
+Part of the appeal of nanoc is that it is only a static site compiler. Out of
+the box it doesn't assume anything about site structure, purpose or contents of
+the site. For this site I wanted to have the posts written in Pandoc flavored
+markdown, static pages in HAML, layouts in HAML, stylesheets in Sass using the
+Compass framework, my resume in LaTeX (converted to a PDF) and the dynamic
+elements written in CoffeeScript.
 
 All of my desired functionality was either supported out of the box by nanoc
 or absurdly easy to add.
@@ -53,8 +37,8 @@ defined in a `Rules` file using nanoc's DSL. These rules operate on items which
 are files in the `content/` directory. Depending on where the item is located
 and the file type, I can create rules that pass it through one or more filters
 in the compile step, which transforms the item to another format. Using the same
-information I can also determine the final filename and location in the routing
-step.
+information I can also determine the final filename and location in the
+`output/` directory during the routing step.
 
 ### Compile Rules ###
 For this blog I had to define multiple compile steps in order to get HAML ->
@@ -84,12 +68,6 @@ filter and a `pygments` filter. The first transforms the post in to HTML, and
 the second adds syntax highlighting to the code bocks in the post. At the end
 I just apply the `default` layout to the item. This produces the final HTML of
 the page.
-
-In this rule I could have applied as many filters as I wanted or needed. I could
-have also applied them conditionally as well based on some metadata that I added
-to the item. The beauty of nanoc is that filters are very simple to use and
-chain and I also have the full power of Ruby at my fingertips so I can make
-whatever transformations that are required.
 
 ### Filters ###
 
@@ -190,7 +168,5 @@ the URL from the post title.
 [twitter]: http://www.twitter.com/zmanji
 [to_slug]: http://rubygems.org/gems/to_slug
 [jekyll]: https://github.com/mojombo/jekyll
-[octopress]: http://octopress.org/docs/
-[mhyee-post]: http://mhyee.com/blog/nanoc.html
-[mhyee]: http://mhyee.com
-[stoneship]: http://stoneship.org/
+[jekyll_ext]: https://github.com/rfelix/jekyll_ext/blob/master/lib/aop.rb
+[docs]: http://nanoc.stoneship.org/docs/api/3.3/
