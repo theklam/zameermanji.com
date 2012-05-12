@@ -86,7 +86,7 @@ route '/posts/*/' do
 
   slug = item[:title].to_slug
 
-  "/posts/#{date.year}/#{date.month}/#{date.day}/#{slug}/index.html"
+  "/blog/#{date.year}/#{date.month}/#{date.day}/#{slug}/index.html"
 
 end
 

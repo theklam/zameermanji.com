@@ -1,0 +1,15 @@
+---
+kind: article
+created_at: 2012-05-11
+title: Dissecting My Vim Configuration
+
+---
+
+Here I dissect my `vim` configuration, something that I am slightly proud of
+because I think it is pretty nifty. My `vim` configuration, relative to my home
+directory, has three files:
+
+#. `.vimrc` Which contains the bulk of my configuration.
+#. `.gvimrc` Which contains configuration related to `gVim` only.
+#. `.vim/` Which contains plugins, file type specific configuration and some
+other esoteric stuff.

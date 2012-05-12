@@ -136,6 +136,12 @@ footer {
     margin-bottom: 6px;
   }
 
+  ol {
+    li {
+      list-style: decimal;
+    }
+  }
+
 }
 
 #about {
