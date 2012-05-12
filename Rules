@@ -20,6 +20,11 @@ require 'to_slug'
 #   item, use the pattern “/about/*/”; “/about/*” will also select the parent,
 #   because “*” matches zero or more characters.
 
+# Delete Drafts
+preprocess do
+  @items.delete_if { |i| i[:draft] }
+end
+
 compile '/assets/stylesheets/*/' do
   filter :sass, Compass.sass_engine_options
 end
