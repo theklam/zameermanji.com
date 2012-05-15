@@ -6,10 +6,51 @@ title: Dissecting My Vim Configuration
 ---
 
 Here I dissect my `vim` configuration, something that I am slightly proud of
-because I think it is pretty nifty. My `vim` configuration, relative to my home
-directory, has three files:
+because I think it is pretty nifty. My `vim` configuration is composed into
+three distinct components:
 
-#. `.vimrc` Which contains the bulk of my configuration.
-#. `.gvimrc` Which contains configuration related to `gVim` only.
-#. `.vim/` Which contains plugins, file type specific configuration and some
-other esoteric stuff.
+#. My `.vimrc` which contains the majority of my customization.
+#. My `.gvimrc` which contains GUI vim specific configuration.
+#. My `.vim/ftplugins/` folder which contains filetype specific configuration.
+
+The first line of my `.vimrc`, is also the most important:
+
+~~~~ {.vim}
+set nocompatible
+~~~~
+
+This disables `vi` compatibility and since it is 2012 and `vi` is much older
+than I am I think it is a safe bet to disable compatibility. This command will
+change how subsequent commands behave so it is important that it is first.
+
+Next I set map my leader key.
+
+~~~ {.vim}
+let mapleader = ","
+let maplocalleader = ","
+~~~
+
+The `<Leader>` key is the key you should be prefixing your own keybindings with
+to prevent shadowing an existing `vim` key binding. `mapleader` is expressed as
+`<Leader>` in keybindings, it is by default the `\` key. I find the `\` key to
+be too difficult to reach so I use `,` instead. I do lose the functionality of
+the `,` key though. `maplocalleader` is expressed as `<LocalLeader>` in
+keybindings. It is supposed to be used for buffer local mappings while
+`<Leader>` is supposed to be used for global mappings. I find keeping them
+different is annoying but keeping them the same has the risk of local mappings
+shaddowing global mappings, which can make your life difficult.
+
+Next I have some code for [vundle](https://github.com/gmarik/vundle), the only
+good way to mange `vim` plugins.
+
+~~~ {.vim}
+filetype off
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+~~~
+
+Before I can explain what these lines do exactly we need to take a small detour
+to why I'm using vundle and how it is in my `vim` configuration.
+
+
+*Like my post? Follow me on [Twitter](http://www.twitter.com/zmanji).*
