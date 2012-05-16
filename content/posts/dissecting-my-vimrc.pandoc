@@ -50,7 +50,17 @@ call vundle#rc()
 ~~~
 
 Before I can explain what these lines do exactly we need to take a small detour
-to why I'm using vundle and how it is in my `vim` configuration.
+to why I'm using vundle and how it is in my `vim` configuration. Before I used
+vundle I had to download `vim` plugins to my `.vim/` directory. I would do this
+by getting a zip file of the latest version and extracting it into my `.vim/`
+directory. I had no idea which plugins were installed at any time and it was
+difficult to uninstall any plugin because they were all placed in the same
+directory.
 
+Vundle lets me obtain plugins and manage them within `vim` and makes it very
+easy to uninstall them as well. The only problem is that Vundle is a plugin
+itself and has to be installed manually by unzipping it into the `.vim/`
+directory. Once that is done however the above lines will work which will enable
+vundle's awesome functionality.
 
 *Like my post? Follow me on [Twitter](http://www.twitter.com/zmanji).*
