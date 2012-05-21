@@ -63,4 +63,242 @@ itself and has to be installed manually by unzipping it into the `.vim/`
 directory. Once that is done however the above lines will work which will enable
 vundle's awesome functionality.
 
+The next set of lines is telling vundle to install plugins and applying plugin
+specific configuration options.
+
+~~~ {.vim}
+Bundle "gmarik/vundle"
+~~~
+
+This is mandatory like the above lines, but it results in vundle managing itself
+which is pretty awesome.
+
+~~~ {.vim}
+Bundle "altercation/vim-colors-solarized"
+let g:solarized_menu=0
+
+colorscheme solarized
+set background=dark
+~~~
+
+These set of lines get the [Solarized](http://ethanschoonover.com/solarized)
+colorscheme which I think is one of the most aesthetically pleasing colorschemes
+for `vim` that is also available for other programs. It comes in great light and
+dark varieties.
+
+~~~ {.vim}
+Bundle "mileszs/ack.vim"
+~~~
+
+These set of lines add an `:Ack` command because it is better than grep.
+
+~~~ {.vim}
+Bundle "vim-ruby/vim-ruby"
+
+Bundle "vim-pandoc/vim-pandoc"
+
+let g:pandoc_no_folding = 1
+
+Bundle "kchmck/vim-coffee-script"
+
+Bundle "tpope/vim-haml"
+
+Bundle "klen/python-mode"
+
+let g:pymode_folding = 0
+
+let g:pymode_lint_ignore = "E302,E501"
+~~~
+
+These lines add some missing language functionality to Vim.
+
+
+~~~ {.vim}
+Bundle "ervandew/supertab"
+let g:SuperTabDefaultCompletionType = "context"
+
+Bundle "scrooloose/nerdtree"
+
+noremap <leader>n :NERDTreeToggle<CR>
+
+let g:NERDTreeDirArrows=1
+
+Bundle "kien/ctrlp.vim"
+
+let g:ctrlp_jump_to_buffer = 2
+let g:ctrlp_working_path_mode = 0
+
+Bundle "sjl/gundo.vim"
+
+nnoremap <Leader>u :GundoToggle<CR>
+
+Bundle "tpope/vim-rails"
+
+Bundle "tpope/vim-fugitive"
+
+Bundle "tpope/vim-commentary"
+
+Bundle "tpope/vim-surround"
+
+Bundle "tpope/vim-endwise"
+
+Bundle "kana/vim-smartinput"
+
+Bundle "ZoomWin"
+
+Bundle "duff/vim-scratch"
+
+Bundle "Lokaltog/vim-powerline"
+let g:Powerline_symbols = 'unicode'
+~~~
+
+~~~ {.vim}
+" This disables Vim's ability to change the terminal title to "Thanks for
+" flying vim"
+set notitle
+" This enables the use of a mouse in all modes. It is occasionally useful.
+set mouse=a
+" This allows me to have buffers that have unsaved changes. It's possible to
+" lose those changes if I am careless with `:q!` but this behaviour improves
+" my productivity because I frequently swap buffers around.
+set hidden
+
+" I press the `:` key a lot in Vim and I often get typos such as `:W` because
+" I have to hold shift. I thus map it to `;`.
+nnoremap ; :
+
+" I don't want to lose the functionality of the `;` key so I map that
+" behaviour to the `:` key. This also disables the original function of the
+" `:` key which forces me to use the `;` key. This is really helpful in fixing
+" muscle memory.
+nnoremap : ;
+
+" I like line numbers.
+set number
+" This shows the position of the cursor at the bottom and the statusline.
+set ruler
+" This forces the statusline to always be visible
+set laststatus=2
+"Turn on syntax highlighting
+syntax on
+" UTF-8 is the only good encoding ever.
+set encoding=utf-8
+" This turns off line wrapping. I can't stand linewrapping and this forces me
+" to keep my code skinny.
+set nowrap
+
+" ####Defaults for Whitespace####
+" These are the defaults for whitespae for all of my documents if there are no
+" file specific ones set. Normally they are overridden either by a plugin or by
+" something in my /.vim/ftplugins directory.
+"
+" This sets the number of spaces a tab counts for.
+set tabstop=2
+" This sets the number of spaces a tab counts for during editing. This means
+" backspacing indentation will move this value.
+set softtabstop=2
+" This is the spaces to insert when using indenting functionality. I don't
+" know why this is and `softtabstop` exits but they should be equal.
+set shiftwidth=2
+" No real tab characters only spaces
+set expandtab
+" This ensures indents are a multiple of `shiftwidth`
+set shiftround
+
+" Show trailing whitespace
+set list listchars=tab:\ \ ,trail:·
+
+" Highlight the currentline.
+set cursorline
+
+" Highlight the column after `textwidth`
+set colorcolumn=+1
+
+" ####Searching####
+set hlsearch "highlight searched text
+set incsearch "incremental search
+set ignorecase "case InSeNsTiVE
+set smartcase "If I do use a captial letter in the search, be case-sensitive
+"Clear highlights by doing ,/
+nnoremap <silent> <leader>/ :nohlsearch<CR>
+" Tab autocompletion in all menus
+set wildmenu
+" Automatically read files that are modified outside of Vim. This is needed
+" when working with git.
+set autoread
+set autowrite "Auto-save a modified buffer before switching to another buffer
+
+set backspace=2 "Backspace does what it should do
+
+set numberwidth=5 "For those really long files
+set novisualbell "Don't blink please
+set noerrorbells "Don't make noise
+set vb t_vb= "Disable any time of beeping or flashing
+
+filetype plugin indent on "Automatically detect file types
+set history=1000 "Save a lot of history
+" No need for ~ files, I use git most of the time
+set nobackup
+set nowritebackup
+
+" In the ongoing journey to master Vim, it's useful to disable keys that
+" should not be used. These lines disable the arrow keys in normal, insert and
+" visual modes.
+nnoremap <up> <nop>
+nnoremap <down> <nop>
+nnoremap <left> <nop>
+nnoremap <right> <nop>
+inoremap <up> <nop>
+inoremap <down> <nop>
+inoremap <left> <nop>
+inoremap <right> <nop>
+vnoremap <up> <nop>
+vnoremap <down> <nop>
+vnoremap <left> <nop>
+vnoremap <right> <nop>
+
+" By default `j` and `k` both move in a file by lines delimited by `\n` which
+" is not helpful when linewrapping is enabled. These mappings ensure that I
+" move up and down by display lines and not just lines delimited by `\n`.
+noremap j gj
+noremap k gk
+" In order to not lose the original functionality of the `j` and `k` keys I
+" map their functionality to `gj` and `gk` respectively.
+noremap gj j
+noremap gk k
+
+
+" Sets the default splitting to be to the bottom and to the right.
+set splitbelow
+set splitright
+
+" This allows for faster navigation of windows/splits.
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+
+" Ctrl-tab to switch next/prev tab, like in FireFox, Chrome, etc.
+nnoremap <silent><C-S-Tab> :tabp<CR>
+nnoremap <silent><C-Tab> :tabn<CR>
+
+" Ignore these files for file selection menus
+set wildignore+=*.o,.git,*.jpg,*.png,*.swp,*.d,*.gif
+set wildignore+=*.zip,*.tar,*.obj,*.class,*.pyc
+
+" Ignore the .sass-cache directory
+set wildignore+=.sass-cache/*
+
+" Automatically resize splits when the window is resized
+au VimResized * exe "normal! \<c-w>="
+
+" Use the system clipboard by default. So I don't need to specify
+" * + registers for every copy and paste action.
+set clipboard=unnamed
+
+" Reselect visual block after indent/outdent
+vnoremap < <gv
+vnoremap > >gv
+~~~
+
 *Like my post? Follow me on [Twitter](http://www.twitter.com/zmanji).*
