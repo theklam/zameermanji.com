@@ -1,157 +1,78 @@
 @import "compass/typography/vertical_rhythm";
 @import "compass/typography/lists/horizontal-list";
-@import "compass/typography/text/replacement";
-@import "compass/utilities/general/clearfix";
 @import "compass/css3/border-radius";
 
 // For vertical rhythm
 @include establish-baseline;
 
-$font-color: #333;
+$font-color: black;
+$page-width: 750px;
 
 body {
   font-family: 'Droid Serif', serif;
   color: $font-color;
   background-color: white;
   text-rendering: optimizeLegibility;
-  @include adjust-font-size-to(18px);
+  @include adjust-font-size-to(20px);
+
+  margin: 0 auto;
+  width: $page-width;
 }
 
 a {
   color: $font-color;
-  text-decoration: underline;
 }
 
 a:visited, a:hover {
   color: lighten($font-color, 25);
 }
 
-
-#top {
-  header {
-    float: left;
-    text-transform: uppercase;
-    width: 35%;
-    @include adjust-font-size-to(20px);
-  }
-  nav {
-    @include horizontal-list;
-    float: right;
-    text-transform: lowercase;
-  }
-
-  padding-bottom: 25px;
-  margin-top: 25px;
-  border-bottom: 1px solid darken($font-color, 50);
+p {
+  margin-bottom: 1.1em;
+  @include adjust-font-size-to(18px);
 }
 
-.wrap {
-  margin: 0 auto;
-  width: 650px;
+h1 {
+  @include adjust-font-size-to(40px);
+  margin-bottom: 20px;
+  margin-top: 20px;
+  font-weight: bold;
 }
 
-#greeting {
-  @include adjust-font-size-to(22px);
-  text-align: center;
-  padding-top: 1em;
-  // padding-bottom: 1em;
+h2 {
+  @include adjust-font-size-to(30px);
+  margin-bottom: 15px;
 }
 
-$col-height: 220px;
+h3 {
+  @include adjust-font-size-to(24px);
+  margin-bottom: 12px;
+}
+
 footer {
   border-top: 1px solid darken($font-color, 50);
   padding-top: 5px;
-
-
   text-align: center;
-
-  .three-col {
-    @include clearfix;
-  }
-
-  #twitter-col {
-    float: left;
-    width: 30%;
-    border-right: 1px solid lighten($font-color, 50);
-    padding-right: 2%;
-    height: $col-height;
-  }
-
-  #github-col{
-    float: left;
-    width: 30%;
-    padding-left: 2%;
-    padding-right: 2%;
-    height: $col-height;
-  }
-
-  #stackoverflow-col {
-    float: left;
-    width: 30%;
-    border-left: 1px solid lighten($font-color,50);
-    padding-left: 2%;
-    height: $col-height;
-  }
 }
 
-.twitter-img {
-  @include replace-text-with-dimensions("twitter.png");
-  display: inline-block;
+em {
+  font-style: italic;
 }
 
-.github-img {
-  @include replace-text-with-dimensions("github.png");
-  display: inline-block;
+pre, code, kbd {
+  font-family: 'Inconsolata', monospace;
 }
 
-.stackoverflow-img {
-  @include replace-text-with-dimensions("stackoverflow.png");
-  display: inline-block;
+blockquote {
+  padding-left: 1.5em;
+  font-style: italic;
+  border-left: 2px solid gray;
+  @include adjust-font-size-to(18px);
 }
-
 .small {
   @include adjust-font-size-to(12px);
 }
 
-#content {
-  p {
-    margin-bottom: 1.1em;
-    @include adjust-font-size-to(18px);
-  }
-
-  h1 {
-    @include adjust-font-size-to(40px);
-    margin-bottom: 20px;
-    margin-top: 20px;
-    font-weight: bold;
-  }
-
-  h2 {
-    @include adjust-font-size-to(30px);
-    margin-bottom: 13px;
-  }
-
-  h3 {
-    @include adjust-font-size-to(24px);
-    margin-bottom: 6px;
-  }
-
-  ol {
-    li {
-      list-style: decimal;
-    }
-  }
-
-}
-
-#about {
-  ul {
-    margin-bottom: 1.1em;
-    li {
-      list-style: disc;
-    }
-  }
-}
 
 .company-term, .course-term {
   text-align: right;
@@ -171,13 +92,6 @@ footer {
   }
 }
 
-em {
-  font-style: italic;
-}
-
-pre, code, kbd {
-  font-family: 'Inconsolata', monospace;
-}
 
 // Pygments code boxes
 .highlight {
@@ -196,9 +110,38 @@ pre, code, kbd {
   @include adjust-font-size-to(13px);
 }
 
-blockquote {
-  padding-left: 1.5em;
+header {
+  width: $page-width;
+  float: left;
+  text-transform: uppercase;
+  @include adjust-font-size-to(20px);
+
+  nav {
+    float: right;
+  }
+
+  nav ul {
+    text-transform: lowercase;
+    @include horizontal-list;
+  }
+
+  border-bottom: 1px solid darken($font-color, 50);
+}
+
+footer
+{
+  @include adjust-font-size-to(12px);
   font-style: italic;
-  border-left: 2px solid gray;
-  @include adjust-font-size-to(18px);
+}
+
+#greeting {
+  @include adjust-font-size-to(22px);
+  text-align: center;
+  padding-top: 1em;
+  // padding-bottom: 1em;
+}
+
+#content
+{
+  clear: both;
 }

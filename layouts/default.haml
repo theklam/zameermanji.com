@@ -6,7 +6,8 @@
       %title= "#{@item[:title]} - Zameer Manji"
     - else
       %title= "Zameer Manji"
-    %link{:href => "/assets/stylesheets/reset.css", :rel => "stylesheet"}
+
+    %link{:href => "/assets/stylesheets/normalize.css", :rel => "stylesheet"}
     %link{:href => "/assets/stylesheets/base.css", :rel => "stylesheet"}
     %link{:href => '/assets/stylesheets/pygments.css', :rel => 'stylesheet'}
 
@@ -14,6 +15,7 @@
 
     %link{:rel => 'icon', :href => '/favicon.ico', :sizes => "16x16", :type => "image/vnd.microsoft.icon"}
 
+    -# Google Analytics Code
     :javascript
       var _gaq = _gaq || [];
       _gaq.push(['_setAccount', 'UA-20388638-1']);
@@ -25,40 +27,31 @@
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
       })();
 
-    %script{:src => "http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"}
-    %script{:src => "http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.2.2/underscore-min.js"}
-    %script{:src => "/assets/javascripts/vendor/jquery.timeago.js"}
-    %script{:src => "https://raw.github.com/twitter/twitter-text-js/master/pkg/twitter-text-1.4.9.js"}
-    %script{:src => "/assets/javascripts/last_tweet.js"}
-
-
-
-
-
   %body
-    .wrap
-      #top
-        %header
-          = link_to 'Zameer Manji', '/'
-        %nav
-          %ul
-            %li
-              = link_to('Blog', '/blog/')
-            %li
-              = link_to('About', '/about/')
-            %li
-              = link_to('Résumé', '/resume.pdf')
+    %header
+      = link_to 'Zameer Manji', '/'
 
-      #content
-        %article{:id => @item[:wrapper_id]}
-          - if @item[:kind] == 'article'
-            - if @item[:title]
-              %h1= @item[:title]
-            - if @item[:created_at]
-              .posted= "Created On: #{@item[:created_at].strftime("%B %d %Y")}"
-          = yield
+      %nav
+        %ul
+          %li
+            = link_to('Blog', '/blog/')
+          %li
+            = link_to('About', '/about/')
+          %li
+            = link_to('Résumé', '/resume.pdf')
 
-      %footer
-        = content_for(@item, :footer)
-        %p.small
-          © 2012 Zameer Manji
+    -# 'id' allows for page specific css targeting if needed
+    #content{:id => @item[:id]}
+      %article
+        - if @item[:kind] == 'article'
+          - if @item[:title]
+            %h1= @item[:title]
+          - if @item[:created_at]
+            .posted= "Created On: #{@item[:created_at].strftime("%B %d %Y")}"
+        = yield
+
+    %footer
+      = content_for(@item, :footer)
+      :markdown
+        I use [Twitter](https://www.twitter.com/zmanji) and [GitHub](https://www.github.com/zmanji).
+        I answer and ask questions on the [StackExchange](https://stackexchange.com/users/2083/zameer-manji) network.
