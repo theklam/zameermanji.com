@@ -11,8 +11,6 @@ student at the [University of Waterloo][3].
 [2]: http://uwaterloo.ca/
 [3]: http://www.softeng.uwaterloo.ca/
 
-
-
 ## Education ##
 
 While attending at the University of Waterloo I have taken
@@ -33,6 +31,8 @@ many interesting courses.
 
 I have also have done 4 month internships at the following fine companies:
 
+* <span class='company-name'>     [DISQUS][d] (Software Developer) </span>
+  <span class='company-term'>     Spring 2012 </span>
 * <span class='company-name'>     [The Working Group][twg] (Software Developer) </span>
   <span class='company-term'>     Fall 2011 </span>
 * <span class='company-name'>     [Xtreme Labs][xl] (Agile Engineer) </span>
@@ -42,7 +42,8 @@ I have also have done 4 month internships at the following fine companies:
 
 If you think a company should be added to this list, check out my [résumé][r].
 
-[r]: /resume/
+[r]: /resume.pdf
 [twg]: http://www.theworkinggroup.ca
 [xl]: http://www.xtremelabs.com
 [t]: http://www.trapezegroup.com
+[d]: http://www.disqus.com
