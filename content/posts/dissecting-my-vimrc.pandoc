@@ -153,9 +153,14 @@ let g:Powerline_symbols = 'unicode'
 ~~~
 
 ~~~ {.vim}
-" This disables Vim's ability to change the terminal title to "Thanks for
-" flying vim"
 set notitle
+~~~
+
+This disables Vim's ability to change the terminal title to "Thanks for flying
+vim". Without this I would go crazy as my terminal titles would all become
+"Thanks for flying vim".
+
+~~~
 " This enables the use of a mouse in all modes. It is occasionally useful.
 set mouse=a
 " This allows me to have buffers that have unsaved changes. It's possible to
