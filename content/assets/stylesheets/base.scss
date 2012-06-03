@@ -1,3 +1,5 @@
+$base-font-size: 20px;
+
 @import "compass/typography/vertical_rhythm";
 @import "compass/typography/lists/horizontal-list";
 @import "compass/css3/border-radius";
@@ -13,50 +15,62 @@ body {
   color: $font-color;
   background-color: white;
   text-rendering: optimizeLegibility;
-  @include adjust-font-size-to(20px);
 
   margin: 0 auto;
   width: $page-width;
 }
 
 a {
-  color: $font-color;
+  color: lighten($font-color, 30);
+  text-decoration: none;
 }
 
 a:visited, a:hover {
-  color: lighten($font-color, 25);
-}
-
-p {
-  margin-bottom: 1.1em;
-  @include adjust-font-size-to(18px);
+  color: lighten($font-color, 30);
+  text-decoration: underline;
 }
 
 h1 {
   @include adjust-font-size-to(40px);
-  margin-bottom: 20px;
-  margin-top: 20px;
-  font-weight: bold;
+  margin-bottom: 0.5em;
+  margin-top: 0.5em;
 }
 
 h2 {
   @include adjust-font-size-to(30px);
-  margin-bottom: 15px;
+  margin-bottom: 0.5em;
 }
 
 h3 {
   @include adjust-font-size-to(24px);
-  margin-bottom: 12px;
+  margin-bottom: 0.5em;
 }
 
 footer {
   border-top: 1px solid darken($font-color, 50);
   padding-top: 5px;
   text-align: center;
+
+  @include adjust-font-size-to(12px);
+  font-style: italic;
 }
 
-em {
-  font-style: italic;
+header {
+  width: $page-width;
+  float: left;
+  text-transform: uppercase;
+  @include adjust-font-size-to(20px);
+
+  nav {
+    float: right;
+  }
+
+  nav ul {
+    text-transform: lowercase;
+    @include horizontal-list;
+  }
+
+  border-bottom: 1px solid darken($font-color, 50);
 }
 
 pre, code, kbd {
@@ -69,21 +83,20 @@ blockquote {
   border-left: 2px solid gray;
   @include adjust-font-size-to(18px);
 }
+
 .small {
   @include adjust-font-size-to(12px);
 }
-
 
 .company-term, .course-term {
   text-align: right;
   float: right;
 }
 
-.post-list {
+ul.post-list {
+  padding: 0px;
   li {
-    clear: both;
     list-style: none;
-    padding: 5px;
     .date {
       float: right;
       font-style: italic;
@@ -110,29 +123,6 @@ blockquote {
   @include adjust-font-size-to(13px);
 }
 
-header {
-  width: $page-width;
-  float: left;
-  text-transform: uppercase;
-  @include adjust-font-size-to(20px);
-
-  nav {
-    float: right;
-  }
-
-  nav ul {
-    text-transform: lowercase;
-    @include horizontal-list;
-  }
-
-  border-bottom: 1px solid darken($font-color, 50);
-}
-
-footer
-{
-  @include adjust-font-size-to(12px);
-  font-style: italic;
-}
 
 #greeting {
   @include adjust-font-size-to(22px);

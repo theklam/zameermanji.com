@@ -41,8 +41,13 @@ I have also have done 4 month internships at the following fine companies:
 
 If you think a company should be added to this list, check out my [résumé][r].
 
+## This Site ##
+
+This site is powered by [nanoc][n] and love.
+
 [r]: /resume.pdf
 [twg]: http://www.theworkinggroup.ca
 [xl]: http://www.xtremelabs.com
 [t]: http://www.trapezegroup.com
 [d]: http://www.disqus.com
+[n]: http://nanoc.stoneship.org/
