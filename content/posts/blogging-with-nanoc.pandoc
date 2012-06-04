@@ -2,35 +2,35 @@
 kind: article
 created_at: 2012-04-23
 title: Nanoc for Fun and Profit
-draft: true
 
 ---
 
 When I began to redesign this website I decided that it should be powered by
 a static site generator. The benefits of a static site generator are endless.
 They enable me to write my posts in markdown, I can use vim and the shell for
-common tasks, they are easy to modify, cheaper to host, etc.
+common tasks, they are easier to customize, cheaper to host, I can develop
+locally, etc.
 
-After I evaluated all of the options I settled on [nanoc], a Ruby powered
-static site generator.
+After I evaluated all of the options I settled on [nanoc], a Ruby powered static
+site generator. I selected nanoc over obvious alternatives like [jekyll] and
+[octopress] because nanoc enables me to customize my site to my needs and not
+conform to the requirements and conventions of some one else. With something has
+personal as a blog, where I do *whatever* I want, Convention over Configuration
+is more of a hindrance than anything else.
 
-## Why not Jekyll? ##
-Why did I select nanoc and not [jekyll] or [octopress]? First, jekyll is not as
-extensible as I hoped it would be. For example adding the ability to have HAML
-layouts involves using the `jekyll_ext` gem which [monkey patches][jekyll_ext]
-jekyll. I wasn't comfortable with monkey patching jekyll and went looking for a
-more robust solution.
+By adopting nanoc I was able to get a static site where I can layout files
+however I pleased. Currently I have all of my blog posts written in Pandoc
+inside `content/posts` with file names like `blogging-with-nanoc.pandoc`.
+I didn't have to adopt a foreign convention or [monkey patch][jekyll_ext]
+anything to get what I wanted. Other features that I have:
 
-## The Power of Nanoc ##
-Part of the appeal of nanoc is that it is only a static site compiler. Out of
-the box it doesn't assume anything about site structure, purpose or contents of
-the site. For this site I wanted to have the posts written in Pandoc flavored
-markdown, static pages in HAML, layouts in HAML, stylesheets in Sass using the
-Compass framework, my resume in LaTeX (converted to a PDF) and the dynamic
-elements written in CoffeeScript.
+* Non-Blog pages in HAML.
+* Layouts in HAML.
+* Stylesheets in SASS and using the Compass framework.
+* Resume apart of the site and written in LaTeX.
+* Writing dynamic elements in CoffeeScript.
 
-All of my desired functionality was either supported out of the box by nanoc
-or absurdly easy to add.
+All of the functionality either came with nanoc or was ridiculously easy to write.
 
 ### Configuring Nanoc ###
 Nanoc's behavior is defined by compilation rules and routing rules which are
@@ -165,9 +165,10 @@ the URL from the post title.
 [pygments]: http://pygments.org/
 [pandoc-ruby]: https://github.com/alphabetum/pandoc-ruby
 [filters-list]: http://nanoc.stoneship.org/docs/4-basic-concepts/#filters
-[own-filter]: http://nanoc.stoneship.org/docs/5-advanced-concepts/#writing-filters
+[own-filters]: http://nanoc.stoneship.org/docs/5-advanced-concepts/#writing-filters
 [twitter]: http://www.twitter.com/zmanji
 [to_slug]: http://rubygems.org/gems/to_slug
 [jekyll]: https://github.com/mojombo/jekyll
 [jekyll_ext]: https://github.com/rfelix/jekyll_ext/blob/master/lib/aop.rb
 [docs]: http://nanoc.stoneship.org/docs/api/3.3/
+[octopress]: http://octopress.org/

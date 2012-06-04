@@ -8,6 +8,7 @@ $base-font-size: 20px;
 @include establish-baseline;
 
 $font-color: black;
+$link-color: lighten($font-color, 35);
 $page-width: 750px;
 
 body {
@@ -21,12 +22,12 @@ body {
 }
 
 a {
-  color: lighten($font-color, 30);
+  color: $link-color;
   text-decoration: none;
 }
 
 a:visited, a:hover {
-  color: lighten($font-color, 30);
+  color: $link-color;
   text-decoration: underline;
 }
 
