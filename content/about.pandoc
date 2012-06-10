@@ -3,8 +3,8 @@ title: About
 
 ---
 # About #
-I'm Zameer Manji. I'm from [Toronto, Canada][1] and I am a third year [Software Engineering][2]
-student at the [University of Waterloo][3].
+I'm Zameer Manji. I'm from [Toronto, Canada][1] and I am a third year [Software
+Engineering][2] student at the [University of Waterloo][3].
 
 [1]: http://en.wikipedia.org/wiki/Toronto
 [2]: http://uwaterloo.ca/
@@ -43,8 +43,8 @@ If you think a company should be added to this list, check out my [résumé][r].
 
 ## This Site ##
 
-This site is powered by [nanoc][n] and love. The design of this site was
-inspired by [Steve Losh](http://stevelosh.com/).
+This site is powered by [nanoc][n]. The design of this site was inspired by
+[Steve Losh](http://stevelosh.com/).
 
 [r]: /resume.pdf
 [twg]: http://www.theworkinggroup.ca

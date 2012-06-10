@@ -7,16 +7,16 @@ title: Nanoc for Fun and Profit
 
 When I began to redesign this website I decided that it should be powered by
 a static site generator. The benefits of a static site generator are endless.
-They enable me to write my posts in markdown, I can use vim and the shell for
-common tasks, they are easier to customize, cheaper to host, I can develop
-locally, etc.
+They enable me to write my posts in pandoc, I can use vim and the command line
+for common tasks, they are easier to customize, cheaper to host, I can write
+posts locally, *etc*.
 
-After I evaluated all of the options I settled on [nanoc], a Ruby powered static
-site generator. I selected nanoc over obvious alternatives like [jekyll] and
-[octopress] because nanoc enables me to customize my site to my needs and not
-conform to the requirements and conventions of some one else. With something has
-personal as a blog, where I do *whatever* I want, Convention over Configuration
-is more of a hindrance than anything else.
+After I evaluated all of the
+[options](http://nanoc.stoneship.org/docs/1-introduction/#similar-projects)
+I settled on [nanoc], a Ruby powered static site compiler. I selected nanoc over
+obvious alternatives like [jekyll] and [octopress] because nanoc enables me to
+customize my site to my needs. For something that is personal as my blog
+I prefered something that allowed me to configure everything.
 
 By adopting nanoc I was able to get a static site where I can layout files
 however I pleased. Currently I have all of my blog posts written in Pandoc

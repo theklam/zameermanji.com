@@ -128,8 +128,6 @@ ul.post-list {
 #greeting {
   @include adjust-font-size-to(22px);
   text-align: center;
-  padding-top: 1em;
-  // padding-bottom: 1em;
 }
 
 #content
