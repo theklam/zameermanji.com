@@ -1,53 +1,66 @@
 ---
 kind: article
 created_at: 2012-04-23
-title: Nanoc for Fun and Profit
+title: Rocking and Rolling with Nanoc
 
 ---
 
-When I began to redesign this website I decided that it should be powered by
+When I began to design this website I decided that it should be powered by
 a static site generator. The benefits of a static site generator are endless.
 They enable me to write my posts in pandoc, I can use vim and the command line
 for common tasks, they are easier to customize, cheaper to host, I can write
-posts locally, *etc*.
+posts locally, easy to place under version control *etc*. If you consider
+yourself a programmer you should be using a static site generator.
 
-After I evaluated all of the
-[options](http://nanoc.stoneship.org/docs/1-introduction/#similar-projects)
-I settled on [nanoc], a Ruby powered static site compiler. I selected nanoc over
-obvious alternatives like [jekyll] and [octopress] because nanoc enables me to
-customize my site to my needs. For something that is personal as my blog
-I prefered something that allowed me to configure everything.
+After I evaluated all of the [options] I settled on [nanoc], a Ruby powered
+static site compiler. I selected nanoc over obvious alternatives like [jekyll]
+and [octopress] because nanoc enables me to customize my site to my needs. For
+something that is personal as my blog I preferred something that allowed me to
+configure everything.
 
 By adopting nanoc I was able to get a static site where I can layout files
 however I pleased. Currently I have all of my blog posts written in Pandoc
-inside `content/posts` with file names like `blogging-with-nanoc.pandoc`.
-I didn't have to adopt a foreign convention or [monkey patch][jekyll_ext]
-anything to get what I wanted. Other features that I have:
+inside `content/posts` with arbitrary file names like
+`blog-post-about-nanoc.pandoc`. I didn't have to adopt a foreign convention or
+[monkey patch][jekyll_ext] anything to get what I wanted. Other features that
+I have:
 
 * Non-Blog pages in HAML.
 * Layouts in HAML.
 * Stylesheets in SASS and using the Compass framework.
-* Resume apart of the site and written in LaTeX.
+* [Résumé][resume] written in LaTeX and compiled to a pdf.
 * Writing dynamic elements in CoffeeScript.
 
-All of the functionality either came with nanoc or was ridiculously easy to write.
+I was able to do this in nanoc because it is extremely configurable. I was
+either able to leverage features that ship with nanoc or write plugins to create
+these features.
 
-### Configuring Nanoc ###
-Nanoc's behavior is defined by compilation rules and routing rules which are
-defined in a `Rules` file using nanoc's DSL. These rules operate on items which
-are files in the `content/` directory. Depending on where the item is located
-and the file type, I can create rules that pass it through one or more filters
-in the compile step, which transforms the item to another format. Using the same
-information I can also determine the final filename and location in the
-`output/` directory during the routing step.
+## Details on Nanoc ##
+Nanoc is definitely one of the best maintained static site compilers I could
+find. The author, Denis Defreyne, uses it for his personal website and regularly
+answers questions on the mailing list and IRC channel. It also has very
+comprehensive documentation, something that many other alternatives lack.
 
-### Compile Rules ###
+## Nanoc Terminology ##
+A nanoc site is composed of the following key folder's and files:
+
+* `content/` - Your posts, images, etc end up in here.
+* `layouts/` - Layouts.
+* `lib/` - Ruby code to extend nanoc.
+* `output/` - The resulting site is placed here after compilation.
+* `config.yaml` - Configuration options for nanoc.
+* `Rules` - Rules for compiling, naming and applying a layout.
+
+The core of my site is writing posts in pandoc and having good syntax
+highlighting, so I am going to show the code that makes it happen.
+
+## Compile Rule ##
 For this blog I had to define multiple compile steps in order to get HAML ->
 HTML, Pandoc -> HTML, SASS -> CSS, CoffeeScript -> JavaScript and LaTeX -> PDF
 transformations. These transformations operate on the [filters][filters-list]
 that nanoc ships with or filters that I [wrote][own-filters].
 
-Lets look at the `compile` rule that creates the posts on this blog:
+Lets look at the compile rule that creates the posts on this blog:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~ {.ruby}
 compile '/posts/*/' do
@@ -64,18 +77,18 @@ end
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 This rule operates on all the files that are in the `/posts/` directory of my
-input files. Then, for each item I pass it through two filters. A `pandoc`
-filter and a `pygments` filter. The first transforms the post in to HTML, and
+input files. Then, for each item I pass it through two filters. A pandoc
+filter and a pygments filter. The first transforms the post in to HTML, and
 the second adds syntax highlighting to the code bocks in the post. At the end
-I just apply the `default` layout to the item. This produces the final HTML of
+I just apply the default layout to the item. This produces the final HTML of
 the page.
 
-### Filters ###
+## Filters ##
 
 In the above rule I used two filters that did not ship with Nanoc. I had to
 create them because Nanoc does not ship with a Pandoc filter and I had to then
 create my own syntax highlighting filter because I could not get the builtin one
-to work. Lets look at the `pandoc` filter first:
+to work. Lets look at the pandoc filter first:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~ {.ruby}
 require 'pandoc-ruby'
@@ -93,9 +106,9 @@ end
 Nanoc filters are *stupidly* easy to write. All you need to do is create a class
 that inherits from `Nanoc3::Filter`, give it a unique identifier and define
 a `run` method which takes in a strong of content for you to transform. You just
-need to return the result of the transformation. To write my `pandoc` filter
+need to return the result of the transformation. To write my pandoc filter
 I used the wonderful [pandoc-ruby][pandoc-ruby] gem which wraps around the
-`pandoc` executable.
+pandoc executable.
 
 Of course not all filters are going to be this simple or easier to write. Adding
 syntax highlighting was significantly harder. My `pygments` filter at the time
@@ -155,7 +168,11 @@ end
 
 This rule simply returns the desired path and filename of the item in the output
 directory. Here I use the [to_slug][to_slug] gem to help me generate a slug in
-the URL from the post title.
+the URL from the post title. Of course if I change my post title, the slug
+changes so I have to be careful.
+
+## Conclusion ##
+Using nanoc has let me customize my blog with a little bit of code to my liking.
 
 *Like this post? Follow me on [Twitter][twitter].*
 
@@ -172,3 +189,5 @@ the URL from the post title.
 [jekyll_ext]: https://github.com/rfelix/jekyll_ext/blob/master/lib/aop.rb
 [docs]: http://nanoc.stoneship.org/docs/api/3.3/
 [octopress]: http://octopress.org/
+[options]: http://nanoc.stoneship.org/docs/1-introduction/#similar-projects
+[resume]: /resume.pdf
