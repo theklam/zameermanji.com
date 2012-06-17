@@ -20,7 +20,7 @@ class PygmentsFilter < Nanoc::Filter
     code_blocks.each do |code_block|
       code = code_block.inner_html
       code = CGI.unescapeHTML(code)
-      code = ::Pygments.highlight(code, :lexer => 'ruby', :options => {:lineseparator => '<br>', :encoding => 'utf-8'})
+      code = ::Pygments.highlight(code, :lexer => 'ruby', :options => {:encoding => 'utf-8'})
       code_block.parent.swap code
     end
 
@@ -28,7 +28,7 @@ class PygmentsFilter < Nanoc::Filter
     code_blocks.each do |code_block|
       code = code_block.inner_html
       code = CGI.unescapeHTML(code)
-      code = ::Pygments.highlight(code, :lexer => 'vim', :options => {:lineseparator => '<br>', :encoding => 'utf-8'})
+      code = ::Pygments.highlight(code, :lexer => 'vim', :options => {:encoding => 'utf-8'})
       code_block.parent.swap code
     end
 
