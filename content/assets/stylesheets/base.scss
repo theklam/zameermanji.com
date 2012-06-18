@@ -8,7 +8,7 @@ $base-font-size: 20px;
 @include establish-baseline;
 
 $font-color: black;
-$link-color: lighten($font-color, 35);
+$link-color: lighten($font-color, 50);
 $page-width: 750px;
 
 body {

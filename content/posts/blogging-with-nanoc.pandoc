@@ -62,8 +62,8 @@ results in this to show how easy it is to customize nanoc.
 ## Compile Rule ##
 For this blog I had to define multiple compile steps in order to get HAML ->
 HTML, Pandoc -> HTML, SASS -> CSS, CoffeeScript -> JavaScript and LaTeX -> PDF
-transformations. These transformations operate on the [filters][filters-list]
-that nanoc ships with or filters that I [wrote][own-filters].
+transformations. These transformations are a result of the
+[filters][filters-list] that nanoc ships with or filters that I [wrote][own-filters].
 
 The compile rule for blog posts:
 
@@ -82,8 +82,8 @@ end
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 This rule operates on all the files that are in the `content/posts/` and for
-each item I pass it through two filters. A pandoc filter and a pygments filter.
-The first transforms the post in to HTML, and the second adds syntax
+each item I pass it through two filters, the pandoc filter and the pygments
+filter. The first transforms the post in to HTML, and the second adds syntax
 highlighting to the code bocks in the post. At the end I just apply the default
 layout to the item. This produces the final HTML of the page.
 
@@ -114,7 +114,7 @@ return the result of the transformation. To write my pandoc filter I used the
 [pandoc-ruby][pandoc-ruby] gem which wraps around the pandoc executable.
 
 Of course not all filters are going to be this simple. Adding syntax
-highlighting was significantly more complex. My `pygments` filter:
+highlighting was significantly more complex. My pygments filter:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~ {.ruby}
 require 'pygments.rb'
@@ -141,7 +141,7 @@ class PygmentsFilter < Nanoc3::Filter
 end
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-This filter assumes that the input is produced by my `pandoc` filter. It simply
+This filter assumes that the input is produced by my pandoc filter. It simply
 tries to find code blocks with a class of ruby and pipe the portion though
 pygments. It would be pretty easy to add support all languages that pygments
 supports.
@@ -159,7 +159,7 @@ route '/posts/*/' do
 
   slug = item[:title].to_slug
 
-  "/posts/#{date.year}/#{date.month}/#{date.day}/#{slug}/index.html"
+  "/blog/#{date.year}/#{date.month}/#{date.day}/#{slug}/index.html"
 
 end
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -170,9 +170,10 @@ the URL from the post title. Of course if I change my post title, the slug
 changes so I have to be careful not to break links to my site.
 
 ## Conclusion ##
-Using nanoc has let me customize my blog to my liking with a little bit of code.
-You should check it out if the current popular solutions are not customizable
-for you.
+Using nanoc has let me customize my blog to my liking with a little bit of work.
+I would not have been able to achieve this kind of setup with more popular
+solutions. If you like having this kind of control over your site then you should
+check [nanoc] out.
 
 *Like this post? Follow me on [Twitter][twitter].*
 
