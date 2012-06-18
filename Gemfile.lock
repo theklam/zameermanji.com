@@ -36,6 +36,7 @@ GEM
       blankslate (>= 2.1.2.3)
       ffi (~> 1.0.7)
     sass (3.1.19)
+    systemu (2.5.1)
     to_slug (1.0.8)
 
 PLATFORMS
@@ -54,4 +55,5 @@ DEPENDENCIES
   pygments.rb
   rdiscount
   sass
+  systemu
   to_slug (= 1.0.8)

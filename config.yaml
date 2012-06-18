@@ -68,3 +68,9 @@ prune:
   # This nanoc will automatically run nanoc prune every time I compile
   # note that it is sort of dangerous
   auto_prune: true
+
+deploy:
+  default:
+    kind: rsync
+    dst: "zameermanji.com:~/public_html"
+    options: ['-avze ssh', '--delete-after']
