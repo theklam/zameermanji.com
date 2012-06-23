@@ -1,0 +1,65 @@
+---
+kind: article
+created_at: 2012-06-22
+title: cProfile Tips
+
+---
+
+[cProfile] is currently the only  profiler for Python. However if you were to
+read the documentation you would have a very poor opinion of it. The
+documentation explains that the main entry point to the module is
+`cProfile.run()` where you pass as a string which is to be passed to the `exec`
+statement. There is an optional second argument which is a filename where the
+profile data will be serialized in a binary format. If you do not provide
+a filename, a report will be printed to the console. The report ^[This was
+copied from the Python 2.7.3 documentation.] looks like this:
+
+~~~~~~~~
+      2706 function calls (2004 primitive calls) in 4.504 CPU seconds
+
+Ordered by: standard name
+
+ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+     2    0.006    0.003    0.953    0.477 pobject.py:75(save_objects)
+  43/3    0.533    0.012    0.749    0.250 pobject.py:99(evaluate)
+ ...
+~~~~~~~~
+
+If you do serialize the data to a file you can use the [pstats] module to load
+the data which lets you sort the statistics along a value and then print the
+report to the console. The module also lets you print the callers/callees of
+a function to the console.
+
+Looking at this it seems the profiler is useless, the file it generates is
+binary and the documentation does not explain what format it is in. You cannot
+print the report to a file, never mind get a data structure of the results or
+the raw data. However this is not true, the module has many undocumented
+features which makes it significantly more useful. I am going to list a bunch of
+tips that will make the cProfile module more useful.
+
+## Redirect `pstats` output to a stream ##
+First, the `Stats` class constructor in pstats takes an undocumented keyword
+argument `stream` that lets you capture the output of the printing commands. In
+this way you can display the output somewhere else, like a HTML report or parse
+it for data.
+
+Example:
+
+~~~~ {.python}
+import cProfile
+import pstats
+import StringIO
+
+prof = cProfile.Profile()
+prof.run('foo()')
+
+
+def foo():
+  print "Hello World"
+
+
+~~~~
+
+
+[cProfile]: http://docs.python.org/library/profile.html
+[pstats]: http://docs.python.org/library/profile.html#module-pstats

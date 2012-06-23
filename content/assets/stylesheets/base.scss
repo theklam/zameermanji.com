@@ -135,3 +135,8 @@ ul.post-list {
 {
   clear: both;
 }
+
+.footnotes
+{
+  @include adjust-font-size-to(14px);
+}
