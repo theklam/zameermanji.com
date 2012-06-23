@@ -1,6 +1,6 @@
 source :rubygems
 
-gem "nanoc", "~> 3.3.3"
+gem "nanoc", "~> 3.4"
 gem "haml"
 gem "sass"
 gem "adsf"
@@ -14,3 +14,4 @@ gem "rdiscount"
 gem "mime-types"
 gem "builder"
 gem "systemu"
+gem "nokogiri"
