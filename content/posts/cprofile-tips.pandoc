@@ -14,7 +14,7 @@ profile data will be serialized in a binary format. If you do not provide
 a filename, a report will be printed to the console. The report ^[This was
 copied from the Python 2.7.3 documentation.] looks like this:
 
-~~~~~~~~
+~~~~~~~~ {.text}
       2706 function calls (2004 primitive calls) in 4.504 CPU seconds
 
 Ordered by: standard name
@@ -50,14 +50,17 @@ import cProfile
 import pstats
 import StringIO
 
-prof = cProfile.Profile()
-prof.run('foo()')
-
-
 def foo():
-  print "Hello World"
+    print "Hello World"
 
+cProfile.run('foo()', 'statsfile')
 
+stream = StringIO.StringIO()
+stats = pstats.Stats('statsfile', stream=stream)
+stats.print_stats()
+
+# Stream now contains the report text.
+# Can be accessed with stream.getvalue()
 ~~~~
 
 
