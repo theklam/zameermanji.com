@@ -2,11 +2,12 @@
 kind: article
 created_at: 2012-06-22
 title: cProfile Tips
+draft: true
 
 ---
 
-[cProfile] is currently the only  profiler for Python. However if you were to
-read the documentation you would have a very poor opinion of it. The
+The [cProfile] module is currently the only profiler for Python. However if you
+were to read the documentation you would have a very poor opinion of it. The
 documentation explains that the main entry point to the module is
 `cProfile.run()` where you pass as a string which is to be passed to the `exec`
 statement. There is an optional second argument which is a filename where the
@@ -35,10 +36,10 @@ binary and the documentation does not explain what format it is in. You cannot
 print the report to a file, never mind get a data structure of the results or
 the raw data. However this is not true, the module has many undocumented
 features which makes it significantly more useful. I am going to list a bunch of
-tips that will make the cProfile module more useful.
+tips that will make the `cProfile` module more useful.
 
-## Redirect `pstats` output to a stream ##
-First, the `Stats` class constructor in pstats takes an undocumented keyword
+## Redirect `pstats` output to a `StringIO` object ##
+First, the `Stats` class constructor in `pstats` takes an undocumented keyword
 argument `stream` that lets you capture the output of the printing commands. In
 this way you can display the output somewhere else, like a HTML report or parse
 it for data.
@@ -63,6 +64,22 @@ stats.print_stats()
 # Can be accessed with stream.getvalue()
 ~~~~
 
+## Read statsfile directly ##
+The file that cProfile dumps the data to is binary and the module documentation
+does not explain what format it is in. I have discovered that the file is
+written to disk using the [marshal] module. This file contains a list of tuples
+where each tuple represents one row of the final report. Unmarshalling the data
+and using it yourself enables you to bypass the `pstats` module directly.
+
+## Profile a function ##
+Instead of giving `cProfile` a string to pass on to `exec` you can actually
+profile a function by passing in the function and arguments. This will let you
+profile the function programmatically for different arguments amongst other
+things. You can do this by instantiating the `Profile` class.
+
+## Conclusion ##
+
 
 [cProfile]: http://docs.python.org/library/profile.html
 [pstats]: http://docs.python.org/library/profile.html#module-pstats
+[marshal]: http://docs.python.org/library/marshal.html
