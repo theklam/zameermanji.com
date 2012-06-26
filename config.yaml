@@ -65,7 +65,7 @@ watcher:
 base_url: http://www.zameermanji.com
 
 prune:
-  # This nanoc will automatically run nanoc prune every time I compile
+  # This means nanoc will automatically run nanoc prune every time I compile
   # note that it is sort of dangerous
   auto_prune: true
 
