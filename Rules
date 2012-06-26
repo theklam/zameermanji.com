@@ -67,6 +67,8 @@ compile '*' do
       filter :latex
     elsif ext == 'erb'
       filter :erb
+    elsif ext =='txt'
+      # no filter
     else
       raise "WHAT IS THIS EXT? While processing #{item.attributes}"
     end
@@ -97,6 +99,10 @@ end
 
 route 'sitemap.xml' do
   "/sitemap.xml"
+end
+
+route '/robots/' do
+  "/robots.txt"
 end
 
 route '*' do
