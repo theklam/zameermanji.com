@@ -1,14 +1,13 @@
 ---
 kind: article
-created_at: 2012-06-23
+created_at: 2012-06-30
 title: Undocumented cProfile Features
 
 ---
 
-The [cProfile] module is currently the only profiler for Python. However if you
-were to read the documentation you would think that it is insufficient for any
-real world use. The reason is that the documentation is horribly lacking and
-there are many useful undocumented features that make the module more useful.
+The [cProfile] module is currently the best profiler for Python, it is bundled
+in the standard library and gives accurate results. The documentation, however
+leaves out a lot of functionality that is useful.
 
 The documentation explains that the main entry point to the module is
 `cProfile.run()` where you pass as a string which is to be passed to the `exec`
@@ -31,21 +30,15 @@ ncalls  tottime  percall  cumtime  percall filename:lineno(function)
 If you do serialize the data to a file you can use the [pstats] module to load
 the data which lets you sort the statistics along a value and then print the
 report to the console. The module also lets you print the callers/callees of
-a function to the console.
+a function as well.
 
-Looking at this it seems the profiler is useless, the file it generates is
-binary and the documentation does not explain what format it is in. You cannot
-print the report to a file, never mind get a data structure of the results or
-the raw data. This means integrating the profiler as part of another set of
-tools or programmatically using the data for analysis is impossible.
-
-However there are plenty of undocumented features that enable you to gain the
-most out of the module.
+This is the documented use of the module, however there are plenty of
+undocumented features that allow you to gain more control over the profiler.
 
 ## Redirect `pstats` output to a `StringIO` object ##
 First, the `Stats` class constructor in `pstats` takes an undocumented keyword
-argument `stream` that lets you capture the output of the printing commands. In
-this way you can display the output somewhere else, like a HTML report or parse
+argument `stream` that lets you capture the output of the printing commands.
+This way you can display the output somewhere else, like a HTML report or parse
 it for data.
 
 Example:
@@ -86,7 +79,7 @@ Fri Jun 29 09:17:49 2012    statsfile
         1    0.000    0.000    0.000    0.000 test.py:5(foo)
 ~~~
 
-## Read statsfile directly ##
+## Load the statistics file ##
 The file that cProfile dumps the data to is binary and the module documentation
 does not explain what format it is in. According to the module
 [source code](http://hg.python.org/releasing/2.7.3/file/7bb96963d067/Lib/cProfile.py#l83)
@@ -132,9 +125,10 @@ This should give the following output:
                                                                 {})}
 ~~~
 
-The output dictionary maps a tuple describing a function (filename, line number, name)
-to a tuple of statistics. The tuple's data is (number of calls, number of
-non-recursive calls, total time, cumulative time, subcall statistics).
+The output dictionary maps a tuple describing a function (filename, line number,
+name) to a tuple of statistics. The tuple's data is (number of calls, number of
+non-recursive calls, total time, cumulative time, subcall statistics). You can
+easily take this dictionary and do further processing.
 
 ## Profile a function ##
 Instead of giving `cProfile` a string to pass on to `exec` you can actually
@@ -169,12 +163,25 @@ Hello World
  _lsprof.profiler_entry(code=<code object foo at 0x107767db0, file "test.py", line 4>, callcount=1, reccallcount=0, totaltime=1.3e-05, inlinetime=1.3e-05, calls=None)]
 ~~~
 
-This returns an array of [lsprof] entry objects.
+This returns an array of [lsprof] entry objects. This array contains the raw
+data from the profiler and gives you the most amount of data possible. Each
+object contains `callcount`. `recallcount`, `totaltime`, `inlinetime` attributes
+which are the number of times called, number of times recursively called, total
+time spent in the function and time spent in the function but not in subcalls
+respectively. The `code` attribute is either a python [code][inspect] object or
+a string describing functions that cannot have code objects. The `calls`
+attribute will contain profiler entries for subcalls within that function. With this
+data you can perform even more sophisticated analysis and filter out entries
+that are not useful to you.
 
 ## Conclusion ##
+There is a lot of undocumented functionality in the `cProfile` module.
+Leveraging some of this undocumented functionality can let you construct better
+profiling tools for your Python application.
 
 
 [cProfile]: http://docs.python.org/library/profile.html
 [pstats]: http://docs.python.org/library/profile.html#module-pstats
 [marshal]: http://docs.python.org/library/marshal.html
 [lsprof]: http://hg.python.org/releasing/2.7.3/file/7bb96963d067/Modules/_lsprof.c
+[inspect]: http://docs.python.org/library/inspect.html
