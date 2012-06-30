@@ -1,13 +1,16 @@
 ---
 kind: article
 created_at: 2012-06-23
-title: cProfile Tips
+title: Undocumented cProfile Features
 
 ---
 
 The [cProfile] module is currently the only profiler for Python. However if you
-were to read the documentation you would have a very poor opinion of it. The
-documentation explains that the main entry point to the module is
+were to read the documentation you would think that it is insufficient for any
+real world use. The reason is that the documentation is horribly lacking and
+there are many useful undocumented features that make the module more useful.
+
+The documentation explains that the main entry point to the module is
 `cProfile.run()` where you pass as a string which is to be passed to the `exec`
 statement. There is an optional second argument which is a filename where the
 profile data will be serialized in a binary format. If you do not provide
@@ -33,9 +36,11 @@ a function to the console.
 Looking at this it seems the profiler is useless, the file it generates is
 binary and the documentation does not explain what format it is in. You cannot
 print the report to a file, never mind get a data structure of the results or
-the raw data. However this is not true, the module has many undocumented
-features which makes it significantly more useful. I am going to list a bunch of
-tips that will make the `cProfile` module more useful.
+the raw data. This means integrating the profiler as part of another set of
+tools or programmatically using the data for analysis is impossible.
+
+However there are plenty of undocumented features that enable you to gain the
+most out of the module.
 
 ## Redirect `pstats` output to a `StringIO` object ##
 First, the `Stats` class constructor in `pstats` takes an undocumented keyword
@@ -61,20 +66,110 @@ stats.print_stats()
 
 # Stream now contains the report text.
 # Can be accessed with stream.getvalue()
+
+print stream.getvalue()
 ~~~~
+
+This should give the following output:
+
+~~~ {.text}
+Hello World
+Fri Jun 29 09:17:49 2012    statsfile
+
+         3 function calls in 0.000 seconds
+
+   Random listing order was used
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
+        1    0.000    0.000    0.000    0.000 <string>:1(<module>)
+        1    0.000    0.000    0.000    0.000 test.py:5(foo)
+~~~
 
 ## Read statsfile directly ##
 The file that cProfile dumps the data to is binary and the module documentation
-does not explain what format it is in. I have discovered that the file is
-written to disk using the [marshal] module. This file contains a list of tuples
-where each tuple represents one row of the final report. Unmarshalling the data
-and using it yourself enables you to bypass the `pstats` module directly.
+does not explain what format it is in. According to the module
+[source code](http://hg.python.org/releasing/2.7.3/file/7bb96963d067/Lib/cProfile.py#l83)
+, the file is a [marshaled][marshal] dictionary that maps a tuple describing
+functions to a tuple of statistics.
+
+Example:
+
+~~~ {.python}
+import cProfile
+import marshal
+import tempfile
+import pprint
+
+def foo():
+    print "Hello World"
+
+statsfile = tempfile.NamedTemporaryFile()
+
+cProfile.run('foo()', statsfile.name)
+
+stats = marshal.load(statsfile.file)
+
+pprint.pprint(stats)
+~~~
+
+This should give the following output:
+
+~~~ {.text}
+{('<string>', 1, '<module>'): (1, 1, 3e-06, 2.4e-05, {}),
+ ('test.py', 6, 'foo'): (1,
+                         1,
+                         2.1e-05,
+                         2.1e-05,
+                         {('<string>', 1, '<module>'): (1,
+                                                        1,
+                                                        2.1e-05,
+                                                        2.1e-05)}),
+ ('~', 0, "<method 'disable' of '_lsprof.Profiler' objects>"): (1,
+                                                                1,
+                                                                1e-06,
+                                                                1e-06,
+                                                                {})}
+~~~
+
+The output dictionary maps a tuple describing a function (filename, line number, name)
+to a tuple of statistics. The tuple's data is (number of calls, number of
+non-recursive calls, total time, cumulative time, subcall statistics).
 
 ## Profile a function ##
 Instead of giving `cProfile` a string to pass on to `exec` you can actually
-profile a function by passing in the function and arguments. This will let you
-profile the function programmatically for different arguments amongst other
-things. You can do this by instantiating the `Profile` class.
+profile a function by passing in the function and arguments. This is better than
+using the module level `run` function because you do not need to construct
+a string for an `exec` statement. In addition you can now easily access the
+profiler's data directly meaning we don't need to `marshal` data from the disk.
+
+Example:
+
+~~~ {.python}
+import cProfile
+import pprint
+
+def foo():
+    print "Hello World"
+
+profiler = cProfile.Profile()
+
+# If `foo` had other arguments they could be passed as the next arguments
+# to `runcall`
+profiler.runcall(foo)
+
+pprint.pprint(profiler.getstats())
+~~~
+
+This produces the following output:
+
+~~~ {.text}
+Hello World
+[_lsprof.profiler_entry(code="<method 'disable' of '_lsprof.Profiler' objects>", callcount=1, reccallcount=0, totaltime=0.0, inlinetime=0.0, calls=None),
+ _lsprof.profiler_entry(code=<code object foo at 0x107767db0, file "test.py", line 4>, callcount=1, reccallcount=0, totaltime=1.3e-05, inlinetime=1.3e-05, calls=None)]
+~~~
+
+This returns an array of [lsprof] entry objects.
 
 ## Conclusion ##
 
@@ -82,3 +177,4 @@ things. You can do this by instantiating the `Profile` class.
 [cProfile]: http://docs.python.org/library/profile.html
 [pstats]: http://docs.python.org/library/profile.html#module-pstats
 [marshal]: http://docs.python.org/library/marshal.html
+[lsprof]: http://hg.python.org/releasing/2.7.3/file/7bb96963d067/Modules/_lsprof.c
