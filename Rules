@@ -73,7 +73,7 @@ compile '*' do
       raise "WHAT IS THIS EXT? While processing #{item.attributes}"
     end
 
-    if item[:layout] != 'none' && ext != 'tex'
+    if item[:layout] != 'none' && ext != 'tex' && ext != 'txt'
       layout "default"
     end
   end
