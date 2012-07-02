@@ -60,7 +60,7 @@ compile '*' do
   else
     ext = item[:extension].nil? ? nil : item[:extension].split('.').last
     if ext == 'haml'
-      filter :haml
+      filter :haml, :format => :html5
     elsif ext == 'pandoc'
       filter :pandoc
     elsif ext == 'tex'
@@ -119,4 +119,4 @@ route '*' do
   end
 end
 
-layout '*', :haml
+layout '*', :haml, :format => :html5
