@@ -9,7 +9,7 @@ $base-font-size: 20px;
 
 $font-color: black;
 $link-color: lighten($font-color, 50);
-$page-width: 750px;
+$page-width: 900px;
 
 body {
   font-family: 'Lora','Droid Serif', serif;
@@ -18,6 +18,7 @@ body {
   text-rendering: optimizeLegibility;
 
   margin: 0 auto;
+  padding: 0 25px;
   width: $page-width;
 }
 
