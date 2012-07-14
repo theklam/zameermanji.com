@@ -9,6 +9,8 @@ class PygmentsFilter < Nanoc::Filter
   identifier :pygments
   type :text
 
+  LANGUAGES = ['ruby', 'vim', 'python', 'text', 'latex']
+
   def run(content, params = {})
     # The content here should be valid HTML
     # We find code blocks that have been created by pandoc for syntax
@@ -16,37 +18,17 @@ class PygmentsFilter < Nanoc::Filter
     # language.
 
     post = Hpricot(content)
-    code_blocks = post.search('pre.ruby code')
-    code_blocks.each do |code_block|
-      code = code_block.inner_html
-      code = CGI.unescapeHTML(code)
-      code = ::Pygments.highlight(code, :lexer => 'ruby', :options => {:encoding => 'utf-8'})
-      code_block.parent.swap code
+
+    LANGUAGES.each do |lang|
+      code_blocks = post.search("pre.#{lang} code")
+      code_blocks.each do |code_block|
+        code = code_block.inner_html
+        code = CGI.unescapeHTML(code)
+        code = ::Pygments.highlight(code, :lexer => lang, :options => {:encoding => 'utf-8'})
+        code_block.parent.swap code
+      end
     end
 
-    code_blocks = post.search('pre.vim code')
-    code_blocks.each do |code_block|
-      code = code_block.inner_html
-      code = CGI.unescapeHTML(code)
-      code = ::Pygments.highlight(code, :lexer => 'vim', :options => {:encoding => 'utf-8'})
-      code_block.parent.swap code
-    end
-
-    code_blocks = post.search('pre.python code')
-    code_blocks.each do |code_block|
-      code = code_block.inner_html
-      code = CGI.unescapeHTML(code)
-      code = ::Pygments.highlight(code, :lexer => 'python', :options => {:encoding => 'utf-8'})
-      code_block.parent.swap code
-    end
-
-    code_blocks = post.search('pre.text code')
-    code_blocks.each do |code_block|
-      code = code_block.inner_html
-      code = CGI.unescapeHTML(code)
-      code = ::Pygments.highlight(code, :lexer => 'text', :options => {:encoding => 'utf-8'})
-      code_block.parent.swap code
-    end
     post.to_html
 
   end

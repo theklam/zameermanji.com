@@ -1,0 +1,78 @@
+---
+kind: article
+created_at: 2012-07-09
+title: Why Do Your Resume in LaTeX
+draft: true
+
+---
+
+Having your [resume] in [LaTeX] has many advantages over creating it in HTML or
+(god forbid) a Microsoft Word document.
+
+## Version Control ##
+Unlike having a Word Document a LaTeX based document can be placed in version
+control because the source is a text document. This allows you to achieve
+multiple versions of your resume by simply creating multiple branches instead of
+creating different files like `resume-disqus.doc` and `resume-facebook.doc`.
+Having version control also lets me be more adventurous when editing my resume
+because I know I can always revert to a previous state.
+
+## Focus on Content ##
+Unlike word processing and HTML based resumes, LaTeX really lets me focus on the
+content of my resume instead of the formatting. This is because it does a really
+good job at preventing one or two lines of content spilling onto the next page.
+
+ADD MORE
+
+## High Quality PDF Output ##
+The output of LaTeX is a PDF and it is of great quality. Unlike the majority of
+resumes that will use 12pt Times New Roman and will use mediocre layout, a LaTeX
+document will have full justification, correct spacing and aesthetically
+pleasing line breaking. In addition the output is a PDF which is superior than
+an HTML document or a Microsoft Word document for a few reasons.
+
+First a PDF can be viewed on any operating system and it is guaranteed to look
+the same on all of them. Unlike an HTML document which might be subject to the
+viewer's browser or other factors. In addition a PDF enables me to embed fonts
+so I can select an esoteric font and know it will display correctly on every
+computer. It will also print correctly.
+
+The last reason ensures that your resume will look nicer compared to the 95% of
+resumes that use Arial/Helvetica or Times New Roman.
+
+## Basic Template ##
+The full [source] of my resume is on my github, but it isn't for everyone. To
+get you started you should start with the following packages:
+
+~~~ {.latex}
+\documentclass[10pt,letterpaper]{article}
+\usepackage[margin=0.75in]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{microtype}
+\usepackage{hyperref}
+\usepackage{tgpagella}
+\usepackage{enumitem}
+\pagestyle{empty}
+~~~
+
+Most of these packages are useful default packages for any document but a few of
+these are very important for a resume. First the `hyperref` package is essential
+for creating links, it provides a `\href` macro that allows your PDF to have
+clickable links when viewed on a computer. The `tgpagella` package sets the font
+to [TeX Gyre Pagella](http://www.tug.dk/FontCatalogue/tgpagella/) which is
+a very nice serif font. The `microtype` package adds many little niceties to
+the output of the document such as optimizing interword spacing and adding
+additional kerning. The `empty` page style removes page numbers which are not
+appropriate for a resume.
+
+## Other Resources ##
+
+For more information on LaTeX you should really read the [wikibook]. If you have
+any questions the [TeX.SE][stackexchange] site has all the answers.
+
+[resume]: /resume.pdf
+[LaTeX]: http://www.latex-project.org/
+[wikibook]: https://en.wikibooks.org/wiki/LaTeX
+[stackexchange]: http://tex.stackexchange.com/
+[source]: https://github.com/zmanji/zameermanji.com/blob/master/content/resume.tex
