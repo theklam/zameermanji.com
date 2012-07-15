@@ -1,48 +1,55 @@
 ---
 kind: article
 created_at: 2012-07-09
-title: Why Do Your Resume in LaTeX
-draft: true
+title: Your Resume Should be in LaTeX
 
 ---
 
 Having your [resume] in [LaTeX] has many advantages over creating it in HTML or
-(god forbid) a Microsoft Word document.
+a Microsoft Word document.
 
 ## Version Control ##
-Unlike having a Word Document a LaTeX based document can be placed in version
-control because the source is a text document. This allows you to achieve
-multiple versions of your resume by simply creating multiple branches instead of
-creating different files like `resume-disqus.doc` and `resume-facebook.doc`.
-Having version control also lets me be more adventurous when editing my resume
-because I know I can always revert to a previous state.
+Unlike a resume created with Microsoft Word, a LaTeX document can be placed in
+version control. The content can be diffed across reversions and can placed on
+[github][source]. In addition, version control lets you achieve multiple
+versions by using branching instead of creating different files like
+`resume-disqus.doc` and `resume-facebook.doc`.
 
 ## Focus on Content ##
-Unlike word processing and HTML based resumes, LaTeX really lets me focus on the
-content of my resume instead of the formatting. This is because it does a really
-good job at preventing one or two lines of content spilling onto the next page.
+If I were to create my resume with HTML I would have a lot of time fighting with
+CSS trying in vain to get my resume to look appropriate. Since it is difficult
+to do important things such as [center] text vertically, I would have wasted
+a lot of time focusing on formatting my resume as opposed to improving the
+content.
 
-ADD MORE
+LaTeX really lets me focus on the content of my resume instead of the formatting
+because the typesetting engine deals with 95% of the formatting for me and does
+a superb job. An example of this great formatting is that LaTeX is designed to
+prevent additional pages that only contain one or two lines of text. It will
+instead employ a series of tweaks to the resume to ensure everything fits on one
+page. I have found that it is very common with an HTML resume to spend hours
+tweaking CSS or the content to ensure it fits on one page.
 
 ## High Quality PDF Output ##
-The output of LaTeX is a PDF and it is of great quality. Unlike the majority of
-resumes that will use 12pt Times New Roman and will use mediocre layout, a LaTeX
-document will have full justification, correct spacing and aesthetically
-pleasing line breaking. In addition the output is a PDF which is superior than
-an HTML document or a Microsoft Word document for a few reasons.
+The output of LaTeX is a PDF and as mentioned before, really well formatted.
+Compared to resumes created in Microsoft Word or HTML a LaTeX based resume has
+[many][beauty] additional features that increase the overall quality of the
+document.
 
-First a PDF can be viewed on any operating system and it is guaranteed to look
-the same on all of them. Unlike an HTML document which might be subject to the
-viewer's browser or other factors. In addition a PDF enables me to embed fonts
-so I can select an esoteric font and know it will display correctly on every
-computer. It will also print correctly.
+This means that a LaTeX based resume will stand out from a pile of resumes that
+use 12pt Times New Roman because it will have justified text, kerning and other
+aesthetically pleasing elements. In addition, all of this output is placed into
+a PDF document which gives your resume additional advantages.
 
-The last reason ensures that your resume will look nicer compared to the 95% of
-resumes that use Arial/Helvetica or Times New Roman.
+A PDF can be viewed on any modern operating system and device and it is
+guaranteed to look the same on all of them. Your resume won't be at the mercy of
+browser quirks, missing fonts, or unsupported CSS features. A PDF is also
+designed for printing and guarantees your resume will look the same on paper.
 
 ## Basic Template ##
-The full [source] of my resume is on my github, but it isn't for everyone. To
-get you started you should start with the following packages:
+The full [source] of my resume is on my github and you can use it to get started
+with your own. However, if the look of my resume isn't what you want, you can
+get started with the following packages:
 
 ~~~ {.latex}
 \documentclass[10pt,letterpaper]{article}
@@ -56,12 +63,12 @@ get you started you should start with the following packages:
 \pagestyle{empty}
 ~~~
 
-Most of these packages are useful default packages for any document but a few of
-these are very important for a resume. First the `hyperref` package is essential
-for creating links, it provides a `\href` macro that allows your PDF to have
-clickable links when viewed on a computer. The `tgpagella` package sets the font
-to [TeX Gyre Pagella](http://www.tug.dk/FontCatalogue/tgpagella/) which is
-a very nice serif font. The `microtype` package adds many little niceties to
+Most of these packages are useful default packages for any LaTeX document but
+a few of these are very important for a resume. First the `hyperref` package is
+essential for creating links, it provides a `\href` macro that allows your PDF
+to have clickable links when viewed on a computer. The `tgpagella` package sets
+the font to [TeX Gyre Pagella](http://www.tug.dk/FontCatalogue/tgpagella/) which
+is a very nice serif font. The `microtype` package adds many little niceties to
 the output of the document such as optimizing interword spacing and adding
 additional kerning. The `empty` page style removes page numbers which are not
 appropriate for a resume.
@@ -76,3 +83,5 @@ any questions the [TeX.SE][stackexchange] site has all the answers.
 [wikibook]: https://en.wikibooks.org/wiki/LaTeX
 [stackexchange]: http://tex.stackexchange.com/
 [source]: https://github.com/zmanji/zameermanji.com/blob/master/content/resume.tex
+[center]: http://css-tricks.com/vertically-center-multi-lined-text/
+[beauty]: http://nitens.org/taraborelli/latex/
