@@ -1,6 +1,6 @@
 source :rubygems
 
-gem "nanoc", "~> 3.4"
+gem "nanoc", :ref => "c06916c177579353314151c1a0ef0a5efebd21d2" # Fix https://github.com/ddfreyne/nanoc/issues/162
 gem "haml"
 gem "sass"
 gem "adsf"
