@@ -1,16 +1,16 @@
 ---
 kind: article
-created_at: 2012-10-10
+created_at: 2012-10-11
 title: Getting Started With LaTeX
 
 ---
 
 A lot of people have asked me recently on how they can get started with [LaTeX].
 Unfortunately Googling ["getting started with LaTeX"][googling] results in
-outdated information, or information designed for people who started to use
-computers 30 years ago. None of this is helpful for a person who just wants to
-learn how to use LaTeX. For example in my Google result the first hit results in
-a 46 page PDF document and does not mention on how to install LaTeX.
+outdated information, or information targeted for users who are living in the
+terminal era. None of the results are helpful for a person who wants to install
+LaTeX and produce their first document. This post will show you how to get LaTeX
+on your computer and how to produce your first document.
 
 ## Installing LaTeX ##
 The first thing any user of LaTeX must understand is that there are many decades
@@ -22,25 +22,34 @@ this will require more knowledge about LaTeX, which is something you don't have
 if you are reading this post.
 
 The best LaTeX distributions are maintained by the [TeX Users Group]. They have
-two distributions: [Tex Live] for Linux and Windows users and [MacTeX] for Mac
-OS X users. Each site contains the appropriate instructions for installation.
+two distributions: [TeX Live] for Linux and Windows users and [MacTeX] for Mac
+OS X users. Linux users simply have to download
+a [tarball](http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz)
+and run the `install-tl` script. Windows users have to download
+a [zipfile](http://mirror.ctan.org/systems/texlive/tlnet/install-tl.zip) and run
+the `install-tl.bat` script. OS X users have to download 2.1 GB
+[package](http://mirror.ctan.org/systems/mac/mactex/MacTeX.pkg) and execute it.
 
-There are two important things to note when installing TeXLive or MacTeX. The
-first is that the `tlmgr` tool is provided which will enable you to update the
-current installation with newer packages. This is incredibly handy if you run
-into a bug with any package you are using. It is very likely that the bug has
-already been fixed upstream and updating will fix your problem. Secondly, each
-installation will be updated until the next version of the distribution is
+The installation involves downloading everything you will need to ensure you
+have a good internet connection. Once the installation is complete you need to
+ensure that LaTeX binaries are in your `$PATH`. If you open a command prompt and
+you cannot run `latex` or `latexmk` you will need to add `/usr/texbin` or
+similar to your `%$PATH`.
+
+There are two important things to note when after installing TeXLive or MacTeX.
+The first is that the `tlmgr` tool is provided which will enable you to update
+the current installation with newer packages. This is incredibly handy if you
+run into a bug with any package you are using. It is very likely that the bug
+has already been fixed upstream and updating will fix your problem. Secondly,
+each installation will be updated until the next version of the distribution is
 released. Therefore if you install TeXLive 2012 now you will receive updates via
 `tlmgr` until TeXlive 2013 is released. When TeXLive 2013 is released you will
-need to install it over your TeXLive 2012 installation.
-
-To follow the rest of the post you need to ensure that the installed binaries
-such as `latex`, `pdftex`, `latexmk` are in your `$PATH`.
+need to install it over your TeXLive 2012 installation to continue to have the
+latest packages.
 
 ## Writing Your First Document ##
-One LaTeX is installed you can write your first document. The typical first document
-looks as follows:
+One LaTeX is installed you can write your first document. The typical first
+document looks as follows:
 
 ~~~ {.latex}
 \documentclass[11pt]{report}
@@ -53,14 +62,23 @@ This is my first LaTeX document.
 ~~~
 
 If you copy and paste the above into its own file `doc.tex`. You will be able to
-compile it into a PDF by running `latexmk -pdf doc.tex`. This will produce
-`doc.pdf` in the same directory. The compilation process will also result in
-many temporary files in the same directory for backwards compatibility reasons.
+compile it into a PDF by running `latexmk -pdf doc.tex`. If you have
+successfully installed LaTeX you will a `doc.pdf` in the same directory which
+contains the text "This is my first LaTeX document." Note that the compilation
+process will produce many temporary files in the same directory. You can safely
+ignore these temporary files.
 
-## Other Resources ##
-There is a wonderful [wikibook] that explains more about LaTeX and how to
-achieve common tasks. For tasks not covered by the wikibook you should ask
-questions on the [TeX.SE][stackexchange] site.
+You should be always compiling your LaTeX documents with `latexmk -pdf` and not
+`latex`, `biber`, `pdftex` or whatever else you read on the internet. The reason
+is that more complex LaTeX documents will involve multiple compilation runs or
+other horribly confusing steps. Fortunately `latexmk` deals with all of that
+work for you and the `-pdf` flag will ensure a PDF is produced.
+
+## Next Steps ##
+The next step would be to read the [wikibook] to understand how to do common
+tasks in LaTeX such as sectioning, tables, bibliographies, etc. For more exotic
+tasks you should be searching and asking questions on the
+[TeX.SE][stackexchange].
 
 
 [LaTeX]: http://www.latex-project.org/
