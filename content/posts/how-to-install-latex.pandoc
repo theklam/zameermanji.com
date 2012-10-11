@@ -43,7 +43,7 @@ run into a bug with any package you are using. It is very likely that the bug
 has already been fixed upstream and updating will fix your problem. Secondly,
 each installation will be updated until the next version of the distribution is
 released. Therefore if you install TeXLive 2012 now you will receive updates via
-`tlmgr` until TeXlive 2013 is released. When TeXLive 2013 is released you will
+`tlmgr` until TeXLive 2013 is released. When TeXLive 2013 is released you will
 need to install it over your TeXLive 2012 installation to continue to have the
 latest packages.
 
@@ -84,7 +84,7 @@ tasks you should be searching and asking questions on the
 [LaTeX]: http://www.latex-project.org/
 [googling]: https://www.google.ca/search?q=getting+started+with+LaTeX&aq=f&sugexp=chrome,mod=19&sourceid=chrome&ie=UTF-8
 [TeX Live]: https://www.tug.org/texlive/
-[Tex Users Group]: https://www.tug.org/
+[TeX Users Group]: https://www.tug.org/
 [MacTeX]: https://www.tug.org/mactex/
 [wikibook]: https://en.wikibooks.org/wiki/LaTeX
 [stackexchange]: http://tex.stackexchange.com/
