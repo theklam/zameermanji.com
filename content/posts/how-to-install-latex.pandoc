@@ -34,7 +34,7 @@ The installation involves downloading everything you will need to ensure you
 have a good internet connection. Once the installation is complete you need to
 ensure that LaTeX binaries are in your `$PATH`. If you open a command prompt and
 you cannot run `latex` or `latexmk` you will need to add `/usr/texbin` or
-similar to your `%$PATH`.
+similar to your `$PATH`.
 
 There are two important things to note when after installing TeXLive or MacTeX.
 The first is that the `tlmgr` tool is provided which will enable you to update
