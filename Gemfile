@@ -1,8 +1,8 @@
 source :rubygems
 
-gem "nanoc", :ref => "c06916c177579353314151c1a0ef0a5efebd21d2" # Fix https://github.com/ddfreyne/nanoc/issues/162
+gem "nanoc", "3.4.2"
 gem "haml"
-gem "sass"
+gem "sass", "3.2.1"
 gem "adsf"
 gem "compass"
 gem "coffee-script"
