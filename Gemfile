@@ -1,8 +1,8 @@
 source :rubygems
 
-gem "nanoc", "3.4.2"
+gem "nanoc", "3.4.3"
 gem "haml"
-gem "sass", "3.2.1"
+gem "sass", "3.2.2"
 gem "adsf"
 gem "compass"
 gem "coffee-script"
