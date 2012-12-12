@@ -9,7 +9,7 @@ class PygmentsFilter < Nanoc::Filter
   identifier :pygments
   type :text
 
-  LANGUAGES = ['ruby', 'vim', 'python', 'text', 'latex']
+  LANGUAGES = ['ruby', 'vim', 'python', 'text', 'latex', 'common-lisp']
 
   def run(content, params = {})
     # The content here should be valid HTML
