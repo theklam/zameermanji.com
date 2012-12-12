@@ -30,6 +30,8 @@ many interesting courses.
 
 I have also have done 4 month internships at the following fine companies:
 
+* <span class='company-name'>     [Twitter][tw] (Intern) </span>
+  <span class='company-term'>     Winter 2013 </span>
 * <span class='company-name'>     [DISQUS][d] (Software Developer) </span>
   <span class='company-term'>     Spring 2012 </span>
 * <span class='company-name'>     [The Working Group][twg] (Software Developer) </span>
@@ -51,4 +53,5 @@ This site is powered by [nanoc][n]. The design of this site was inspired by
 [xl]: http://www.xtremelabs.com
 [t]: http://www.trapezegroup.com
 [d]: http://www.disqus.com
-[n]: http://nanoc.stoneship.org/
+[n]: http://nanoc.stoneship.org
+[tw]: http://www.twitter.com
