@@ -1,0 +1,137 @@
+---
+kind: article
+created_at: 2012-12-08
+title: Getting Evil With Emacs
+draft: true
+
+---
+
+~~I like Vim.~~ I like **modal editing**. I like Vim's language of motions,
+text objects and operators. I think the combination of modes and Vim's language
+is the best way to work with text. Unfortunately Vim the editor isn't so great.
+To extend and customize it involves understanding the most arcane language known
+to man, [VimL]. VimL is gross and I don't think it is the best way to configure
+something as important as my editor. I also think the reason why Vim's plugins
+are so limited is because VimL is so gross. I've always wondered what it would
+be like to use an editor that was extensible with a real programming
+language.
+
+## Enter Emacs ##
+
+[Emacs][emacs] is the answer to my question. Emacs is a LISP interpreter that
+ships with useful primitives for manipulating text and is packaged into a text
+editor. As a result Emacs can be extended to do many things that are impossible
+to replicate in Vim. Some of the extensions that can be achieved are:
+
+  * [AUCTeX]: an Emacs mode for TeX and related languages. It provides a very
+    neat preview mechanism.
+  * [Magit]: a UI for git that is an Emacs mode. It makes it very easy
+    to create patches incrementally and manage the repository without leaving
+    Emacs.
+  * [Org mode]: a hyper powerful mode that allwos you to manage TODO lists,
+    Agendas, Time Tracking, Literate Programming, basic document authoring and
+    more all within Emacs.
+  * [MultiTerm]: High quality terminal emulation allowing me to run a few
+    commands without leaving my editor.
+
+Having these modes to use makes it very temping to switch to Emacs as my full
+time editor. However without modes and the language of motions, text objects
+and operators I wouldn't be able to do anything.
+
+## Evil Mode ##
+Fortunately there is an Emacs mode that provides very high quality Vim emulation
+and it's called [Evil Mode]. It provides excellent Vim emulation and it is very
+easy to extend. It is very easy to define your own motions, operators, text
+objects, key bindings and functions. For example if you want to define a new
+text-object then all you need to call is the `(evil-define-text-object)`
+function, and it will work with all of the existing motions and operators.
+I don't think it is that nice in Vim.
+
+## Getting Emacs ##
+If you want to switch to Emacs or try it out for a bit you will need to get it
+for your platform. The current version of Emacs is 24.2 and it is the only
+version where I have tested out Evil, it might work on older versions but I have
+not tried. For Linux I suggest using your package manager, Windows users can get
+it from the official [FTP] and OSX users can get a native GUI
+[here][EmacsForOSX].
+
+## Getting Evil ##
+The next step is to get Evil installed. To do that you will need to create the
+`~/.emacs.d/init.el` file. It's equivalent to Vim's `.vimrc`. It's a file
+containing LISP which is sourced by Emacs upon start. Fortunately Emacs comes
+with [package management][package] built in and makes it really easy to get and
+manage third party code like Evil. The first thing in the `init.el` file is
+going to be adding a package archive (source) that contains the latest version
+of Evil.
+
+~~~{.common-lisp}
+(require 'package)
+(add-to-list 'package-archives
+	     '("melpa" . "http://melpa.milkbox.net/packages/") t)
+(package-initialize)
+~~~
+
+Emacs' package management is fairly low level and exposes a lot of primitives
+but not a lot of useful utilities. One of the things that I think is needed is
+having a list of packages that should be installed and not upgraded if they are
+already installed. The following code sets Evil to be a package installed and
+defines some functions to ensure it is installed on initialization.
+
+
+~~~ {.common-lisp}
+(defvar zmanji-packages
+  '(evil)
+  "A list of packages that must be installed at launch.")
+
+(defun zmanji-packages-installed-p ()
+  "Returns true if and only if all the packages in 'zmanji-packages' 
+are installed."
+  (loop for p in zmanji-packages
+	when (not (package-installed-p p)) do (return nil)
+	finally (return t)))
+
+(defun zmanji-install-packages ()
+  (unless (zmanji-packages-installed-p)
+    (message "Refreshing package database...")
+    (package-refresh-contents)
+    (message " done.")
+    (dolist (p zmanji-packages)
+      (unless (package-installed-p p)
+	(package-install p)))))
+
+(zmanji-install-packages)
+~~~
+
+The last chunk of code is to enable Evil mode.
+
+~~~ {.common-lisp}
+(require 'evil)
+(evil-mode 1)
+~~~
+
+Once you have this code in your `init.el` you should be able to run Emacs and
+use `hjkl`, `:w`, etc.
+
+## Next Steps ##
+Once you have the `init.el` complete, you can start using Emacs for basic text
+editing tasks. I think the next step is understanding Emacs's [help
+system][Emacs Help] and reading the [Evil Manual]. After that I suggest using
+Google or StackOverflow to help you customize your editor.
+
+## Conclusion ##
+With Evil mode it is now possible for a Vim user to use Emacs.
+
+
+[emacs]: https://www.gnu.org/software/emacs/
+[AUCTeX]: https://www.gnu.org/software/auctex/
+[Magit]: http://philjackson.github.com/magit/
+[Org mode]: http://orgmode.org/
+[VimL]: https://github.com/tpope/vim-fugitive/blob/master/plugin/fugitive.vim
+[Evil Mode]: http://emacswiki.org/emacs/Evil
+[MultiTerm]: http://www.emacswiki.org/emacs/MultiTerm
+[FTP]: http://ftp.gnu.org/gnu/emacs/windows/
+[EmacsForOSX]: http://emacsformacosx.com/
+[package]: https://www.gnu.org/software/emacs/manual/html_node/emacs/Packages.html#Packages
+[Emacs Help]: https://www.gnu.org/software/emacs/manual/html_node/emacs/Help.html#Help
+[Emacs Manual]: https://www.gnu.org/software/emacs/manual/html_node/emacs/index.html
+[Evil Manual]: https://gitorious.org/evil/evil/blobs/raw/doc/doc/evil.pdf
