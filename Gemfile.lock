@@ -25,7 +25,6 @@ GEM
     multi_json (1.5.0)
     nanoc (3.4.3)
       cri (~> 2.2)
-    nokogiri (1.5.6)
     pandoc-ruby (0.6.0)
     posix-spawn (0.3.6)
     pygments.rb (0.3.3)
@@ -34,7 +33,6 @@ GEM
     rack (1.4.1)
     rdiscount (1.6.8)
     sass (3.2.2)
-    systemu (2.5.2)
     to_slug (1.0.8)
     yajl-ruby (1.1.0)
 
@@ -45,15 +43,13 @@ DEPENDENCIES
   adsf
   builder
   coffee-script
-  compass
-  haml
+  compass (= 0.12.2)
+  haml (= 3.1.7)
   hpricot
   mime-types
   nanoc (= 3.4.3)
-  nokogiri
   pandoc-ruby
   pygments.rb
   rdiscount
   sass (= 3.2.2)
-  systemu
   to_slug (= 1.0.8)
