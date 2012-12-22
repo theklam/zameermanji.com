@@ -2,6 +2,7 @@
 @include normalize;
 
 $base-font-size: 20px;
+$base-line-height: 30px;
 
 @import "compass/typography/vertical_rhythm";
 @import "compass/typography/lists/horizontal-list";
@@ -10,9 +11,10 @@ $base-font-size: 20px;
 // For vertical rhythm
 @include establish-baseline;
 
-$font-color: black;
-$link-color: lighten($font-color, 50);
-$page-width: 900px;
+$font-color: #444;
+$border-color: darken(black, 50);
+$link-color: #666;
+$page-width: 700px;
 
 body {
   font-family: 'Lora','Droid Serif', serif;
@@ -37,19 +39,25 @@ a:visited, a:hover {
 
 h1 {
   @include adjust-font-size-to(40px);
-  border-bottom: 1px solid darken($font-color, 50);
+  border-bottom: 1px solid $border-color;
+  line-height: 1.1em;
+  font-color: #222;
 }
 
 h2 {
   @include adjust-font-size-to(30px);
+  line-height: 1.1em;
+  font-color: #222;
 }
 
 h3 {
   @include adjust-font-size-to(24px);
+  line-height: 1.1em;
+  font-color: #222;
 }
 
 footer {
-  border-top: 1px solid darken($font-color, 50);
+  border-top: 1px solid $border-color;
   padding-top: 5px;
   text-align: center;
 
@@ -72,11 +80,16 @@ header {
     @include horizontal-list;
   }
 
-  border-bottom: 1px solid darken($font-color, 50);
+  border-bottom: 1px solid $border-color;
 }
 
 pre, code, kbd {
   font-family: 'Inconsolata', monospace;
+}
+
+code, kbd {
+  background-color: #F8F8F8;
+  border: #DDD;
 }
 
 blockquote {
