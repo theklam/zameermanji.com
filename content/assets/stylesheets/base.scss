@@ -41,19 +41,19 @@ h1 {
   @include adjust-font-size-to(40px);
   border-bottom: 1px solid $border-color;
   line-height: 1.1em;
-  font-color: #222;
+  color: #222;
 }
 
 h2 {
   @include adjust-font-size-to(30px);
   line-height: 1.1em;
-  font-color: #222;
+  color: #222;
 }
 
 h3 {
   @include adjust-font-size-to(24px);
   line-height: 1.1em;
-  font-color: #222;
+  color: #222;
 }
 
 footer {
