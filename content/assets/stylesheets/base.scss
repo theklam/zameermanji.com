@@ -127,6 +127,7 @@ ul.post-list {
   overflow-x: auto;
   @include border-radius(10px);
   @include adjust-font-size-to(18px);
+  line-height: 1.1em;
   pre {
     word-wrap: normal;
     white-space: pre;
