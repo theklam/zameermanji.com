@@ -25,6 +25,16 @@ preprocess do
   @items.delete_if { |i| i[:draft] }
 end
 
+# Deal with static files
+route '/static/*' do
+  # /static/foo.html/ → /assets/foo.html
+  '/assets' + item.identifier[7..-2]
+end
+
+compile '/static/*' do
+
+end
+
 compile '/assets/stylesheets/*/' do
   filter :sass, Compass.sass_engine_options
 end

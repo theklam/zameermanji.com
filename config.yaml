@@ -48,6 +48,14 @@ data_sources:
     # it will become “/about.html/” instead.
     allow_periods_in_identifiers: true
 
+  # See:
+  # https://github.com/cboone/nanoc-static-data-source
+  # https://github.com/ddfreyne/nanoc/pull/58
+  -
+    type: static
+    items_root: /static
+    prefix: static
+
 # Configuration for the “watch” command, which watches a site for changes and
 # recompiles if necessary.
 watcher:

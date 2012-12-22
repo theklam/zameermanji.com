@@ -1,0 +1,93 @@
+// Note:
+// http://www.456bereastreet.com/archive/201012/font-face_tip_define_font-weight_and_font-style_to_keep_your_css_simple/
+
+
+@font-face {
+    font-family: 'Lora';
+    src: url('/assets/fonts/Lora-Regular-webfont.eot');
+    src: url('/assets/fonts/Lora-Regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/assets/fonts/Lora-Regular-webfont.woff') format('woff'),
+         url('/assets/fonts/Lora-Regular-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'Lora';
+    src: url('/assets/fonts/Lora-Italic-webfont.eot');
+    src: url('/assets/fonts/Lora-Italic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/assets/fonts/Lora-Italic-webfont.woff') format('woff'),
+         url('/assets/fonts/Lora-Italic-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+
+}
+
+@font-face {
+    font-family: 'Lora';
+    src: url('/assets/fonts/Lora-Bold-webfont.eot');
+    src: url('/assets/fonts/Lora-Bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/assets/fonts/Lora-Bold-webfont.woff') format('woff'),
+         url('/assets/fonts/Lora-Bold-webfont.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'Lora';
+    src: url('/assets/fonts/Lora-BoldItalic-webfont.eot');
+    src: url('/assets/fonts/Lora-BoldItalic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/assets/fonts/Lora-BoldItalic-webfont.woff') format('woff'),
+         url('/assets/fonts/Lora-BoldItalic-webfont.ttf') format('truetype');
+    font-weight: bold;
+    font-style: italic;
+
+}
+
+@font-face {
+    font-family: 'Cousine';
+    src: url('/assets/fonts/Cousine-Regular-Latin-webfont.eot');
+    src: url('/assets/fonts/Cousine-Regular-Latin-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/assets/fonts/Cousine-Regular-Latin-webfont.woff') format('woff'),
+         url('/assets/fonts/Cousine-Regular-Latin-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'Cousine';
+    src: url('/assets/fonts/Cousine-Italic-Latin-webfont.eot');
+    src: url('/assets/fonts/Cousine-Italic-Latin-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/assets/fonts/Cousine-Italic-Latin-webfont.woff') format('woff'),
+         url('/assets/fonts/Cousine-Italic-Latin-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+
+}
+
+@font-face {
+    font-family: 'Cousine';
+    src: url('/assets/fonts/Cousine-Bold-Latin-webfont.eot');
+    src: url('/assets/fonts/Cousine-Bold-Latin-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/assets/fonts/Cousine-Bold-Latin-webfont.woff') format('woff'),
+         url('/assets/fonts/Cousine-Bold-Latin-webfont.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'Cousine';
+    src: url('/assets/fonts/Cousine-BoldItalic-Latin-webfont.eot');
+    src: url('/assets/fonts/Cousine-BoldItalic-Latin-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/assets/fonts/Cousine-BoldItalic-Latin-webfont.woff') format('woff'),
+         url('/assets/fonts/Cousine-BoldItalic-Latin-webfont.ttf') format('truetype');
+    font-weight: bold;
+    font-style: italic;
+
+}
+
+
