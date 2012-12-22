@@ -12,3 +12,4 @@ sass_options = {
   :style => :compressed
 }
 
+require 'normalize'

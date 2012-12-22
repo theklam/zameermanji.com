@@ -14,6 +14,8 @@ GEM
       chunky_png (~> 1.2)
       fssm (>= 0.2.7)
       sass (~> 3.1)
+    compass-normalize-plugin (0.4.0)
+      compass (>= 0.11.1)
     cri (2.3.0)
       colored (>= 1.2)
     execjs (1.4.0)
@@ -45,6 +47,7 @@ DEPENDENCIES
   builder
   coffee-script
   compass (= 0.12.2)
+  compass-normalize-plugin (= 0.4.0)
   haml (= 3.1.7)
   hpricot
   mime-types

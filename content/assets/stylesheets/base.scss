@@ -1,3 +1,6 @@
+@import "normalize";
+@include normalize;
+
 $base-font-size: 20px;
 
 @import "compass/typography/vertical_rhythm";
