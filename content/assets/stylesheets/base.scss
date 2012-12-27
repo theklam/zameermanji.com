@@ -11,9 +11,9 @@ $base-line-height: 30px;
 // For vertical rhythm
 @include establish-baseline;
 
-$font-color: #444;
+$font-color: #222;
 $border-color: darken(black, 50);
-$link-color: #666;
+$link-color: #555;
 $page-width: 700px;
 
 body {
@@ -39,8 +39,8 @@ a:visited, a:hover {
 
 h1 {
   @include adjust-font-size-to(40px);
-  border-bottom: 1px solid $border-color;
   line-height: 1.1em;
+  margin-bottom: 0px;
   color: #222;
 }
 
@@ -83,6 +83,9 @@ header {
     text-transform: lowercase;
     @include horizontal-list;
   }
+
+  padding-bottom: 5px;
+  margin-bottom: 5px;
 
   border-bottom: 1px solid $border-color;
 }
@@ -142,9 +145,8 @@ ul.post-list {
   color: lighten($font-color,10);
   font-style: italic;
   text-align: left;
-  margin-top: -20px;
-  margin-bottom: 20px;
-  @include adjust-font-size-to(13px);
+  margin-bottom: 5px;
+  @include adjust-font-size-to(16px);
 }
 
 
