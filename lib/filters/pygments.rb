@@ -9,9 +9,8 @@ class PygmentsFilter < Nanoc::Filter
   identifier :pygments
   type :text
 
-  LANGUAGES = ['ruby', 'vim', 'python', 'text', 'latex', 'common-lisp']
-
   def run(content, params = {})
+    languages = ['ruby', 'vim', 'python', 'text', 'latex', 'common-lisp']
     # The content here should be valid HTML
     # We find code blocks that have been created by pandoc for syntax
     # highlighting. This is a code block with a class name of a programming
@@ -19,7 +18,7 @@ class PygmentsFilter < Nanoc::Filter
 
     post = Hpricot(content)
 
-    LANGUAGES.each do |lang|
+    languages.each do |lang|
       code_blocks = post.search("pre.#{lang} code")
       code_blocks.each do |code_block|
         code = code_block.inner_html
