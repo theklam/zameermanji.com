@@ -69,7 +69,11 @@ header {
   width: $page-width;
   float: left;
   text-transform: uppercase;
-  @include adjust-font-size-to(20px);
+  @include adjust-font-size-to(24px);
+
+  .name-link {
+    color: $font-color;
+  }
 
   nav {
     float: right;
