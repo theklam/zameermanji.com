@@ -43,3 +43,14 @@ the behaviour of `man`.
 
 ## After ##
 ![](/assets/images/vim-pager.png)
+
+## Edit ##
+Thanks to [Jamie Wong](http://jamie-wong.com/) my snippet can be modified.
+Instead of doing a little hack to prevent us from entering insert mode with
+`nnoremap i <nop>` we can enable the `noma` setting. This sets the buffer to not
+be modifiable. Since the buffer is not modifiable we cannot enter insert mode or
+modify the buffer at all. With this change the `$MANPAGER` variable is set to:
+
+~~~{.bash}
+export MANPAGER="col -b | vim -c 'set ft=man ts=8 nomod nolist nonu noma' -"
+~~~
