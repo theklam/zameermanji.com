@@ -30,6 +30,11 @@ body {
 a {
   color: $link-color;
   text-decoration: none;
+
+  code
+  {
+    background-color: transparent;
+  }
 }
 
 a:visited, a:hover {
@@ -37,11 +42,20 @@ a:visited, a:hover {
   text-decoration: underline;
 }
 
+img {
+  max-width: 100%;
+}
+
 h1 {
   @include adjust-font-size-to(40px);
   line-height: 1.1em;
   margin-bottom: 0px;
   color: #222;
+
+  code {
+    font-weight: normal;
+    background-color: transparent;
+  }
 }
 
 h2 {

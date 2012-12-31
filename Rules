@@ -7,6 +7,10 @@ Compass.add_project_configuration 'compass_config.rb'
 # Generate Slugs
 require 'to_slug'
 
+# Process Pandoc in :title attributes
+require 'pandoc-ruby'
+require 'hpricot'
+
 # A few helpful tips about the Rules file:
 #
 # * The string given to #compile and #route are matching patterns for
@@ -20,9 +24,22 @@ require 'to_slug'
 #   item, use the pattern “/about/*/”; “/about/*” will also select the parent,
 #   because “*” matches zero or more characters.
 
-# Delete Drafts
 preprocess do
+  # Delete Drafts
   @items.delete_if { |i| i[:draft] }
+
+  # Process Pandoc in :title attributes
+  @items.each do |item|
+    if item[:title]
+      item[:orignal_title] = item[:title]
+      title = item[:title]
+      title = PandocRuby.convert(title)
+      html = Hpricot(title)
+      titles = html.search("p")
+      title = titles[0].inner_html
+      item[:title] = title
+    end
+  end
 end
 
 # Deal with static files
@@ -101,7 +118,7 @@ route '/posts/*/' do
   date = item[:created_at]
   raise "No Posted Date!" if date.nil?
 
-  slug = item[:title].to_slug
+  slug = item[:orignal_title].to_slug
 
   "/blog/#{date.year}/#{date.month}/#{date.day}/#{slug}/index.html"
 
