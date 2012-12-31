@@ -30,7 +30,7 @@ extra `^H` (backspace) characters because they are not handled correctly by
   4. `nonu` removes line numbers.
   5. `nolist` disables `listchars` so trailing whitespace and extra tabs are not
     highlighted.
-  6. `nnoremap i <nop>` ensurs that we do not accidentally enter insert mode
+  6. `nnoremap i <nop>` ensures that we do not accidentally enter insert mode
     when viewing the man page.
 
 This solution is better than others because it does not involve doing crazy
