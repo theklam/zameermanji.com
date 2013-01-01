@@ -54,3 +54,16 @@ modify the buffer at all. With this change the `$MANPAGER` variable is set to:
 ~~~{.bash}
 export MANPAGER="col -b | vim -c 'set ft=man ts=8 nomod nolist nonu noma' -"
 ~~~
+
+## Edit 2 ##
+As Peter Lundgren and some
+[redditors](http://www.reddit.com/r/vim/comments/15qad8/using_vim_as_manpager/)
+have discovered this value of `$MANPAGER` does not work when using GNU `man`
+because it does not allow pipes for the command. The above does work for BSD
+`man` but if you want it to work for GNU `man` or both you need to change the
+value to a single command. The following snippet folds the above value into
+a single shell command.
+
+~~~{.bash}
+export MANPAGER="/bin/sh -c \"col -b | vim -c 'set ft=man ts=8 nomod nolist nonu noma' -\""
+~~~
