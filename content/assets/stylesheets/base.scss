@@ -1,6 +1,10 @@
 @import "normalize";
 @include normalize;
 
+// Own Partials
+@import "fonts";
+@import "pygments";
+
 $base-font-size: 20px;
 $base-line-height: 30px;
 

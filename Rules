@@ -52,6 +52,15 @@ compile '/static/*' do
 
 end
 
+# Don't compile scss partials
+compile 'style/_*/' do
+  # nothing
+end
+
+route 'style/_*/' do
+  nil
+end
+
 compile '/assets/stylesheets/*/' do
   filter :sass, Compass.sass_engine_options
 end
