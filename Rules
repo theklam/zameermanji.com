@@ -52,12 +52,13 @@ compile '/static/*' do
 
 end
 
-# Don't compile scss partials
-compile 'style/_*/' do
+# Don't compile partials
+# Regex from https://github.com/mkempe/nanoczzle/blob/master/Rules
+compile %r{/_.+/$} do
   # nothing
 end
 
-route 'style/_*/' do
+route %r{/_.+/$} do
   nil
 end
 
