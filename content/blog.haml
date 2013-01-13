@@ -7,6 +7,6 @@ title: Blog
   - sorted_articles.each do |a|
     %li
       = link_to a[:title], a.path
-      .date
+      %time.date{:datetime => a[:created_at].strftime("%F")}
         = a[:created_at].strftime("%B %d %Y")
 
