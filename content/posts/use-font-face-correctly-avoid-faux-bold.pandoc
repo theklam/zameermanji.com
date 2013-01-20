@@ -1,0 +1,10 @@
+---
+kind: article
+created_at: 2013-01-20
+title: "Use `@font-face` Correctly: Avoid Faux Bold"
+draft: true
+
+---
+
+A well meaning web browser can destroy a typeface. When using `@font-face` you
+have to be very careful to use a font
