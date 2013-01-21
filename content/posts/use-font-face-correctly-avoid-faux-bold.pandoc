@@ -8,3 +8,7 @@ draft: true
 
 A well meaning web browser can destroy a typeface. When using `@font-face` you
 have to be very careful to use a font
+
+Note: http://www.alistapart.com/articles/say-no-to-faux-bold/
+Note: http://fontfeed.com/archives/font-or-typeface/
+Note: http://www.aiga.org/theyre-not-fonts/
