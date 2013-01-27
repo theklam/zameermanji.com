@@ -40,6 +40,14 @@ preprocess do
       item[:title] = title
     end
   end
+
+  # Mark assets with the 'is_hidden' attribute so they don't appear in the site
+  # map. Note things from the static fs are automatically marked as hidden.
+  @items.each do |item|
+    if item[:filename].start_with? 'content/assets/'
+      item[:is_hidden] = true
+    end
+  end
 end
 
 # Deal with static files
