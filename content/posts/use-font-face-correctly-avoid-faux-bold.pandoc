@@ -6,9 +6,42 @@ draft: true
 
 ---
 
-A well meaning web browser can destroy a typeface. When using `@font-face` you
-have to be very careful to use a font
+Sometimes when I load up a web page that uses Lora as its heading font I see
+this:
 
-Note: http://www.alistapart.com/articles/say-no-to-faux-bold/
-Note: http://fontfeed.com/archives/font-or-typeface/
-Note: http://www.aiga.org/theyre-not-fonts/
+![](/assets/images/faux-bold-lora.png)
+
+However a heading in Lora should look like this:
+
+![](/assets/images/real-bold-lora.png)
+
+In the first image we are seeing "faux bold". This is when the CSS of the
+page uses`@font-face` to specify the normal weight font like this:
+
+~~~ {.css}
+@font-face {
+    font-family: 'Lora';
+    src: url('/assets/fonts/Lora-Regular-webfont.eot');
+    src: url('/assets/fonts/Lora-Regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/assets/fonts/Lora-Regular-webfont.woff') format('woff'),
+         url('/assets/fonts/Lora-Regular-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+
+}
+~~~
+
+Since the `font-weight` only specifies `normal` and there is no corresponding
+`@font-face` entry for `bold`, the browser is forced to emulate bold by
+manipulating the normal weight. As you can see
+
+One of the biggest problems of using `@font-face` is if not all of the fonts are
+specified, the browser is forced to compensate by simulating the missing styles
+themselves. This results in some awful fonts.
+
+if the bold version of
+the font use used on a page but not specified using `@font-face` the browser
+will be forced to compensate by creating the bold version from the normal
+version. This can create awful *faux* styles that butcher the look of the
+font-face. For example if specify the load the normal font of the Lora type face
+and then use it to style the text

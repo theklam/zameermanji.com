@@ -10,7 +10,7 @@ class PygmentsFilter < Nanoc::Filter
   type :text
 
   def run(content, params = {})
-    languages = ['ruby', 'vim', 'python', 'text', 'latex', 'common-lisp', 'bash']
+    languages = ['ruby', 'vim', 'python', 'text', 'latex', 'common-lisp', 'bash', 'css']
     # The content here should be valid HTML
     # We find code blocks that have been created by pandoc for syntax
     # highlighting. This is a code block with a class name of a programming
