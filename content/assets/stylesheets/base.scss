@@ -81,6 +81,9 @@ footer {
 
   @include adjust-font-size-to(12px);
   font-style: italic;
+  p {
+    margin: 0px;
+  }
 }
 
 header {
@@ -100,6 +103,10 @@ header {
   nav ul {
     text-transform: lowercase;
     @include horizontal-list;
+
+    li {
+      padding: 0px 8px;
+    }
   }
 
   padding-bottom: 5px;
