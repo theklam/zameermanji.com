@@ -178,6 +178,9 @@ ul.post-list {
 #greeting {
   @include adjust-font-size-to(22px);
   text-align: center;
+  p:last-child {
+    margin-bottom: 5px;
+  }
 }
 
 #content
