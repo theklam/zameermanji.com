@@ -2,7 +2,6 @@
 kind: article
 created_at: 2013-01-20
 title: "Use `@font-face` Correctly: Avoid Faux Bold"
-draft: true
 
 ---
 
@@ -21,10 +20,7 @@ page uses`@font-face` to specify the normal weight font like this:
 ~~~ {.css}
 @font-face {
     font-family: 'Lora';
-    src: url('/assets/fonts/Lora-Regular-webfont.eot');
-    src: url('/assets/fonts/Lora-Regular-webfont.eot?#iefix') format('embedded-opentype'),
-         url('/assets/fonts/Lora-Regular-webfont.woff') format('woff'),
-         url('/assets/fonts/Lora-Regular-webfont.ttf') format('truetype');
+    src: url('/assets/fonts/Lora-Regular-webfont.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 
@@ -32,16 +28,40 @@ page uses`@font-face` to specify the normal weight font like this:
 ~~~
 
 Since the `font-weight` only specifies `normal` and there is no corresponding
-`@font-face` entry for `bold`, the browser is forced to emulate bold by
-manipulating the normal weight. As you can see
+`@font-face` entry for `bold`, the browser is forced to emulate bold by applying
+an algorithm to the normal weight. As you can see it doesn't even come close to
+the actual font.
 
-One of the biggest problems of using `@font-face` is if not all of the fonts are
-specified, the browser is forced to compensate by simulating the missing styles
-themselves. This results in some awful fonts.
+The real solution is to have a font-face entry for every font that you use on
+the page. Since I use normal, **bold** and *italcs* on this page, the CSS
+contains all three entries:
 
-if the bold version of
-the font use used on a page but not specified using `@font-face` the browser
-will be forced to compensate by creating the bold version from the normal
-version. This can create awful *faux* styles that butcher the look of the
-font-face. For example if specify the load the normal font of the Lora type face
-and then use it to style the text
+~~~{.css}
+@font-face {
+    font-family: 'Lora';
+    src: url('/assets/fonts/Lora-Regular-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Lora';
+    src: url('/assets/fonts/Lora-Italic-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+
+}
+
+@font-face {
+    font-family: 'Lora';
+    src: url('/assets/fonts/Lora-Bold-webfont.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+
+}
+
+~~~
+
+As a result I don't have faux bold or italics on my page. If you use
+`@font-face` don't forget to put all of entries in your CSS so you can avoid
+faux bold.
