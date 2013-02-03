@@ -24,6 +24,7 @@ run do |opts, args, cmd|
     end
   end
 
+  files.delete_if {|x| x == nil}
   $stdout.puts "Deleting files..."
 
   files.each do |file|
