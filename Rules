@@ -62,13 +62,8 @@ end
 
 # Don't compile partials
 # Regex from https://github.com/mkempe/nanoczzle/blob/master/Rules
-compile %r{/_.+/$} do
-  # nothing
-end
 
-route %r{/_.+/$} do
-  nil
-end
+ignore %r{/_.+/$}
 
 compile '/assets/stylesheets/*/' do
   filter :sass, Compass.sass_engine_options
