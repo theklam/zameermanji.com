@@ -5,6 +5,7 @@ GEM
       rack (>= 1.0.0)
     builder (3.2.0)
     chunky_png (1.2.7)
+    coderay (1.0.9)
     coffee-script (2.2.0)
       coffee-script-source
       execjs
@@ -25,6 +26,7 @@ GEM
     hpricot (0.8.6)
     loofah (1.2.1)
       nokogiri (>= 1.4.4)
+    method_source (0.8.1)
     mime-types (1.21)
     multi_json (1.6.1)
     nanoc (3.6.1)
@@ -32,12 +34,17 @@ GEM
     nokogiri (1.5.6)
     pandoc-ruby (0.6.0)
     posix-spawn (0.3.6)
+    pry (0.9.12)
+      coderay (~> 1.0.5)
+      method_source (~> 0.8)
+      slop (~> 3.4)
     pygments.rb (0.4.2)
       posix-spawn (~> 0.3.6)
       yajl-ruby (~> 1.1.0)
     rack (1.5.2)
     rdiscount (2.0.7)
     sass (3.2.2)
+    slop (3.4.3)
     systemu (2.5.2)
     to_slug (1.0.8)
     yajl-ruby (1.1.0)
@@ -57,6 +64,7 @@ DEPENDENCIES
   mime-types
   nanoc (~> 3.6.0)
   pandoc-ruby
+  pry (~> 0.9.12)
   pygments.rb
   rdiscount
   sass (= 3.2.2)
