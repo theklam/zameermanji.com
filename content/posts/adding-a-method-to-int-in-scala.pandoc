@@ -1,0 +1,60 @@
+---
+kind: article
+created_at: 2013-03-31
+title: Monkey Patching in Scala
+
+---
+
+A really cool feature of Scala's type system is implicit conversions. It is
+a type safe way of adding methods to a class without the flaws of global
+monkey patching.
+
+For example in Ruby it is very easy to add methods to a class because in Ruby
+all classes are open. For example I can add any method to `Fixnum` by doing the
+following anywhere in my code:
+
+~~~ {.ruby}
+class Fixnum
+  def positive?
+    self > 0
+  end
+end
+~~~
+
+Then anywhere else in my code I can have the following evaluate to true:
+
+~~~ {.ruby}
+x = 10
+x.positive?
+~~~
+
+The biggest drawback from doing this in Ruby is monkey patches are in the global
+scope. If you use any class that relies on any monkey patching then that monkey
+patching is also in your scope. At best it won't effect any of your code, at
+worst it can silently override methods in your code. This can lead to horrible
+[problems](http://stackoverflow.com/q/683989/2874) that will cause you to cry.
+
+Scala however lets you accomplish the same thing without polluting the global
+scope. It achieves this by the use of 'implicits', a mechanism to instruct the
+compiler to transparently convert one type to another at compile time.
+
+The way it works is as follows:
+
+~~~{.scala}
+object Main {
+  implicit class FancyInt(val x: Int) extends AnyVal {
+    def positive_? = x > 0
+  }
+
+  def main(args: Array[String]) {
+    println(3.positive_?)
+  }
+}
+~~~
+
+The `implicit class` instructs the compiler that any `Int` can be implicitly
+converted to a `FancyInt` and that `FancyInt` has a `positive_?` method. This
+allows us to invoke the `positive_?` method on any `Int` and the compiler will
+know what we want. Unlike Ruby however this is only visible to the scope that
+the implicit is visible in. This allows us to build Ruby like DSLs without the
+fuss of global monkey patching.
