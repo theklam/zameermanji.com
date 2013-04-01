@@ -35,7 +35,7 @@ worst it can silently override methods in your code. This can lead to horrible
 [problems](http://stackoverflow.com/q/683989/2874) that will cause you to cry.
 
 Scala however lets you accomplish the same thing without polluting the global
-scope. It achieves this by the use of 'implicits', a mechanism to instruct the
+scope. It achieves this by the use of *implicits*, a mechanism to instruct the
 compiler to transparently convert one type to another at compile time.
 
 The way it works is as follows:
