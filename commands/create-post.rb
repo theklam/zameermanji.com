@@ -26,6 +26,7 @@ run do |opts, args, cmd|
 kind: article
 created_at: #{date}
 title: #{title}
+draft: true
 
 ---
 
