@@ -2,6 +2,7 @@ source "https://rubygems.org"
 # NOTE: Rdiscount only supports 1.9.3 and version.
 
 gem "nanoc", "~> 3.6.0"
+gem "cri", "~> 2.3.0"
 gem "haml", '3.1.7'
 gem "sass", "3.2.2"
 gem "adsf"
