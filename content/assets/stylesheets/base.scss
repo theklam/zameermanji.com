@@ -88,10 +88,6 @@ header {
   text-transform: uppercase;
   @include adjust-font-size-to(24px);
 
-  .name-link {
-    color: $font-color;
-  }
-
   nav {
     float: right;
   }
@@ -145,10 +141,6 @@ ul.post-list {
       font-style: italic;
       text-align: right;
     }
-  }
-
-  a {
-    color: $font-color;
   }
 }
 
