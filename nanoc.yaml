@@ -85,5 +85,5 @@ prune:
 deploy:
   default:
     kind: rsync
-    dst: "zameermanji.com:~/public_html"
+    dst: "zmanji@zameermanji.com:~/public_html"
     options: ['-avze ssh', '--delete-after']
