@@ -166,6 +166,10 @@ ul.post-list {
   @include adjust-font-size-to(16px);
 }
 
+#four-oh-four {
+  @include adjust-font-size-to(36px);
+  text-align: center;
+}
 
 #greeting {
   @include adjust-font-size-to(22px);
