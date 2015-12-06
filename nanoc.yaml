@@ -25,9 +25,7 @@ enable_output_diff: false
 # “layout/” directories in the site directory.
 data_sources:
   -
-    # The type is the identifier of the data source. By default, this will be
-    # `filesystem_unified`.
-    type: filesystem_unified
+    type: filesystem
 
     # The path where items should be mounted (comparable to mount points in
     # Unix-like systems). This is “/” by default, meaning that items will have
@@ -39,15 +37,6 @@ data_sources:
     # The path where layouts should be mounted. The layouts root behaves the
     # same as the items root, but applies to layouts rather than items.
     layouts_root: /
-
-    # TODO(zmanji): Switch to a regular filesystem and remove this option.
-    # Whether to allow periods in identifiers. When turned off, everything
-    # past the first period is considered to be the extension, and when
-    # turned on, only the characters past the last period are considered to
-    # be the extension. For example,  a file named “content/about.html.erb”
-    # will have the identifier “/about/” when turned off, but when turned on
-    # it will become “/about.html/” instead.
-    allow_periods_in_identifiers: true
 
   # TODO(zmanji) Remove this
   # This is fallout from the nanoc 4 upgrade, move the static stuff into
