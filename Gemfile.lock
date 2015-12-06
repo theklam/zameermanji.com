@@ -32,7 +32,6 @@ GEM
     rack (1.6.4)
     rdiscount (2.1.8)
     sass (3.2.2)
-    systemu (2.6.5)
     to_slug (1.0.8)
     yajl-ruby (1.2.1)
 
@@ -52,7 +51,6 @@ DEPENDENCIES
   pygments.rb (= 0.6.3)
   rdiscount (= 2.1.8)
   sass (= 3.2.2)
-  systemu (= 2.6.5)
   to_slug (= 1.0.8)
 
 BUNDLED WITH
