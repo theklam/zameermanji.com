@@ -2,8 +2,3 @@ output/
 tmp/
 .sass-cache/
 crash.log
-
-# Bundler related directories:
-bin/
-.bundle/
-vendor/
