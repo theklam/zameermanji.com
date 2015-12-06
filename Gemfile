@@ -1,5 +1,4 @@
 source "https://rubygems.org"
-# NOTE: Rdiscount only supports 1.9.3 and version.
 
 gem "nanoc", "~> 3.6.11"
 gem "cri", "~> 2.3.0"
