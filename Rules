@@ -11,19 +11,6 @@ require 'to_slug'
 require 'pandoc-ruby'
 require 'hpricot'
 
-# A few helpful tips about the Rules file:
-#
-# * The string given to #compile and #route are matching patterns for
-#   identifiers--not for paths. Therefore, you can’t match on extension.
-#
-# * The order of rules is important: for each item, only the first matching
-#   rule is applied.
-#
-# * Item identifiers start and end with a slash (e.g. “/about/” for the file
-#   “content/about.html”). To select all children, grandchildren, … of an
-#   item, use the pattern “/about/*/”; “/about/*” will also select the parent,
-#   because “*” matches zero or more characters.
-
 preprocess do
   # Delete Drafts
   @items.delete_if { |i| i[:draft] }
@@ -51,26 +38,23 @@ preprocess do
 end
 
 # Deal with static files
-route '/static/*' do
-  # /static/foo.html/ → /assets/foo.html
-  '/assets' + item.identifier[7..-2]
+compile '/static/**/*' do
 end
 
-compile '/static/*' do
-
+route '/static/**/*' do
+  # /static/foo.html → /assets/foo.html
+  '/assets' + item.identifier.to_s.sub(/\A\/static/, '')
 end
 
 # Don't compile partials
-# Regex from https://github.com/mkempe/nanoczzle/blob/master/Rules
+ignore '**/_*'
 
-ignore %r{/_.+/$}
-
-compile '/assets/stylesheets/*/' do
+compile '/assets/stylesheets/*' do
   filter :sass, Compass.sass_engine_options
 end
 
-compile '/posts/*/' do
-  ext = item[:extension].nil? ? nil : item[:extension].split('.').last
+compile '/posts/*' do
+  ext = item.identifier.ext
   if ext == 'pandoc'
     filter :pandoc, args: [:no_highlight]
     filter :pygments
@@ -78,15 +62,15 @@ compile '/posts/*/' do
     raise "Unknown ext: #{ext} with item: #{item.attributes}"
   end
 
-  layout 'default'
+  layout '/default.haml'
 end
 
 
-compile '*' do
+compile '**/*' do
   if item.binary?
     # don’t filter binary items
   else
-    ext = item[:extension].nil? ? nil : item[:extension].split('.').last
+    ext = item.identifier.ext
     if ext == 'haml'
       filter :haml, :format => :html5
     elsif ext == 'pandoc'
@@ -98,20 +82,20 @@ compile '*' do
     elsif ext =='txt'
       # no filter
     else
-      raise "WHAT IS THIS EXT? While processing #{item.attributes}"
+      raise "WHAT IS THIS EXT (#{ext})? While processing #{item.identifier}"
     end
 
     if item[:layout] != 'none' && ext != 'tex' && ext != 'txt'
-      layout "default"
+      layout "/default.haml"
     end
   end
 end
 
-route '/assets/stylesheets/*/' do
-  item.identifier.chop + '.css'
+route '/assets/stylesheets/*' do
+  item.identifier.without_ext + '.css'
 end
 
-route '/posts/*/' do
+route '/posts/*' do
   date = item[:created_at]
   raise "No Posted Date!" if date.nil?
 
@@ -121,26 +105,30 @@ route '/posts/*/' do
 
 end
 
-route 'sitemap.xml' do
+route '/sitemap.xml.erb' do
   "/sitemap.xml"
 end
 
-route '/robots/' do
+route '/robots.txt' do
   "/robots.txt"
 end
 
-route '*' do
-  ext = item[:extension].nil? ? nil : item[:extension].split('.').last
+route '/index.haml' do
+  '/index.html'
+end
+
+route '**/*' do
+  ext = item.identifier.ext
 
   if item.binary?
     # Write item with identifier /foo/ to /foo.ext
-    item.identifier.chop + '.' + item[:extension]
+    item.identifier.without_ext + '.' + item.identifier.ext
   elsif ext == 'tex'
-    item.identifier.chop + '.pdf'
+    item.identifier.without_ext + '.pdf'
   else
     # Write item with identifier /foo/ to /foo/index.html
-    item.identifier + 'index.html'
+    item.identifier.without_ext + '/index.html'
   end
 end
 
-layout '*', :haml, :format => :html5
+layout '**/*', :haml, :format => :html5
