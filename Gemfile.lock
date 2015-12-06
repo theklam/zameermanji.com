@@ -40,20 +40,20 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  adsf
-  builder
+  adsf (= 1.2.0)
+  builder (= 3.2.2)
   compass (= 0.12.2)
   compass-normalize-plugin (= 0.4.0)
   cri (~> 2.3.0)
   haml (= 3.1.7)
-  hpricot
+  hpricot (= 0.8.6)
   loofah (~> 1.2.1)
   nanoc (~> 3.6.11)
-  pandoc-ruby
-  pygments.rb
-  rdiscount
+  pandoc-ruby (= 1.0.0)
+  pygments.rb (= 0.6.3)
+  rdiscount (= 2.1.8)
   sass (= 3.2.2)
-  systemu
+  systemu (= 2.6.5)
   to_slug (= 1.0.8)
 
 BUNDLED WITH

@@ -3,16 +3,16 @@ source "https://rubygems.org"
 
 gem "nanoc", "~> 3.6.11"
 gem "cri", "~> 2.3.0"
-gem "haml", '3.1.7'
+gem "haml", "3.1.7"
 gem "sass", "3.2.2"
-gem "adsf"
+gem "adsf", "1.2.0"
 gem "compass", "0.12.2"
-gem 'pandoc-ruby'
-gem 'pygments.rb'
-gem 'hpricot'
+gem 'pandoc-ruby', "1.0.0"
+gem 'pygments.rb', "0.6.3"
+gem 'hpricot', "0.8.6"
 gem 'to_slug', "1.0.8"
-gem "rdiscount"
-gem "builder"
-gem "systemu"
+gem "rdiscount", "2.1.8"
+gem "builder", "3.2.2"
+gem "systemu", "2.6.5"
 gem "compass-normalize-plugin", "0.4.0"
 gem "loofah", "~> 1.2.1"
