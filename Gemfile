@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-gem "nanoc", "~> 3.6.11"
+gem "nanoc", "~> 3.7.5"
 gem "cri", "~> 2.3.0"
 gem "haml", "3.1.7"
 gem "sass", "3.2.2"
