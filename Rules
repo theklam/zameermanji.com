@@ -72,7 +72,7 @@ end
 compile '/posts/*/' do
   ext = item[:extension].nil? ? nil : item[:extension].split('.').last
   if ext == 'pandoc'
-    filter :pandoc, [:no_highlight]
+    filter :pandoc, args: [:no_highlight]
     filter :pygments
   else
     raise "Unknown ext: #{ext} with item: #{item.attributes}"
