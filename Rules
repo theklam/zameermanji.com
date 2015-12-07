@@ -48,7 +48,7 @@ route '/assets/stylesheets/*' do
   item.identifier.without_ext + '.css'
 end
 
-compile '/posts/*' do
+compile '/posts/**/*.pandoc' do
   ext = item.identifier.ext
   if ext == 'pandoc'
     filter :pandoc, args: [:no_highlight]
@@ -60,14 +60,23 @@ compile '/posts/*' do
   layout '/default.haml'
 end
 
-route '/posts/*' do
+route '/posts/**/*.pandoc' do
   date = item[:created_at]
   raise "No Posted Date!" if date.nil?
   slug = item[:slug]
   raise "No post slug!" if slug.nil?
 
   "/blog/#{date.year}/#{date.month}/#{date.day}/#{slug}/index.html"
+end
 
+compile '**/*.pandoc' do
+  filter :pandoc
+  layout "/default.haml"
+end
+
+route '**/*.pandoc' do
+  # Write item with identifier /foo.pandoc to /foo/index.html
+  item.identifier.without_ext + '/index.html'
 end
 
 compile '**/*.tex' do
@@ -98,38 +107,18 @@ passthrough '/assets/images/**/*'
 passthrough '/assets/fonts/**/*'
 passthrough '/favicon.ico'
 
-compile '**/*' do
-  if item.binary?
-    raise "unexpected binary item to compile"
-  else
-    ext = item.identifier.ext
-    if ext == 'haml'
-      filter :haml, :format => :html5
-    elsif ext == 'pandoc'
-      filter :pandoc
-    else
-      raise "WHAT IS THIS EXT (#{ext})? While processing #{item.identifier}"
-    end
-
-    if item[:layout] != 'none'
-      layout "/default.haml"
-    end
-  end
+compile '**/*.haml' do
+  filter :haml, :format => :html5
+  layout "/default.haml"
 end
-
 
 route '/index.haml' do
   '/index.html'
 end
 
-route '**/*' do
-  if item.binary?
-    raise "unexpected binary item to route: #{item.identifier}"
-  else
-    # Write item with identifier /foo/ to /foo/index.html
-    item.identifier.without_ext + '/index.html'
-  end
+route '**/*.haml' do
+  # Write item with identifier /foo.haml to /foo/index.html
+  item.identifier.without_ext + '/index.html'
 end
 
-
-layout '**/*', :haml, :format => :html5
+layout '**/*.haml', :haml, :format => :html5
