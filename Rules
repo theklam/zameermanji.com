@@ -70,6 +70,29 @@ route '/posts/*' do
 
 end
 
+compile '**/*.tex' do
+  filter :latex
+end
+
+route '**/*.tex' do
+  item.identifier.without_ext + '.pdf'
+end
+
+compile '**/*.txt' do
+end
+
+route '**/*.txt' do
+  item.identifier.to_str
+end
+
+compile '**/*.erb' do
+  filter :erb
+end
+
+route '**/*.erb' do
+  item.identifier.without_ext
+end
+
 
 compile '**/*' do
   if item.binary?
@@ -80,30 +103,16 @@ compile '**/*' do
       filter :haml, :format => :html5
     elsif ext == 'pandoc'
       filter :pandoc
-    elsif ext == 'tex'
-      filter :latex
-    elsif ext == 'erb'
-      filter :erb
-    elsif ext =='txt'
-      # no filter
     else
       raise "WHAT IS THIS EXT (#{ext})? While processing #{item.identifier}"
     end
 
-    if item[:layout] != 'none' && ext != 'tex' && ext != 'txt'
+    if item[:layout] != 'none' && ext != 'txt'
       layout "/default.haml"
     end
   end
 end
 
-
-route '/sitemap.xml.erb' do
-  "/sitemap.xml"
-end
-
-route '/robots.txt' do
-  "/robots.txt"
-end
 
 route '/index.haml' do
   '/index.html'
@@ -112,8 +121,6 @@ end
 route '**/*' do
   if item.binary?
     item.identifier.to_str
-  elsif item.identifier.ext == 'tex'
-    item.identifier.without_ext + '.pdf'
   else
     # Write item with identifier /foo/ to /foo/index.html
     item.identifier.without_ext + '/index.html'
