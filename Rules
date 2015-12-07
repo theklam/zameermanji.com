@@ -37,15 +37,6 @@ preprocess do
   end
 end
 
-# Deal with static files
-compile '/static/**/*' do
-end
-
-route '/static/**/*' do
-  # /static/foo.html → /assets/foo.html
-  '/assets' + item.identifier.to_s.sub(/\A\/static/, '')
-end
-
 # Don't compile partials
 ignore '**/_*'
 

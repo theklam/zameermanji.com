@@ -38,15 +38,6 @@ data_sources:
     # same as the items root, but applies to layouts rather than items.
     layouts_root: /
 
-  # TODO(zmanji) Remove this
-  # This is fallout from the nanoc 4 upgrade, move the static stuff into
-  # content.
-  -
-    type: filesystem
-    items_root: /static
-    content_dir: 'static'
-    layouts_dir: null
-
 # Required for XML Sitemap
 base_url: http://www.zameermanji.com
 
