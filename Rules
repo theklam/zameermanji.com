@@ -44,6 +44,10 @@ compile '/assets/stylesheets/*' do
   filter :sass, Compass.sass_engine_options
 end
 
+route '/assets/stylesheets/*' do
+  item.identifier.without_ext + '.css'
+end
+
 compile '/posts/*' do
   ext = item.identifier.ext
   if ext == 'pandoc'
@@ -54,6 +58,16 @@ compile '/posts/*' do
   end
 
   layout '/default.haml'
+end
+
+route '/posts/*' do
+  date = item[:created_at]
+  raise "No Posted Date!" if date.nil?
+  slug = item[:slug]
+  raise "No post slug!" if slug.nil?
+
+  "/blog/#{date.year}/#{date.month}/#{date.day}/#{slug}/index.html"
+
 end
 
 
@@ -82,19 +96,6 @@ compile '**/*' do
   end
 end
 
-route '/assets/stylesheets/*' do
-  item.identifier.without_ext + '.css'
-end
-
-route '/posts/*' do
-  date = item[:created_at]
-  raise "No Posted Date!" if date.nil?
-  slug = item[:slug]
-  raise "No post slug!" if slug.nil?
-
-  "/blog/#{date.year}/#{date.month}/#{date.day}/#{slug}/index.html"
-
-end
 
 route '/sitemap.xml.erb' do
   "/sitemap.xml"
