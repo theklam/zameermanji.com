@@ -18,7 +18,7 @@ preprocess do
   # Process Pandoc in :title attributes
   @items.each do |item|
     if item[:title]
-      item[:orignal_title] = item[:title]
+      item[:slug] = item[:title].to_slug
       title = item[:title]
       title = PandocRuby.convert(title)
       html = Hpricot(title)
@@ -89,8 +89,8 @@ end
 route '/posts/*' do
   date = item[:created_at]
   raise "No Posted Date!" if date.nil?
-
-  slug = item[:orignal_title].to_slug
+  slug = item[:slug]
+  raise "No post slug!" if slug.nil?
 
   "/blog/#{date.year}/#{date.month}/#{date.day}/#{slug}/index.html"
 
