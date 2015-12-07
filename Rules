@@ -93,10 +93,14 @@ route '**/*.erb' do
   item.identifier.without_ext
 end
 
+# Just copy the binary assets over
+passthrough '/assets/images/**/*'
+passthrough '/assets/fonts/**/*'
+passthrough '/favicon.ico'
 
 compile '**/*' do
   if item.binary?
-    # don’t filter binary items
+    raise "unexpected binary item to compile"
   else
     ext = item.identifier.ext
     if ext == 'haml'
@@ -107,7 +111,7 @@ compile '**/*' do
       raise "WHAT IS THIS EXT (#{ext})? While processing #{item.identifier}"
     end
 
-    if item[:layout] != 'none' && ext != 'txt'
+    if item[:layout] != 'none'
       layout "/default.haml"
     end
   end
@@ -120,11 +124,12 @@ end
 
 route '**/*' do
   if item.binary?
-    item.identifier.to_str
+    raise "unexpected binary item to route: #{item.identifier}"
   else
     # Write item with identifier /foo/ to /foo/index.html
     item.identifier.without_ext + '/index.html'
   end
 end
+
 
 layout '**/*', :haml, :format => :html5
