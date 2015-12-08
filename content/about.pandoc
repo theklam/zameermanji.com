@@ -3,55 +3,15 @@ title: About
 
 ---
 # About #
-I'm Zameer Manji. I'm from [Toronto, Canada][1] and I am a third year [Software
-Engineering][2] student at the [University of Waterloo][3].
+I'm Zameer Manji. I'm currently living in San Francisco, California and I'm from
+Toronto, Canada. I'm a [Software Engineering][2] graduate from the [University
+of Waterloo][3]. I currently work at [Twitter][1] on [Apache Aurora][4].
 
-[1]: http://en.wikipedia.org/wiki/Toronto
-[2]: https://uwaterloo.ca/software-engineering/
-[3]: http://uwaterloo.ca/
-
-## Education ##
-
-While attending at the University of Waterloo I have taken
-many interesting courses.
-
-* <span class='course-name'> Introduction to Macroeconomics (ECON 102) </span>
-  <span class='course-term'> Winter 2010 </span>
-* <span class='course-name'> Digital Computers (ECE 222) </span>
-  <span class='course-term'> Fall 2010 </span>
-* <span class='course-name'> Introduction to Combinatorics (MATH 239) </span>
-  <span class='course-term'> Spring 2011 </span>
-* <span class='course-name'> Algorithms (CS 341) </span>
-  <span class='course-term'> Winter 2012 </span>
-* <span class='course-name'> Operating Systems (SE 350) </span>
-  <span class='course-term'> Winter 2012 </span>
-
-## Work ##
-
-I have also have done 4 month internships at the following fine companies:
-
-* <span class='company-name'>     [Twitter][tw] (Intern) </span>
-  <span class='company-term'>     Winter 2013 </span>
-* <span class='company-name'>     [DISQUS][d] (Software Developer) </span>
-  <span class='company-term'>     Spring 2012 </span>
-* <span class='company-name'>     [The Working Group][twg] (Software Developer) </span>
-  <span class='company-term'>     Fall 2011 </span>
-* <span class='company-name'>     [Xtreme Labs][xl] (Agile Engineer) </span>
-  <span class='company-term'>     Winter 2011 </span>
-* <span class='company-name'>     [Trapeze Group][t] (Programmer) </span>
-  <span class='company-term'>     Spring 2010 </span>
-
-If you think a company should be added to this list, check out my [résumé][r].
-
-## This Site ##
-
-This site is powered by [nanoc][n]. The design of this site was inspired by
+This site is powered by [nanoc][5]. The design of this site was inspired by
 [Steve Losh](http://stevelosh.com/).
 
-[r]: /resume.pdf
-[twg]: http://www.theworkinggroup.ca
-[xl]: http://www.xtremelabs.com
-[t]: http://www.trapezegroup.com
-[d]: http://www.disqus.com
-[n]: http://nanoc.stoneship.org
-[tw]: http://www.twitter.com
+[1]: https://twitter.com/
+[2]: https://uwaterloo.ca/software-engineering/
+[3]: http://uwaterloo.ca/
+[4]: https://aurora.apache.org/
+[5]: http://nanoc.stoneship.org

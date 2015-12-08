@@ -127,11 +127,6 @@ blockquote {
   @include adjust-font-size-to(12px);
 }
 
-.company-term, .course-term {
-  text-align: right;
-  float: right;
-}
-
 ul.post-list {
   padding: 0px;
   li {
