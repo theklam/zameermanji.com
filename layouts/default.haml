@@ -48,7 +48,7 @@
               Created On:
               %time{:datetime => @item[:created_at].strftime("%F"), :pubdate => true}
                 = "#{@item[:created_at].strftime("%B %d %Y")}"
-        = yield
+        = preserve(yield)
       - if @item[:kind] == 'article'
         %hr
         #disqus_thread
