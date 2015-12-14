@@ -9,6 +9,7 @@ require 'to_slug'
 
 # Process Pandoc in :title attributes
 require 'pandoc-ruby'
+PandocRuby.bin_path = "./bin/"
 require 'hpricot'
 
 preprocess do
