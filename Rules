@@ -51,7 +51,7 @@ end
 compile '/posts/**/*.pandoc' do
   ext = item.identifier.ext
   if ext == 'pandoc'
-    filter :pandoc, args: [:no_highlight]
+    filter :pandoc, args: [:no_highlight, {:f => :markdown, :to => :html5}, :no_wrap]
     filter :pygments
   else
     raise "Unknown ext: #{ext} with item: #{item.attributes}"
