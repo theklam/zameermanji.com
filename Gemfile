@@ -1,10 +1,10 @@
 source "https://rubygems.org"
 
 gem "nanoc", "~> 4.0.2"
-gem "haml", "3.1.7"
-gem "sass", "3.2.19"
+gem "haml", "4.0.7"
+gem "sass", "3.4.20"
 gem "adsf", "1.2.0"
-gem "compass", "0.12.7"
+gem "compass", "1.0.3"
 gem 'pandoc-ruby', "1.0.0"
 gem 'pygments.rb', "0.6.3"
 gem 'hpricot', "0.8.6"
