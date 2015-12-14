@@ -1,4 +1,7 @@
 #!/bin/bash
 set -euo pipefail
-stack build pandoc
-stack exec pandoc -- "$@"
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+# TODO(zmanji): Put `stack setup` here?
+"$DIR/stack" build pandoc
+"$DIR/stack" exec pandoc -- "$@"

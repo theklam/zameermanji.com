@@ -1,0 +1,15 @@
+#!/bin/bash
+set -euo pipefail
+
+mkdir -p ./.bootstrap/bin/
+
+if [ ! -f ./.bootstrap/bin/stack ]; then
+  pushd ./.bootstrap/bin/
+  wget https://github.com/commercialhaskell/stack/releases/download/v0.1.10.0/stack-0.1.10.0-osx-x86_64.tar.gz
+  tar --strip=1 -zxvf stack-0.1.10.0-osx-x86_64.tar.gz stack-0.1.10.0-osx-x86_64/stack
+  chmod +x ./stack
+  rm stack-0.1.10.0-osx-x86_64.tar.gz
+  popd
+fi
+
+./.bootstrap/bin/stack "$@"
