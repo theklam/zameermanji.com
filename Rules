@@ -49,14 +49,8 @@ route '/assets/stylesheets/*' do
 end
 
 compile '/posts/**/*.pandoc' do
-  ext = item.identifier.ext
-  if ext == 'pandoc'
-    filter :pandoc, args: [:no_highlight, {:f => :markdown, :to => :html5}, :no_wrap]
-    filter :pygments
-  else
-    raise "Unknown ext: #{ext} with item: #{item.attributes}"
-  end
-
+  filter :pandoc, args: [:no_highlight, {:f => :markdown, :to => :html5}]
+  filter :pygments
   layout '/default.haml'
 end
 
@@ -70,7 +64,7 @@ route '/posts/**/*.pandoc' do
 end
 
 compile '**/*.pandoc' do
-  filter :pandoc
+  filter :pandoc, args: [:no_highlight, {:f => :markdown, :to => :html5}]
   layout "/default.haml"
 end
 
