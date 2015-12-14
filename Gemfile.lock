@@ -18,8 +18,6 @@ GEM
       sass (>= 3.3.0, < 3.5)
     compass-import-once (1.0.5)
       sass (>= 3.2, < 3.5)
-    compass-normalize-plugin (0.4.0)
-      compass (>= 0.11.1)
     cri (2.7.0)
       colored (~> 1.2)
     ffi (1.9.10)
@@ -55,8 +53,7 @@ PLATFORMS
 DEPENDENCIES
   adsf (= 1.2.0)
   builder (= 3.2.2)
-  compass-core (= 1.0.3)
-  compass-normalize-plugin (= 0.4.0)
+  compass (= 1.0.3)
   haml (= 4.0.7)
   hpricot (= 0.8.6)
   loofah (~> 1.2.1)
