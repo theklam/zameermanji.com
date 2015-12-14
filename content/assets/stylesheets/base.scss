@@ -10,7 +10,6 @@ $base-line-height: 30px;
 
 @import "compass/typography/vertical_rhythm";
 @import "compass/typography/lists/horizontal-list";
-@import "compass/css3/border-radius";
 
 // For vertical rhythm
 @include establish-baseline;
@@ -144,7 +143,7 @@ ul.post-list {
 .highlight {
   padding: 10px;
   overflow-x: auto;
-  @include border-radius(10px);
+  border-radius: 10px;
   @include adjust-font-size-to(18px);
   line-height: 1.1em;
   pre {
