@@ -6,7 +6,6 @@ $base-font-size: 20px;
 $base-line-height: 30px;
 
 @import "compass/typography/vertical_rhythm";
-@import "compass/typography/lists/horizontal-list";
 
 // For vertical rhythm
 @include establish-baseline;
@@ -90,10 +89,23 @@ header {
 
   nav ul {
     text-transform: lowercase;
-    @include horizontal-list;
+    display: inline-flex;
+
+    // TODO(zmanji): This might be cargo cult uselessness
+    margin: 0;
+    padding: 0;
+    border: 0;
+    overflow: hidden;
 
     li {
       padding: 0px 8px;
+      &:first-child { padding-left: 0px; }
+      &:last-child { padding-right: 0px; }
+      // TODO(zmanji): This might be cargo cult
+      white-space: nowrap;
+      // Remove bullets
+      list-style-image : none;
+      list-style-type  : none;
     }
   }
 
