@@ -79,7 +79,6 @@ footer {
 
 header {
   width: $page-width;
-  float: left;
   text-transform: uppercase;
   @include adjust-font-size-to(24px);
 
@@ -177,6 +176,9 @@ ul.post-list {
 #greeting {
   @include adjust-font-size-to(22px);
   text-align: center;
+  p:first-child {
+    margin-top: 5px;
+  }
   p:last-child {
     margin-bottom: 5px;
   }
