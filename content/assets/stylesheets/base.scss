@@ -81,10 +81,8 @@ header {
   width: $page-width;
   text-transform: uppercase;
   @include adjust-font-size-to(24px);
-
-  nav {
-    float: right;
-  }
+  display: flex;
+  justify-content: space-between;
 
   nav ul {
     text-transform: lowercase;
