@@ -1,9 +1,5 @@
 #!/usr/bin/env ruby
 
-# So I can use compass
-require 'compass'
-Compass.add_project_configuration 'compass_config.rb'
-
 # Generate Slugs
 require 'to_slug'
 
@@ -42,7 +38,7 @@ end
 ignore '**/_*'
 
 compile '/assets/stylesheets/*' do
-  filter :sass, Compass.sass_engine_options
+  filter :sass, syntax: :scss, style: :expanded
 end
 
 route '/assets/stylesheets/*' do
