@@ -2,12 +2,14 @@
 title: About
 
 ---
-# About #
-I'm Zameer Manji. I'm currently living in San Francisco, California and I'm from
+## About Me ##
+I'm Zameer. I'm currently living in San Francisco, California and I'm from
 Toronto, Canada. I'm a [Software Engineering][2] graduate from the [University
 of Waterloo][3]. I currently work at [Twitter][1] on [Apache Aurora][4].
 
-This site is powered by [nanoc][5]. The design of this site was inspired by
+## Colophon ##
+This site is powered by [nanoc][5]. The entire source of the website is
+available on [GitHub][6]. The design of this site was inspired by
 [Steve Losh](http://stevelosh.com/).
 
 [1]: https://twitter.com/
@@ -15,3 +17,4 @@ This site is powered by [nanoc][5]. The design of this site was inspired by
 [3]: http://uwaterloo.ca/
 [4]: https://aurora.apache.org/
 [5]: http://nanoc.stoneship.org
+[6]: https://github.com/zmanji/zameermanji.com
