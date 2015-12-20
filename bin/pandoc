@@ -1,7 +1,0 @@
-#!/bin/bash
-set -euo pipefail
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-
-# TODO(zmanji): Put `stack setup` here?
-"$DIR/stack" build pandoc
-"$DIR/stack" exec pandoc -- "$@"
