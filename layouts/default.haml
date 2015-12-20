@@ -37,36 +37,34 @@
           %li
             = link_to('Résumé', '/resume.pdf')
 
-    -# 'id' allows for page specific css targeting if needed
-    #content{:id => @item[:id]}
-      %article
-        - if @item[:kind] == 'article'
-          - if @item[:title]
-            %h1= @item[:title]
-          - if @item[:created_at]
-            .posted
-              Created On:
-              %time{:datetime => @item[:created_at].strftime("%F"), :pubdate => true}
-                = "#{@item[:created_at].strftime("%B %d %Y")}"
-        = preserve(yield)
+    %article
       - if @item[:kind] == 'article'
-        %hr
-        #disqus_thread
-        :javascript
-          /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-          var disqus_shortname = 'zmanji'; // required: replace example with your forum shortname
-          var disqus_developer = 0;
-          var disqus_url = '#{url_for(@item)}';
+        - if @item[:title]
+          %h1= @item[:title]
+        - if @item[:created_at]
+          .posted
+            Created On:
+            %time{:datetime => @item[:created_at].strftime("%F"), :pubdate => true}
+              = "#{@item[:created_at].strftime("%B %d %Y")}"
+      = preserve(yield)
+    - if @item[:kind] == 'article'
+      %hr
+      #disqus_thread
+      :javascript
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'zmanji'; // required: replace example with your forum shortname
+        var disqus_developer = 0;
+        var disqus_url = '#{url_for(@item)}';
 
-          /* * * DON'T EDIT BELOW THIS LINE * * */
-          (function() {
-            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-            dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
-            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-          })();
-        %noscript
-          Please enable JavaScript to view the
-          %a{:href => "http://disqus.com/?ref_noscript"} comments powered by Disqus.
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+      %noscript
+        Please enable JavaScript to view the
+        %a{:href => "http://disqus.com/?ref_noscript"} comments powered by Disqus.
 
     %footer
       = content_for(@item, :footer)
