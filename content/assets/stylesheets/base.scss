@@ -1,19 +1,18 @@
-// Own Partials
 @import "fonts";
 @import "pygments";
+@import "vertical-rhythmic";
 
-$base-font-size: 20px;
-$base-line-height: 30px;
-
-@import "compass/typography/vertical_rhythm";
-
-// For vertical rhythm
-@include establish-baseline;
-
+$font-size: 20px;
+$line-height: 30px; // 1.5x ratio.
 $font-color: #222;
 $border-color: darken(black, 50);
 $link-color: #2455c3;
 $page-width: 800px;
+
+html {
+  @include vr-baseline($font-size, $line-height);
+
+}
 
 body {
   font-family: 'Lora', serif;
@@ -21,8 +20,11 @@ body {
   background-color: white;
   text-rendering: optimizeLegibility;
 
-  margin: 0 auto;
+  // push the content a bit down the page
   padding-top: 10px;
+
+
+  margin: 0 auto;
   width: $page-width;
 }
 
@@ -46,9 +48,8 @@ img {
 }
 
 h1 {
-  @include adjust-font-size-to(40px);
-  line-height: 1.1em;
-  margin-bottom: 0px;
+  font-size: 2rem;
+  line-height: vr(2rem);
   code {
     font-weight: normal;
     background-color: transparent;
@@ -56,31 +57,30 @@ h1 {
 }
 
 h2 {
-  @include adjust-font-size-to(30px);
-  line-height: 1.1em;
+  font-size: 1.5rem;
+  line-height: vr(1.5rem);
 }
 
 h3 {
-  @include adjust-font-size-to(24px);
-  line-height: 1.1em;
+  font-size: 1.2rem;
+  line-height: vr(1.2rem);
 }
 
 footer {
   border-top: 1px solid $border-color;
-  padding-top: 5px;
   text-align: center;
 
-  @include adjust-font-size-to(12px);
+  font-size: 0.6rem;
+  line-height: vr(0.6rem);
+
   font-style: italic;
-  p {
-    margin: 0px;
-  }
 }
 
 header {
   width: $page-width;
   text-transform: uppercase;
-  @include adjust-font-size-to(24px);
+  font-size: 1.2rem;
+  line-height: vr(1.2rem);
   display: flex;
   justify-content: space-between;
 
@@ -106,9 +106,6 @@ header {
     }
   }
 
-  padding-bottom: 5px;
-  margin-bottom: 5px;
-
   border-bottom: 1px solid $border-color;
 }
 
@@ -116,20 +113,18 @@ pre, code, kbd {
   font-family: 'Cousine', monospace;
 }
 
-code, kbd {
-  background-color: #E8E8E8;
-  border: #DDD;
-}
-
 blockquote {
   padding-left: 1.5em;
   font-style: italic;
   border-left: 2px solid gray;
-  @include adjust-font-size-to(18px);
+
+  font-size: 0.9rem;
+  line-height: vr(0.9rem);
 }
 
 .small {
-  @include adjust-font-size-to(12px);
+  font-size: 0.6rem;
+  line-height: vr(0.6rem);
 }
 
 ul.post-list {
@@ -147,11 +142,11 @@ ul.post-list {
 
 // Pygments code boxes
 .highlight {
-  padding: 10px;
   overflow-x: auto;
   border-radius: 10px;
-  @include adjust-font-size-to(18px);
-  line-height: 1.1em;
+  font-size: 0.9rem;
+  line-height: vr(0.9rem);
+  padding: 0 10px;
   pre {
     word-wrap: normal;
     white-space: pre;
@@ -162,27 +157,25 @@ ul.post-list {
   color: lighten($font-color,10);
   font-style: italic;
   text-align: left;
-  margin-bottom: 5px;
-  @include adjust-font-size-to(16px);
+
+  font-size: 0.8rem;
+  line-height: vr(0.8rem);
+  margin-top: vr(-0.8rem);
 }
 
 #four-oh-four {
-  @include adjust-font-size-to(36px);
+  font-size: 1.8rem;
+  line-height: vr(1.8rem);
   text-align: center;
 }
 
 #greeting {
-  @include adjust-font-size-to(22px);
+  font-size: 1.1rem;
+  line-height: vr(1.1rem);
   text-align: center;
-  p:first-child {
-    margin-top: 5px;
-  }
-  p:last-child {
-    margin-bottom: 5px;
-  }
 }
 
-.footnotes
-{
-  @include adjust-font-size-to(14px);
+.footnotes {
+  font-size: 0.7rem;
+  line-height: vr(0.7rem);
 }
